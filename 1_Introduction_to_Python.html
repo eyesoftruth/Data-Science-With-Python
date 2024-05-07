@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science With Python - Introduction to Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./2_Intermediate_Python.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1_Introduction_to_Python.html">Introduction to Python</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Science With Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_Introduction_to_Python.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introduction to Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_Intermediate_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intermediate Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_Data_Manipulation_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_Introduction_to_Data_Visualization_with_Matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualization with Matplotlib</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7_Introduction_to_Data_Visualization_with_Seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualization with Seaborn</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_Python_Data_Science_Toolbox_Part1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Data Science Toolbox (Part 1)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9_Python_Data_Science_Toolbox_Part2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Data Science Toolbox (Part 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Intermediate_Data_Visualization_with_Seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intermediate Data Visualization with Seaborn</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A Visual History of Nobel Prize Winners</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Netflix_movies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project: Investigating Netflix Movies</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#explore-datasets" id="toc-explore-datasets" class="nav-link active" data-scroll-target="#explore-datasets">Explore Datasets</a></li>
+  <li><a href="#create-a-list" id="toc-create-a-list" class="nav-link" data-scroll-target="#create-a-list">Create a list</a></li>
+  <li><a href="#create-list-with-different-types" id="toc-create-list-with-different-types" class="nav-link" data-scroll-target="#create-list-with-different-types">Create list with different types</a></li>
+  <li><a href="#list-of-lists" id="toc-list-of-lists" class="nav-link" data-scroll-target="#list-of-lists">List of lists</a></li>
+  <li><a href="#subset-and-conquer" id="toc-subset-and-conquer" class="nav-link" data-scroll-target="#subset-and-conquer">Subset and conquer</a></li>
+  <li><a href="#subset-and-calculate" id="toc-subset-and-calculate" class="nav-link" data-scroll-target="#subset-and-calculate">Subset and calculate</a></li>
+  <li><a href="#slicing-and-dicing" id="toc-slicing-and-dicing" class="nav-link" data-scroll-target="#slicing-and-dicing">Slicing and dicing</a></li>
+  <li><a href="#slicing-and-dicing-2" id="toc-slicing-and-dicing-2" class="nav-link" data-scroll-target="#slicing-and-dicing-2">Slicing and dicing (2)</a></li>
+  <li><a href="#instructions-6" id="toc-instructions-6" class="nav-link" data-scroll-target="#instructions-6">Instructions</a></li>
+  <li><a href="#subsetting-lists-of-lists" id="toc-subsetting-lists-of-lists" class="nav-link" data-scroll-target="#subsetting-lists-of-lists">Subsetting lists of lists</a></li>
+  <li><a href="#replace-list-elements" id="toc-replace-list-elements" class="nav-link" data-scroll-target="#replace-list-elements">Replace list elements</a></li>
+  <li><a href="#extend-a-list" id="toc-extend-a-list" class="nav-link" data-scroll-target="#extend-a-list">Extend a list</a></li>
+  <li><a href="#delete-list-elements" id="toc-delete-list-elements" class="nav-link" data-scroll-target="#delete-list-elements">Delete list elements</a></li>
+  <li><a href="#inner-workings-of-lists" id="toc-inner-workings-of-lists" class="nav-link" data-scroll-target="#inner-workings-of-lists">Inner workings of lists</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a>
+  <ul class="collapse">
+  <li><a href="#familiar-functions" id="toc-familiar-functions" class="nav-link" data-scroll-target="#familiar-functions">Familiar functions</a></li>
+  </ul></li>
+  <li><a href="#instructions-10" id="toc-instructions-10" class="nav-link" data-scroll-target="#instructions-10">Instructions</a></li>
+  <li><a href="#multiple-arguments" id="toc-multiple-arguments" class="nav-link" data-scroll-target="#multiple-arguments">Multiple arguments</a></li>
+  <li><a href="#string-methods" id="toc-string-methods" class="nav-link" data-scroll-target="#string-methods">String Methods</a></li>
+  <li><a href="#list-methods" id="toc-list-methods" class="nav-link" data-scroll-target="#list-methods">List Methods</a></li>
+  <li><a href="#list-methods-2" id="toc-list-methods-2" class="nav-link" data-scroll-target="#list-methods-2">List Methods (2)</a></li>
+  <li><a href="#import-package" id="toc-import-package" class="nav-link" data-scroll-target="#import-package">Import package</a></li>
+  <li><a href="#selective-import" id="toc-selective-import" class="nav-link" data-scroll-target="#selective-import">Selective import</a></li>
+  <li><a href="#numpy" id="toc-numpy" class="nav-link" data-scroll-target="#numpy">NumPy</a>
+  <ul class="collapse">
+  <li><a href="#your-first-numpy-array" id="toc-your-first-numpy-array" class="nav-link" data-scroll-target="#your-first-numpy-array">Your First NumPy Array</a></li>
+  <li><a href="#baseball-players-height" id="toc-baseball-players-height" class="nav-link" data-scroll-target="#baseball-players-height">Baseball players’ height</a></li>
+  <li><a href="#baseball-players-bmi" id="toc-baseball-players-bmi" class="nav-link" data-scroll-target="#baseball-players-bmi">Baseball player’s BMI</a></li>
+  <li><a href="#lightweight-baseball-players" id="toc-lightweight-baseball-players" class="nav-link" data-scroll-target="#lightweight-baseball-players">Lightweight baseball players</a></li>
+  <li><a href="#numpy-side-effects" id="toc-numpy-side-effects" class="nav-link" data-scroll-target="#numpy-side-effects">NumPy Side Effects</a></li>
+  <li><a href="#subsetting-numpy-arrays" id="toc-subsetting-numpy-arrays" class="nav-link" data-scroll-target="#subsetting-numpy-arrays">Subsetting NumPy Arrays</a></li>
+  <li><a href="#your-first-2d-numpy-array" id="toc-your-first-2d-numpy-array" class="nav-link" data-scroll-target="#your-first-2d-numpy-array">Your First 2D NumPy Array</a></li>
+  <li><a href="#baseball-data-in-2d-form" id="toc-baseball-data-in-2d-form" class="nav-link" data-scroll-target="#baseball-data-in-2d-form">Baseball data in 2D form</a></li>
+  <li><a href="#subsetting-2d-numpy-arrays" id="toc-subsetting-2d-numpy-arrays" class="nav-link" data-scroll-target="#subsetting-2d-numpy-arrays">Subsetting 2D NumPy Arrays</a></li>
+  <li><a href="#d-arithmetic" id="toc-d-arithmetic" class="nav-link" data-scroll-target="#d-arithmetic">2D Arithmetic</a></li>
+  <li><a href="#average-versus-median" id="toc-average-versus-median" class="nav-link" data-scroll-target="#average-versus-median">Average versus median</a></li>
+  </ul></li>
+  <li><a href="#instructions-21" id="toc-instructions-21" class="nav-link" data-scroll-target="#instructions-21">Instructions</a></li>
+  <li><a href="#explore-the-baseball-data" id="toc-explore-the-baseball-data" class="nav-link" data-scroll-target="#explore-the-baseball-data">Explore the baseball data</a></li>
+  <li><a href="#blend-it-all-together" id="toc-blend-it-all-together" class="nav-link" data-scroll-target="#blend-it-all-together">Blend it all together</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction to Python</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="explore-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="explore-datasets">Explore Datasets</h2>
+<p>Use the arrays imported in the first cell to explore the data and practice your skills! - Print out the weight of the first ten baseball players. - What is the median weight of all baseball players in the data? - Print out the names of all players with a height greater than 80 (heights are in inches). - Who is taller on average? Baseball players or soccer players? Keep in mind that baseball heights are stored in inches! - The values in <code>soccer_shooting</code> are decimals. Convert them to whole numbers (e.g., 0.98 becomes 98). - Do taller players get higher ratings? Calculate the correlation between <code>soccer_ratings</code> and <code>soccer_heights</code> to find out! - What is the average rating for attacking players (<code>'A'</code>)?</p>
+<div id="19509ca5" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a variable savings</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>savings<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out savings</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(savings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>100</code></pre>
+</div>
+</div>
+<div id="218333e9" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the variables monthly_savings and num_months</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>monthly_savings <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>num_months <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiply monthly_savings and num_months</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>new_savings <span class="op">=</span> monthly_savings <span class="op">*</span> num_months</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add new_savings to your savings</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>total_savings <span class="op">=</span> savings<span class="op">+</span> new_savings </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Print total_savings</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(total_savings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>140</code></pre>
+</div>
+</div>
+<div id="3924547d" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a variable half</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>half <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a variable intro</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>intro <span class="op">=</span> <span class="st">"Hello! How are you?"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a variable is_good</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>is_good <span class="op">=</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="40dccc68" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>monthly_savings <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>num_months <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>intro <span class="op">=</span> <span class="st">"Hello! How are you?"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate year_savings using monthly_savings and num_months</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>year_savings <span class="op">=</span> monthly_savings <span class="op">*</span> num_months</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the type of year_savings</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(year_savings))</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign sum of intro and intro to doubleintro</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>doubleintro <span class="op">=</span> intro <span class="op">+</span> intro</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out doubleintro</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doubleintro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'int'&gt;
+Hello! How are you?Hello! How are you?</code></pre>
+</div>
+</div>
+<div id="6e2ba17a" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definition of savings and total_savings</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>savings <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>total_savings <span class="op">=</span> <span class="dv">150</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix the printout</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"I started with $"</span> <span class="op">+</span> <span class="bu">str</span>(savings) <span class="op">+</span> <span class="st">" and now have $"</span> <span class="op">+</span> <span class="bu">str</span>(total_savings) <span class="op">+</span> <span class="st">". Awesome!"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Definition of pi_string</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>pi_string <span class="op">=</span> <span class="st">"3.1415926"</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert pi_string into float: pi_float</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>pi_float <span class="op">=</span> <span class="bu">float</span>(pi_string)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>I started with $100 and now have $150. Awesome!</code></pre>
+</div>
+</div>
+</section>
+<section id="create-a-list" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-list">Create a list</h2>
+<p>As opposed to int, bool etc., a list is a compound data type; you can group values together:</p>
+<p><code>a = "is" b = "nice" my_list = ["my", "list", a, b]</code></p>
+<p>After measuring the height of your family, you decide to collect some information on the house you’re living in. The areas of the different parts of your house are stored in separate variables for now, as shown in the script.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Create a list, areas, that contains the area of the hallway (hall), kitchen (kit), living room (liv), bedroom (bed) and bathroom (bath), in this order. Use the predefined variables. - Print areas with the print() function.</li>
+</ul>
+</div>
+</div>
+<div id="ae65beaf" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># area variables (in square meters)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>hall <span class="op">=</span> <span class="fl">11.25</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>kit <span class="op">=</span> <span class="fl">18.0</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>liv <span class="op">=</span> <span class="fl">20.0</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>bed <span class="op">=</span> <span class="fl">10.75</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>bath <span class="op">=</span> <span class="fl">9.50</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list areas</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [hall, kit, liv, bed, bath]</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print areas</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(areas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[11.25, 18.0, 20.0, 10.75, 9.5]</code></pre>
+</div>
+</div>
+</section>
+<section id="create-list-with-different-types" class="level2">
+<h2 class="anchored" data-anchor-id="create-list-with-different-types">Create list with different types</h2>
+<p>A list can contain any Python type. Although it’s not really common, a list can also contain a mix of Python types including strings, floats, booleans, etc.</p>
+<p>The printout of the previous exercise wasn’t really satisfying. It’s just a list of numbers representing the areas, but you can’t tell which area corresponds to which part of your house.</p>
+<p>The code in the editor is the start of a solution. For some of the areas, the name of the corresponding room is already placed in front. Pay attention here! “bathroom” is a string, while bath is a variable that represents the float 9.50 you specified earlier.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>-Finish the code that creates the areas list. Build the list so that the list first contains the name of each room as a string and then its area. In other words, add the strings “hallway”, “kitchen” and “bedroom” at the appropriate locations. - Print areas again; is the printout more informative this time?</p>
+</div>
+</div>
+<div id="f356e118" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># area variables (in square meters)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>hall <span class="op">=</span> <span class="fl">11.25</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>kit <span class="op">=</span> <span class="fl">18.0</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>liv <span class="op">=</span> <span class="fl">20.0</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>bed <span class="op">=</span> <span class="fl">10.75</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>bath <span class="op">=</span> <span class="fl">9.50</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Adapt list areas</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="st">"hallway"</span>, hall, <span class="st">"kitchen"</span>, kit, <span class="st">"living room"</span>, liv, <span class="st">"bedroom"</span>,bed, <span class="st">"bathroom"</span>, bath]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print areas</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(areas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['hallway', 11.25, 'kitchen', 18.0, 'living room', 20.0, 'bedroom', 10.75, 'bathroom', 9.5]</code></pre>
+</div>
+</div>
+</section>
+<section id="list-of-lists" class="level2">
+<h2 class="anchored" data-anchor-id="list-of-lists">List of lists</h2>
+<p>As a data scientist, you’ll often be dealing with a lot of data, and it will make sense to group some of this data.</p>
+<p>Instead of creating a flat list containing strings and floats, representing the names and areas of the rooms in your house, you can create a list of lists. The script in the editor can already give you an idea.</p>
+<p>Don’t get confused here: “hallway” is a string, while hall is a variable that represents the float 11.25 you specified earlier.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Finish the list of lists so that it also contains the bedroom and bathroom data. Make sure you enter these in order! - Print out house; does this way of structuring your data make more sense? - Print out the type of house. Are you still dealing with a list?</li>
+</ul>
+</div>
+</div>
+<div id="604eff5a" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># area variables (in square meters)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>hall <span class="op">=</span> <span class="fl">11.25</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>kit <span class="op">=</span> <span class="fl">18.0</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>liv <span class="op">=</span> <span class="fl">20.0</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>bed <span class="op">=</span> <span class="fl">10.75</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>bath <span class="op">=</span> <span class="fl">9.50</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># house information as list of lists</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>house <span class="op">=</span> [[<span class="st">"hallway"</span>, hall],</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"kitchen"</span>, kit],</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"living room"</span>, liv],</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"bedroom"</span>, bed],</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"bathroom"</span>,bath]</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>         ]</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out house</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(house)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the type of house</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(house))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[['hallway', 11.25], ['kitchen', 18.0], ['living room', 20.0], ['bedroom', 10.75], ['bathroom', 9.5]]
+&lt;class 'list'&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="subset-and-conquer" class="level2">
+<h2 class="anchored" data-anchor-id="subset-and-conquer">Subset and conquer</h2>
+<p>Subsetting Python lists is a piece of cake. Take the code sample below, which creates a list x and then selects “b” from it. Remember that this is the second element, so it has index 1. You can also use negative indexing.</p>
+<p><code>x = ["a", "b", "c", "d"] x[1] x[-3] # same result!</code></p>
+<p>Remember the areas list from before, containing both strings and floats? Its definition is already in the script. Can you add the correct code to do some Python subsetting?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Print out the second element from the areas list (it has the value 11.25). - Subset and print out the last element of areas, being 9.50. Using a negative index makes sense here! - Select the number representing the area of the living room (20.0) and print it out.</li>
+</ul>
+</div>
+</div>
+<div id="ae7ee9bc" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the areas list</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="st">"hallway"</span>, <span class="fl">11.25</span>, <span class="st">"kitchen"</span>, <span class="fl">18.0</span>, <span class="st">"living room"</span>, <span class="fl">20.0</span>, <span class="st">"bedroom"</span>, <span class="fl">10.75</span>, <span class="st">"bathroom"</span>, <span class="fl">9.50</span>]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out second element from areas</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(areas[<span class="dv">1</span>])</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out last element from areas</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(areas[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the area of the living room</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(areas[<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>11.25
+9.5
+20.0</code></pre>
+</div>
+</div>
+</section>
+<section id="subset-and-calculate" class="level2">
+<h2 class="anchored" data-anchor-id="subset-and-calculate">Subset and calculate</h2>
+<p>After you’ve extracted values from a list, you can use them to perform additional calculations. Take this example, where the second and fourth element of a list x are extracted. The strings that result are pasted together using the + operator:</p>
+<p><code>x = ["a", "b", "c", "d"] print(x[1] + x[3])</code></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Using a combination of list subsetting and variable assignment, create a new variable, eat_sleep_area, that contains the sum of the area of the kitchen and the area of the bedroom. - Print the new variable eat_sleep_area.</li>
+</ul>
+</div>
+</div>
+<div id="a014e8ca" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the areas list</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="st">"hallway"</span>, <span class="fl">11.25</span>, <span class="st">"kitchen"</span>, <span class="fl">18.0</span>, <span class="st">"living room"</span>, <span class="fl">20.0</span>, <span class="st">"bedroom"</span>, <span class="fl">10.75</span>, <span class="st">"bathroom"</span>, <span class="fl">9.50</span>]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum of kitchen and bedroom area: eat_sleep_area</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>eat_sleep_area <span class="op">=</span> areas[<span class="dv">3</span>] <span class="op">+</span> areas[<span class="dv">7</span>]</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the variable eat_sleep_area</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(eat_sleep_area)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>28.75</code></pre>
+</div>
+</div>
+</section>
+<section id="slicing-and-dicing" class="level2">
+<h2 class="anchored" data-anchor-id="slicing-and-dicing">Slicing and dicing</h2>
+<p>Selecting single values from a list is just one part of the story. It’s also possible to slice your list, which means selecting multiple elements from your list. Use the following syntax:</p>
+<p><code>my_list[start:end]</code></p>
+<p>The start index will be included, while the end index is not.</p>
+<p>The code sample below shows an example. A list with “b” and “c”, corresponding to indexes 1 and 2, are selected from a list x:</p>
+<p>`x = [“a”, “b”, “c”, “d”] x[1:3]’</p>
+<p>The elements with index 1 and 2 are included, while the element with index 3 is not.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Use slicing to create a list, downstairs, that contains the first 6 elements of areas. - Do a similar thing to create a new variable, upstairs, that contains the last 4 elements of areas. - Print both downstairs and upstairs using print().</li>
+</ul>
+</div>
+</div>
+<div id="7d64c284" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the areas list</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="st">"hallway"</span>, <span class="fl">11.25</span>, <span class="st">"kitchen"</span>, <span class="fl">18.0</span>, <span class="st">"living room"</span>, <span class="fl">20.0</span>, <span class="st">"bedroom"</span>, <span class="fl">10.75</span>, <span class="st">"bathroom"</span>, <span class="fl">9.50</span>]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use slicing to create downstairs</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>downstairs <span class="op">=</span> areas[<span class="dv">0</span>:<span class="dv">6</span>]</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use slicing to create upstairs</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>upstairs <span class="op">=</span> areas[<span class="dv">6</span>:<span class="dv">10</span>]</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out downstairs and upstairs</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(downstairs)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(upstairs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['hallway', 11.25, 'kitchen', 18.0, 'living room', 20.0]
+['bedroom', 10.75, 'bathroom', 9.5]</code></pre>
+</div>
+</div>
+</section>
+<section id="slicing-and-dicing-2" class="level2">
+<h2 class="anchored" data-anchor-id="slicing-and-dicing-2">Slicing and dicing (2)</h2>
+<p>In the video, Hugo first discussed the syntax where you specify both where to begin and end the slice of your list:</p>
+<p><code>my_list[begin:end]</code></p>
+<p>However, it’s also possible not to specify these indexes. If you don’t specify the begin index, Python figures out that you want to start your slice at the beginning of your list. If you don’t specify the end index, the slice will go all the way to the last element of your list. To experiment with this, try the following commands in the IPython Shell:</p>
+<p><code>x = ["a", "b", "c", "d"] x[:2] x[2:] x[:]</code></p>
+</section>
+<section id="instructions-6" class="level1 {callout-note}">
+<h1>Instructions</h1>
+<ul>
+<li>Create downstairs again, as the first 6 elements of areas. This time, simplify the slicing by omitting the begin index.</li>
+<li>Create upstairs again, as the last 4 elements of areas. This time, simplify the slicing by omitting the end index.</li>
+</ul>
+</section>
+<div id="d12b3459" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the areas list</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="st">"hallway"</span>, <span class="fl">11.25</span>, <span class="st">"kitchen"</span>, <span class="fl">18.0</span>, <span class="st">"living room"</span>, <span class="fl">20.0</span>, <span class="st">"bedroom"</span>, <span class="fl">10.75</span>, <span class="st">"bathroom"</span>, <span class="fl">9.50</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternative slicing to create downstairs</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>downstairs <span class="op">=</span> areas[:<span class="dv">6</span>]</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternative slicing to create upstairs</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>upstairs <span class="op">=</span> areas[<span class="dv">6</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="subsetting-lists-of-lists" class="level2">
+<h2 class="anchored" data-anchor-id="subsetting-lists-of-lists">Subsetting lists of lists</h2>
+<p>You saw before that a Python list can contain practically anything; even other lists! To subset lists of lists, you can use the same technique as before: square brackets. Try out the commands in the following code sample in the IPython Shell:</p>
+<p><code>x = [["a", "b", "c"],      ["d", "e", "f"],      ["g", "h", "i"]] x[2][0] x[2][:2]</code></p>
+<p><code>x[2]</code> results in a list, that you can subset again by adding additional square brackets. What will <code>house[-1][1]</code> return?</p>
+<div id="479f1dc7" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>house[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>9.5</code></pre>
+</div>
+</div>
+</section>
+<section id="replace-list-elements" class="level2">
+<h2 class="anchored" data-anchor-id="replace-list-elements">Replace list elements</h2>
+<p>Replacing list elements is pretty easy. Simply subset the list and assign new values to the subset. You can select single elements or you can change entire list slices at once.</p>
+<p>Use the IPython Shell to experiment with the commands below. Can you tell what’s happening and why?</p>
+<p><code>x = ["a", "b", "c", "d"] x[1] = "r" x[2:] = ["s", "t"]</code></p>
+<p>For this and the following exercises, you’ll continue working on the areas list that contains the names and areas of different rooms in a house.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Update the area of the bathroom area to be 10.50 square meters instead of 9.50. - Make the areas list more trendy! Change “living room” to “chill zone”.</li>
+</ul>
+</div>
+</div>
+<div id="92111b9d" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the areas list</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="st">"hallway"</span>, <span class="fl">11.25</span>, <span class="st">"kitchen"</span>, <span class="fl">18.0</span>, <span class="st">"living room"</span>, <span class="fl">20.0</span>, <span class="st">"bedroom"</span>, <span class="fl">10.75</span>, <span class="st">"bathroom"</span>, <span class="fl">9.50</span>]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Correct the bathroom area</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>areas[<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="fl">10.50</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Change "living room" to "chill zone"</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>areas[<span class="dv">4</span>] <span class="op">=</span> <span class="st">"chill zone"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="extend-a-list" class="level2">
+<h2 class="anchored" data-anchor-id="extend-a-list">Extend a list</h2>
+<p>If you can change elements in a list, you sure want to be able to add elements to it, right? You can use the + operator:</p>
+<p><code>x = ["a", "b", "c", "d"] y = x + ["e", "f"]</code></p>
+<p>You just won the lottery, awesome! You decide to build a poolhouse and a garage. Can you add the information to the areas list?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Use the + operator to paste the list [“poolhouse”, 24.5] to the end of the areas list. Store the resulting list as areas_1. - Further extend areas_1 by adding data on your garage. Add the string “garage” and float 15.45. Name the resulting list areas_2.</li>
+</ul>
+</div>
+</div>
+<div id="2d659091" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the areas list and make some changes</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="st">"hallway"</span>, <span class="fl">11.25</span>, <span class="st">"kitchen"</span>, <span class="fl">18.0</span>, <span class="st">"chill zone"</span>, <span class="fl">20.0</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">"bedroom"</span>, <span class="fl">10.75</span>, <span class="st">"bathroom"</span>, <span class="fl">10.50</span>]</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add poolhouse data to areas, new list is areas_1</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>areas_1 <span class="op">=</span> areas <span class="op">+</span> [<span class="st">"poolhouse"</span>, <span class="fl">24.5</span>]</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add garage data to areas_1, new list is areas_2</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>areas_2 <span class="op">=</span> areas_1 <span class="op">+</span> [<span class="st">"garage"</span>, <span class="fl">15.45</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="delete-list-elements" class="level2">
+<h2 class="anchored" data-anchor-id="delete-list-elements">Delete list elements</h2>
+<p>Finally, you can also remove elements from your list. You can do this with the del statement:</p>
+<p><code>x = ["a", "b", "c", "d"] del(x[1])</code></p>
+<p>Pay attention here: as soon as you remove an element from a list, the indexes of the elements that come after the deleted element all change!</p>
+<p>The updated and extended version of areas that you’ve built in the previous exercises is coded below. You can copy and paste this into the IPython Shell to play around with the result.</p>
+<p><code>areas = ["hallway", 11.25, "kitchen", 18.0,         "chill zone", 20.0, "bedroom", 10.75,          "bathroom", 10.50, "poolhouse", 24.5,          "garage", 15.45]</code></p>
+<p>There was a mistake! The amount you won with the lottery is not that big after all and it looks like the poolhouse isn’t going to happen. You decide to remove the corresponding string and float from the areas list.</p>
+<p>The ; sign is used to place commands on the same line. The following two code chunks are equivalent:</p>
+<p>` Same line command1; command2</p>
+<p>Separate lines command1 command2`</p>
+<p>Which of the code chunks will do the job for us? <code>del(areas[-4:-2])</code></p>
+</section>
+<section id="inner-workings-of-lists" class="level2">
+<h2 class="anchored" data-anchor-id="inner-workings-of-lists">Inner workings of lists</h2>
+<p>At the end of the video, Hugo explained how Python lists work behind the scenes. In this exercise you’ll get some hands-on experience with this.</p>
+<p>The Python code in the script already creates a list with the name areas and a copy named areas_copy. Next, the first element in the areas_copy list is changed and the areas list is printed out. If you hit Run Code you’ll see that, although you’ve changed areas_copy, the change also takes effect in the areas list. That’s because areas and areas_copy point to the same list.</p>
+<p>If you want to prevent changes in areas_copy from also taking effect in areas, you’ll have to do a more explicit copy of the areas list. You can do this with list() or by using [:].</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Change the second command, that creates the variable areas_copy, such that areas_copy is an explicit copy of areas. After your edit, changes made to areas_copy shouldn’t affect areas. Submit the answer to check this.</li>
+</ul>
+</div>
+</div>
+<div id="aa917706" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list areas</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="fl">11.25</span>, <span class="fl">18.0</span>, <span class="fl">20.0</span>, <span class="fl">10.75</span>, <span class="fl">9.50</span>]</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create areas_copy</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>areas_copy <span class="op">=</span> <span class="bu">list</span>(areas)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Change areas_copy</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>areas_copy[<span class="dv">0</span>] <span class="op">=</span> <span class="fl">5.0</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print areas</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(areas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[11.25, 18.0, 20.0, 10.75, 9.5]</code></pre>
+</div>
+</div>
+</section>
+<section id="functions" class="level1">
+<h1>Functions</h1>
+<section id="familiar-functions" class="level2">
+<h2 class="anchored" data-anchor-id="familiar-functions">Familiar functions</h2>
+<p>Out of the box, Python offers a bunch of built-in functions to make your life as a data scientist easier. You already know two such functions: print() and type(). You’ve also used the functions str(), int(), bool() and float() to switch between data types. These are built-in functions as well.</p>
+<p>Calling a function is easy. To get the type of 3.0 and store the output as a new variable, result, you can use the following:</p>
+<p><code>result = type(3.0)</code></p>
+<p>The general recipe for calling functions and saving the result to a variable is thus:</p>
+<p><code>output = function_name(input)</code></p>
+</section>
+</section>
+<section id="instructions-10" class="level1 {callout-note}">
+<h1>Instructions</h1>
+<ul>
+<li>Use print() in combination with type() to print out the type of var1.</li>
+<li>Use len() to get the length of the list var1. Wrap it in a print() call to directly print it out.</li>
+<li>Use int() to convert var2 to an integer. Store the output as out2.</li>
+</ul>
+</section>
+<div id="ad0b4dad" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create variables var1 and var2</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>var1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>var2 <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out type of var1</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(var1))</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out length of var1</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(var1))</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert var2 to an integer: out2</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>out2 <span class="op">=</span> <span class="bu">int</span>(var2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'list'&gt;
+4</code></pre>
+</div>
+</div>
+<section id="multiple-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-arguments">Multiple arguments</h2>
+<p>In the previous exercise, you identified optional arguments by viewing the documentation with help(). You’ll now apply this to change the behavior of the sorted() function.</p>
+<p>Have a look at the documentation of sorted() by typing help(sorted) in the IPython Shell.</p>
+<p>You’ll see that sorted() takes three arguments: iterable, key, and reverse.</p>
+<p>key=None means that if you don’t specify the key argument, it will be None. reverse=False means that if you don’t specify the reverse argument, it will be False, by default.</p>
+<p>In this exercise, you’ll only have to specify iterable and reverse, not key. The first input you pass to sorted() will be matched to the iterable argument, but what about the second input? To tell Python you want to specify reverse without changing anything about key, you can use = to assign it a new value:</p>
+<p><code>sorted(____, reverse=____)</code></p>
+<p>Two lists have been created for you. Can you paste them together and sort them in descending order?</p>
+<p>Note: For now, we can understand an iterable as being any collection of objects, e.g., a List.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Use + to merge the contents of first and second into a new list: full. - Call sorted() on full and specify the reverse argument to be True. Save the sorted list as full_sorted. - Finish off by printing out full_sorted.</li>
+</ul>
+</div>
+</div>
+<div id="093837b9" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create lists first and second</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>first <span class="op">=</span> [<span class="fl">11.25</span>, <span class="fl">18.0</span>, <span class="fl">20.0</span>]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>second <span class="op">=</span> [<span class="fl">10.75</span>, <span class="fl">9.50</span>]</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Paste together first and second: full</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>full <span class="op">=</span> first <span class="op">+</span> second</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort full in descending order: full_sorted</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>full_sorted <span class="op">=</span> <span class="bu">sorted</span>(full,reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out full_sorted</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(full_sorted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[20.0, 18.0, 11.25, 10.75, 9.5]</code></pre>
+</div>
+</div>
+</section>
+<section id="string-methods" class="level2">
+<h2 class="anchored" data-anchor-id="string-methods">String Methods</h2>
+<p>Strings come with a bunch of methods. Follow the instructions closely to discover some of them. If you want to discover them in more detail, you can always type help(str) in the IPython Shell.</p>
+<p>A string place has already been created for you to experiment with.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Use the upper() method on place and store the result in place_up. Use the syntax for calling methods that you learned in the previous video. - Print out place and place_up. Did both change? - Print out the number of o’s on the variable place by calling count() on place and passing the letter ‘o’ as an input to the method. We’re talking about the variable place, not the word “place”!</li>
+</ul>
+</div>
+</div>
+<div id="e90b51db" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># string to experiment with: place</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>place <span class="op">=</span> <span class="st">"poolhouse"</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use upper() on place: place_up</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>place_up <span class="op">=</span> place.upper()</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out place and place_up</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(place)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(place_up)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the number of o's in place</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(place.count(<span class="st">"o"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>poolhouse
+POOLHOUSE
+3</code></pre>
+</div>
+</div>
+</section>
+<section id="list-methods" class="level2">
+<h2 class="anchored" data-anchor-id="list-methods">List Methods</h2>
+<p>Strings are not the only Python types that have methods associated with them. Lists, floats, integers and booleans are also types that come packaged with a bunch of useful methods. In this exercise, you’ll be experimenting with:</p>
+<ul>
+<li><code>index()</code>, to get the index of the first element of a list that matches its input and</li>
+<li><code>count()</code>, to get the number of times an element appears in a list.</li>
+</ul>
+<p>You’ll be working on the list with the area of different parts of a house: areas. Instructions - Use the index() method to get the index of the element in areas that is equal to 20.0. Print out this index. - Call count() on areas to find out how many times 9.50 appears in the list. Again, simply print out this number.</p>
+<div id="a0074caf" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list areas</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="fl">11.25</span>, <span class="fl">18.0</span>, <span class="fl">20.0</span>, <span class="fl">10.75</span>, <span class="fl">9.50</span>]</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the index of the element 20.0</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(areas.index(<span class="fl">20.0</span>))</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out how often 9.50 appears in areas</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(areas.count(<span class="fl">9.50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2
+1</code></pre>
+</div>
+</div>
+</section>
+<section id="list-methods-2" class="level2">
+<h2 class="anchored" data-anchor-id="list-methods-2">List Methods (2)</h2>
+<p>Most list methods will change the list they’re called on. Examples are:</p>
+<ul>
+<li><code>append()</code>, that adds an element to the list it is called on,</li>
+<li><code>remove()</code>, that removes the first element of a list that matches the input, and</li>
+<li><code>reverse()</code>, that reverses the order of the elements in the list it is called on.</li>
+</ul>
+<p>You’ll be working on the list with the area of different parts of the house: areas.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Use append() twice to add the size of the poolhouse and the garage again: 24.5 and 15.45, respectively. Make sure to add them in this order. - Print out areas - Use the reverse() method to reverse the order of the elements in areas. - Print out areas once more.</li>
+</ul>
+</div>
+</div>
+<div id="e92480c5" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list areas</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="fl">11.25</span>, <span class="fl">18.0</span>, <span class="fl">20.0</span>, <span class="fl">10.75</span>, <span class="fl">9.50</span>]</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use append twice to add poolhouse and garage size</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>areas.append(<span class="fl">24.5</span>)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>areas.append(<span class="fl">15.45</span>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out areas</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(areas)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse the orders of the elements in areas</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> areas.reverse()</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out areas</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(areas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[11.25, 18.0, 20.0, 10.75, 9.5, 24.5, 15.45]
+None</code></pre>
+</div>
+</div>
+</section>
+<section id="import-package" class="level2">
+<h2 class="anchored" data-anchor-id="import-package">Import package</h2>
+<p>As a data scientist, some notions of geometry never hurt. Let’s refresh some of the basics.</p>
+<p>For a fancy clustering algorithm, you want to find the circumference, , and area, , of a circle. When the radius of the circle is r, you can calculate and</p>
+<p>as: <em>C = 2pir</em> _A = pir^2</p>
+<p>In Python, the symbol for exponentiation is <strong>. This operator raises the number to its left to the power of the number to its right. For example 3</strong>4 is 3 to the power of 4 and will give 81.</p>
+<p>To use the constant pi, you’ll need the math package. A variable r is already coded in the script. Fill in the code to calculate C and A and see how the print() functions create some nice printouts.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Import the math package. Now you can access the constant pi with math.pi. - Calculate the circumference of the circle and store it in C. - Calculate the area of the circle and store it in A.</li>
+</ul>
+</div>
+</div>
+<div id="9c079d58" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the math package</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Definition of radius</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">0.43</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate C</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>math.pi<span class="op">*</span>r</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate A</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> math.pi <span class="op">*</span> r<span class="op">*</span>r</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Build printout</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Circumference: "</span> <span class="op">+</span> <span class="bu">str</span>(C))</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Area: "</span> <span class="op">+</span> <span class="bu">str</span>(A))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Circumference: 2.701769682087222
+Area: 0.5808804816487527</code></pre>
+</div>
+</div>
+</section>
+<section id="selective-import" class="level2">
+<h2 class="anchored" data-anchor-id="selective-import">Selective import</h2>
+<p>General imports, like import math, make all functionality from the math package available to you. However, if you decide to only use a specific part of a package, you can always make your import more selective:</p>
+<p><code>from math import pi</code></p>
+<p>Let’s say the Moon’s orbit around planet Earth is a perfect circle, with a radius r (in km) that is defined in the script.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Perform a selective import from the math package where you only import the radians function. - Calculate the distance travelled by the Moon over 12 degrees of its orbit. Assign the result to dist. You can calculate this as r * phi, where r is the radius and phi is the angle in radians. To convert an angle in degrees to an angle in radians, use the radians() function, which you just imported. - Print out dist.</li>
+</ul>
+</div>
+</div>
+<div id="2cdf58d0" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import radians function of math package</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> radians</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Definition of radius</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">192500</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Travel distance of Moon over 12 degrees. Store in dist.</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> r<span class="op">*</span>radians(<span class="dv">12</span>)</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out dist</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>40317.10572106901</code></pre>
+</div>
+</div>
+</section>
+<section id="numpy" class="level1">
+<h1>NumPy</h1>
+<section id="your-first-numpy-array" class="level2">
+<h2 class="anchored" data-anchor-id="your-first-numpy-array">Your First NumPy Array</h2>
+<p>In this chapter, we’re going to dive into the world of baseball. Along the way, you’ll get comfortable with the basics of numpy, a powerful package to do data science.</p>
+<p>A list baseball has already been defined in the Python script, representing the height of some baseball players in centimeters. Can you add some code here and there to create a numpy array from it?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Import the numpy package as np, so that you can refer to numpy with np. - Use np.array() to create a numpy array from baseball. Name this array np_baseball. - Print out the type of np_baseball to check that you got it right.</li>
+</ul>
+</div>
+</div>
+<div id="f3cbcfc9" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the numpy package as np</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list baseball</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>baseball <span class="op">=</span> [<span class="dv">180</span>, <span class="dv">215</span>, <span class="dv">210</span>, <span class="dv">210</span>, <span class="dv">188</span>, <span class="dv">176</span>, <span class="dv">209</span>, <span class="dv">200</span>]</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a numpy array from baseball: np_baseball</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>np_baseball <span class="op">=</span> np.array(baseball)</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out type of np_baseball</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(np_baseball))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'numpy.ndarray'&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="baseball-players-height" class="level2">
+<h2 class="anchored" data-anchor-id="baseball-players-height">Baseball players’ height</h2>
+<p>You are a huge baseball fan. You decide to call the MLB (Major League Baseball) and ask around for some more statistics on the height of the main players. They pass along data on more than a thousand players, which is stored as a regular Python list: height_in. The height is expressed in inches. Can you make a numpy array out of it and convert the units to meters?</p>
+<p>height_in is already available and the numpy package is loaded, so you can start straight away (Source: stat.ucla.edu).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Create a numpy array from height_in. Name this new array np_height_in. - Print np_height_in.<br>
+</li>
+<li>Multiply np_height_in with 0.0254 to convert all height measurements from inches to meters. Store the new values in a new array, np_height_m. - Print out np_height_m and check if the output makes sense.</li>
+</ul>
+</div>
+</div>
+<div id="45235688" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>height_in <span class="op">=</span> baseball_heights.astype(<span class="bu">int</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>height_in[<span class="dv">0</span>:<span class="dv">10</span>]</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>weight_lb <span class="op">=</span> baseball_weights.astype(<span class="bu">int</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>weight_lb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>array([180, 215, 210, ..., 205, 190, 195])</code></pre>
+</div>
+</div>
+<div id="9a1c2273" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a numpy array from height_in: np_height_in</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>np_height_in <span class="op">=</span> np.array(height_in)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out np_height_in</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np_height_in)</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert np_height_in to m: np_height_m</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>np_height_m <span class="op">=</span> <span class="fl">0.0254</span> <span class="op">*</span> np_height_in</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print np_height_m</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np_height_m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[74 74 72 ... 75 75 73]
+[1.8796 1.8796 1.8288 ... 1.905  1.905  1.8542]</code></pre>
+</div>
+</div>
+</section>
+<section id="baseball-players-bmi" class="level2">
+<h2 class="anchored" data-anchor-id="baseball-players-bmi">Baseball player’s BMI</h2>
+<p>The MLB also offers to let you analyze their weight data. Again, both are available as regular Python lists: height_in and weight_lb. height_in is in inches and weight_lb is in pounds.</p>
+<p>It’s now possible to calculate the BMI of each baseball player. Python code to convert height_in to a numpy array with the correct units is already available in the workspace. Follow the instructions step by step and finish the game! height_in and weight_lb are available as regular lists.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p># Instructions - Create a numpy array from the weight_lb list with the correct units. Multiply by 0.453592 to go from pounds to kilograms. Store the resulting numpy array as np_weight_kg. - Use np_height_m and np_weight_kg to calculate the BMI of each player. Use the following equation: - - BMI = weight(kg)/height(m)^2 - Save the resulting numpy array as bmi. - Print out bmi.</p>
+</div>
+</div>
+<div id="19a18fda" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create array from height_in with metric units: np_height_m</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>np_height_m <span class="op">=</span> np.array(height_in) <span class="op">*</span> <span class="fl">0.0254</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create array from weight_lb with metric units: np_weight_kg</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>np_weight_kg <span class="op">=</span> <span class="fl">0.453592</span> <span class="op">*</span> np.array(weight_lb)</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the BMI: bmi</span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">=</span> np_weight_kg<span class="op">/</span>np_height_m<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out bmi</span></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bmi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[23.11037639 27.60406069 28.48080465 ... 25.62295933 23.74810865
+ 25.72686361]</code></pre>
+</div>
+</div>
+</section>
+<section id="lightweight-baseball-players" class="level2">
+<h2 class="anchored" data-anchor-id="lightweight-baseball-players">Lightweight baseball players</h2>
+<p>To subset both regular Python lists and numpy arrays, you can use square brackets:</p>
+<p><code>x = [4 , 9 , 6, 3, 1] x[1] import numpy as np y = np.array(x) y[1]</code></p>
+<p>For numpy specifically, you can also use boolean numpy arrays:</p>
+<p><code>high = y &gt; 5 y[high]</code></p>
+<p>The code that calculates the BMI of all baseball players is already included. Follow the instructions and reveal interesting things from the data! height_in and weight_lb are available as regular lists.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p># Instructions - Create a boolean numpy array: the element of the array should be True if the corresponding baseball player’s BMI is below 21. You can use the &lt; operator for this. Name the array light. - Print the array light. - Print out a numpy array with the BMIs of all baseball players whose BMI is below 21. Use light inside square brackets to do a selection on the bmi array.</p>
+</div>
+</div>
+<div id="b1195859" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the BMI: bmi</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>np_height_m <span class="op">=</span> np.array(height_in) <span class="op">*</span> <span class="fl">0.0254</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>np_weight_kg <span class="op">=</span> np.array(weight_lb) <span class="op">*</span> <span class="fl">0.453592</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">=</span> np_weight_kg <span class="op">/</span> np_height_m <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the light array</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>light <span class="op">=</span> bmi<span class="op">&lt;</span><span class="dv">21</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out light</span></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(light)</span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out BMIs of all baseball players whose BMI is below 21</span></span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bmi[light])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[False False False ... False False False]
+[20.54255679 20.54255679 20.69282047 20.69282047 20.34343189 20.34343189
+ 20.69282047 20.15883472 19.4984471  20.69282047 20.9205219 ]</code></pre>
+</div>
+</div>
+</section>
+<section id="numpy-side-effects" class="level2">
+<h2 class="anchored" data-anchor-id="numpy-side-effects">NumPy Side Effects</h2>
+<p>As Hugo explained before, numpy is great for doing vector arithmetic. If you compare its functionality with regular Python lists, however, some things have changed.</p>
+<p>First of all, numpy arrays cannot contain elements with different types. If you try to build such a list, some of the elements’ types are changed to end up with a homogeneous list. This is known as type coercion.</p>
+<p>Second, the typical arithmetic operators, such as +, -, * and / have a different meaning for regular Python lists and numpy arrays.</p>
+<p>Have a look at this line of code:</p>
+<p><code>np.array([True, 1, 2]) + np.array([3, 4, False])</code></p>
+<div id="f6120ca3" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>np.array([<span class="va">True</span>, <span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span> np.array([<span class="dv">3</span>, <span class="dv">4</span>, <span class="va">False</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>array([4, 5, 2])</code></pre>
+</div>
+</div>
+</section>
+<section id="subsetting-numpy-arrays" class="level2">
+<h2 class="anchored" data-anchor-id="subsetting-numpy-arrays">Subsetting NumPy Arrays</h2>
+<p>You’ve seen it with your own eyes: Python lists and numpy arrays sometimes behave differently. Luckily, there are still certainties in this world. For example, subsetting (using the square bracket notation on lists or arrays) works exactly the same. To see this for yourself, try the following lines of code in the IPython Shell: ` x = [“a”, “b”, “c”] x[1]</p>
+<p>np_x = np.array(x) np_x[1] ` The script in the editor already contains code that imports numpy as np, and stores both the height and weight of the MLB players as numpy arrays. height_in and weight_lb are available as regular lists.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Subset np_weight_lb by printing out the element at index 50. - Print out a sub-array of np_height_in that contains the elements at index 100 up to and including index 110.</li>
+</ul>
+</div>
+</div>
+<div id="feaace2e" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Store weight and height lists as numpy arrays</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>np_weight_lb <span class="op">=</span> np.array(weight_lb)</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>np_height_in <span class="op">=</span> np.array(height_in)</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the weight at index 50</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np_weight_lb[<span class="dv">50</span>])</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out sub-array of np_height_in: index 100 up to and including index 110</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np_height_in[<span class="dv">100</span>:<span class="dv">111</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>200
+[73 74 72 73 69 72 73 75 75 73 72]</code></pre>
+</div>
+</div>
+</section>
+<section id="your-first-2d-numpy-array" class="level2">
+<h2 class="anchored" data-anchor-id="your-first-2d-numpy-array">Your First 2D NumPy Array</h2>
+<p>Before working on the actual MLB data, let’s try to create a 2D numpy array from a small list of lists.</p>
+<p>In this exercise, baseball is a list of lists. The main list contains 4 elements. Each of these elements is a list containing the height and the weight of 4 baseball players, in this order. baseball is already coded for you in the script.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p># Instructions - Use np.array() to create a 2D numpy array from baseball. Name it np_baseball. - Print out the type of np_baseball. - Print out the shape attribute of np_baseball. Use np_baseball.shape.</p>
+</div>
+</div>
+<div id="ce7c5dc1" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create baseball, a list of lists</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>baseball <span class="op">=</span> [[<span class="dv">180</span>, <span class="fl">78.4</span>],</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">215</span>, <span class="fl">102.7</span>],</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">210</span>, <span class="fl">98.5</span>],</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">188</span>, <span class="fl">75.2</span>]]</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 2D numpy array from baseball: np_baseball</span></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>np_baseball <span class="op">=</span> np.array(baseball)</span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the type of np_baseball</span></span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(np_baseball))</span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the shape of np_baseball</span></span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np_baseball.shape )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'numpy.ndarray'&gt;
+(4, 2)</code></pre>
+</div>
+</div>
+</section>
+<section id="baseball-data-in-2d-form" class="level2">
+<h2 class="anchored" data-anchor-id="baseball-data-in-2d-form">Baseball data in 2D form</h2>
+<p>You have another look at the MLB data and realize that it makes more sense to restructure all this information in a 2D numpy array. This array should have 1015 rows, corresponding to the 1015 baseball players you have information on, and 2 columns (for height and weight).</p>
+<p>The MLB was, again, very helpful and passed you the data in a different structure, a Python list of lists. In this list of lists, each sublist represents the height and weight of a single baseball player. The name of this embedded list is baseball.</p>
+<p>Can you store the data as a 2D array to unlock numpy’s extra functionality? baseball is available as a regular list of lists.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Use np.array() to create a 2D numpy array from baseball. Name it np_baseball. - Print out the shape attribute of np_baseball.</li>
+</ul>
+</div>
+</div>
+<div id="89d9ceea" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy package</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 2D numpy array from baseball: np_baseball</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>np_baseball <span class="op">=</span> np.array(baseball)</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the shape of np_baseball</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np_baseball.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(4, 2)</code></pre>
+</div>
+</div>
+</section>
+<section id="subsetting-2d-numpy-arrays" class="level2">
+<h2 class="anchored" data-anchor-id="subsetting-2d-numpy-arrays">Subsetting 2D NumPy Arrays</h2>
+<p>If your 2D numpy array has a regular structure, i.e.&nbsp;each row and column has a fixed number of values, complicated ways of subsetting become very easy. Have a look at the code below where the elements “a” and “c” are extracted from a list of lists. `regular list of lists</p>
+<p>x = [[“a”, “b”], [“c”, “d”]]</p>
+<p>[x[0][0], x[1][0]]</p>
+<p>numpy import numpy as np</p>
+<p>np_x = np.array(x)</p>
+<p>np_x[:, 0] ` For regular Python lists, this is a real pain. For 2D numpy arrays, however, it’s pretty intuitive! The indexes before the comma refer to the rows, while those after the comma refer to the columns. The : is for slicing; in this example, it tells Python to include all rows.</p>
+<p>The code that converts the pre-loaded baseball list to a 2D numpy array is already in the script. The first column contains the players’ height in inches and the second column holds player weight, in pounds. Add some lines to make the correct selections. Remember that in Python, the first element is at index 0! baseball is available as a regular list of lists.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Print out the 50th row of np_baseball. - Make a new variable, np_weight_lb, containing the entire second column of np_baseball. - Select the height (first column) of the 124th baseball player in np_baseball and print it out.</li>
+</ul>
+</div>
+</div>
+<div id="168c6ed1" class="cell" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>277</code></pre>
+</div>
+</div>
+<div id="b75e7f80" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy package</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create np_baseball (2 cols)</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>np_baseball <span class="op">=</span> np.array(baseball)</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the 50th row of np_baseball</span></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np_baseball[<span class="dv">49</span>,:])</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the entire second column of np_baseball: np_weight_lb</span></span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>np_weight_lb <span class="op">=</span> np_baseball[:,<span class="dv">1</span>]</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out height of 124th player</span></span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np_baseball[<span class="dv">123</span>,<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 70 195]
+75</code></pre>
+</div>
+</div>
+</section>
+<section id="d-arithmetic" class="level2">
+<h2 class="anchored" data-anchor-id="d-arithmetic">2D Arithmetic</h2>
+<p>Remember how you calculated the Body Mass Index for all baseball players? numpy was able to perform all calculations element-wise (i.e.&nbsp;element by element). For 2D numpy arrays this isn’t any different! You can combine matrices with single numbers, with vectors, and with other matrices.</p>
+<p>Execute the code below in the IPython shell and see if you understand: <code>import numpy as np np_mat = np.array([[1, 2],                    [3, 4],                    [5, 6]]) np_mat * 2 np_mat + np.array([10, 10]) np_mat + np_mat</code> np_baseball is coded for you; it’s again a 2D numpy array with 3 columns representing height (in inches), weight (in pounds) and age (in years). baseball is available as a regular list of lists and updated is available as 2D numpy array. Instructions - You managed to get hold of the changes in height, weight and age of all baseball players. It is available as a 2D numpy array, updated. Add np_baseball and updated and print out the result. - You want to convert the units of height and weight to metric (meters and kilograms, respectively). As a first step, create a numpy array with three values: 0.0254, 0.453592 and 1. Name this array conversion. - Multiply np_baseball with conversion and print out the result.</p>
+<div id="dd81cdf6" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy package</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create np_baseball (3 cols)</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>np_baseball <span class="op">=</span> np.array(baseball)</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out addition of np_baseball and updated</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np_baseball<span class="op">+</span>updated)</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create numpy array: conversion</span></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>conversion <span class="op">=</span>np.array([<span class="fl">0.0254</span>, <span class="fl">0.453592</span>,<span class="dv">1</span>])</span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out product of np_baseball and conversion</span></span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np_baseball<span class="op">*</span>conversion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 75.2303559  168.83775102  23.99      ]
+ [ 75.02614252 231.09732309  35.69      ]
+ [ 73.1544228  215.08167641  31.78      ]
+ [ 72.64427532 204.90461929  36.43      ]
+ [ 74.00590086 190.24342718  36.71      ]
+ [ 69.97953547 188.19841763  30.39      ]
+ [ 69.62874324 222.72324216  31.77      ]
+ [ 72.27075194 191.12053687  36.07      ]
+ [ 76.47655945 220.17504464  31.19      ]
+ [ 71.91699376 172.98883751  28.05      ]]
+[[  1.8796    81.64656   22.99    ]
+ [  1.8796    97.52228   34.69    ]
+ [  1.8288    95.25432   30.78    ]
+ [  1.8288    95.25432   35.43    ]
+ [  1.8542    85.275296  35.71    ]
+ [  1.7526    79.832192  29.39    ]
+ [  1.7526    94.800728  30.77    ]
+ [  1.8034    90.7184    35.07    ]
+ [  1.9304   104.779752  30.19    ]
+ [  1.8034    81.64656   27.05    ]]</code></pre>
+</div>
+</div>
+</section>
+<section id="average-versus-median" class="level2">
+<h2 class="anchored" data-anchor-id="average-versus-median">Average versus median</h2>
+<p>You now know how to use numpy functions to get a better feeling for your data. It basically comes down to importing numpy and then calling several simple functions on the numpy arrays:</p>
+<p>import numpy as np x = [1, 4, 8, 10, 12] np.mean(x) np.median(x)</p>
+<p>The baseball data is available as a 2D numpy array with 3 columns (height, weight, age) and 1015 rows. The name of this numpy array is np_baseball. After restructuring the data, however, you notice that some height values are abnormally high. Follow the instructions and discover which summary statistic is best suited if you’re dealing with so-called outliers. np_baseball is available.</p>
+</section>
+</section>
+<section id="instructions-21" class="level1 {callout-note}">
+<h1>Instructions</h1>
+<ul>
+<li>Create numpy array np_height_in that is equal to first column of np_baseball.</li>
+<li>Print out the mean of np_height_in.</li>
+<li>Print out the median of np_height_in.</li>
+</ul>
+</section>
+<div id="7ae1d730" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create np_height_in from np_baseball</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>np_height_in <span class="op">=</span> np_baseball[:,<span class="dv">0</span>]</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the mean of np_height_in</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.mean(np_height_in))</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the median of np_height_in</span></span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.median(np_height_in))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>72.1
+72.0</code></pre>
+</div>
+</div>
+<section id="explore-the-baseball-data" class="level2">
+<h2 class="anchored" data-anchor-id="explore-the-baseball-data">Explore the baseball data</h2>
+<p>Because the mean and median are so far apart, you decide to complain to the MLB. They find the error and send the corrected data over to you. It’s again available as a 2D NumPy array np_baseball, with three columns.</p>
+<p>The Python script in the editor already includes code to print out informative messages with the different summary statistics. Can you finish the job? np_baseball is available.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>The code to print out the mean height is already included. Complete the code for the median height. Replace None with the correct code.</li>
+<li>Use <code>np.std()</code> on the first column of np_baseball to calculate stddev. Replace None with the correct code.</li>
+<li>Do big players tend to be heavier? Use <code>np.corrcoef()</code> to store the correlation between the first and second column of np_baseball in corr. Replace None with the correct code.</li>
+</ul>
+</div>
+</div>
+<div id="c8cfd424" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print mean height (first column)</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>avg <span class="op">=</span> np.mean(np_baseball[:,<span class="dv">0</span>])</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average: "</span> <span class="op">+</span> <span class="bu">str</span>(avg))</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print median height. Replace 'None'</span></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>med <span class="op">=</span> np.median(np_baseball[:,<span class="dv">0</span>])</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Median: "</span> <span class="op">+</span> <span class="bu">str</span>(med))</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the standard deviation on height. Replace 'None'</span></span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a>stddev <span class="op">=</span> np.std(np_baseball[:,<span class="dv">0</span>])</span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Standard Deviation: "</span> <span class="op">+</span> <span class="bu">str</span>(stddev))</span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out correlation between first and second column. Replace 'None'</span></span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> np.corrcoef(np_baseball[:,<span class="dv">0</span>],np_baseball[:,<span class="dv">1</span>])</span>
+<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation: "</span> <span class="op">+</span> <span class="bu">str</span>(corr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average: 72.1
+Median: 72.0
+Standard Deviation: 2.118962010041709
+Correlation: [[1.         0.45629209]
+ [0.45629209 1.        ]]</code></pre>
+</div>
+</div>
+</section>
+<section id="blend-it-all-together" class="level2">
+<h2 class="anchored" data-anchor-id="blend-it-all-together">Blend it all together</h2>
+<p>In the last few exercises you’ve learned everything there is to know about heights and weights of baseball players. Now it’s time to dive into another sport: soccer.</p>
+<p>You’ve contacted FIFA for some data and they handed you two lists. The lists are the following:</p>
+<p><code>positions = ['GK', 'M', 'A', 'D', ...] heights = [191, 184, 185, 180, ...]</code> Each element in the lists corresponds to a player. The first list, positions, contains strings representing each player’s position. The possible positions are: ‘GK’ (goalkeeper), ‘M’ (midfield), ‘A’ (attack) and ‘D’ (defense). The second list, heights, contains integers representing the height of the player in cm. The first player in the lists is a goalkeeper and is pretty tall (191 cm).</p>
+<p>You’re fairly confident that the median height of goalkeepers is higher than that of other players on the soccer field. Some of your friends don’t believe you, so you are determined to show them using the data you received from FIFA and your newly acquired Python skills. heights and positions are available as lists Instructions - Convert heights and positions, which are regular lists, to numpy arrays. Call them np_heights and np_positions. - Extract all the heights of the goalkeepers. You can use a little trick here: use <code>np_positions == 'GK'</code> as an index for np_heights. Assign the result to gk_heights. - Extract all the heights of all the other players. This time use np_positions != ‘GK’ as an index for np_heights. Assign the result to other_heights. - Print out the median height of the goalkeepers using <code>np.median()</code>. Replace None with the correct code. - Do the same for the other players. Print out their median height. Replace None with the correct code.</p>
+<div id="ac9a8edd" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>positions<span class="op">=</span>soccer_positions</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>heights <span class="op">=</span> soccer_heights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b7bf2ec1" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert positions and heights to numpy arrays: np_positions, np_heights</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>np_positions <span class="op">=</span> np.array(positions)</span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>np_heights <span class="op">=</span> np.array(heights)</span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Heights of the goalkeepers: gk_heights</span></span>
+<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a>gk_heights <span class="op">=</span> np_heights[np_positions<span class="op">==</span><span class="st">'GK'</span>]</span>
+<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Heights of the other players: other_heights</span></span>
+<span id="cb71-13"><a href="#cb71-13" aria-hidden="true" tabindex="-1"></a>other_heights <span class="op">=</span> np_heights[np_positions<span class="op">!=</span><span class="st">'GK'</span>]</span>
+<span id="cb71-14"><a href="#cb71-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-15"><a href="#cb71-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the median height of goalkeepers. Replace 'None'</span></span>
+<span id="cb71-16"><a href="#cb71-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Median height of goalkeepers: "</span> <span class="op">+</span> <span class="bu">str</span>(np.median(gk_heights)))</span>
+<span id="cb71-17"><a href="#cb71-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-18"><a href="#cb71-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the median height of other players. Replace 'None'</span></span>
+<span id="cb71-19"><a href="#cb71-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Median height of other players: "</span> <span class="op">+</span> <span class="bu">str</span>(np.median(other_heights)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Median height of goalkeepers: 188.0
+Median height of other players: 181.0</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./2_Intermediate_Python.html" class="pagination-link" aria-label="Intermediate Python">
+        <span class="nav-page-text">Intermediate Python</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
