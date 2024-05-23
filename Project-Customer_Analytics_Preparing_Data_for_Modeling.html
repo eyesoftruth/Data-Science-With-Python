@@ -1,0 +1,2937 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science With Python - Project: Customer Analytics- Preparing Data for Modeling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Project-Analyzing_Crime_in_Los_Angeles.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Project-Customer_Analytics_Preparing_Data_for_Modeling.html">Project: Customer Analytics- Preparing Data for Modeling</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Science With Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_Introduction_to_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_Intermediate_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intermediate Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_Data_Manipulation_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_Joining_Data_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joining Data with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_Introduction_to_statistics_in_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_Introduction_to_Data_Visualization_with_Matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualization with Matplotlib</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7_Introduction_to_Data_Visualization_with_Seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualization with Seaborn</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_Python_Data_Science_Toolbox_Part1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Data Science Toolbox (Part 1)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9_Python_Data_Science_Toolbox_Part2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Data Science Toolbox (Part 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Intermediate_Data_Visualization_with_Seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intermediate Data Visualization with Seaborn</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: A Visual History of Nobel Prize Winners</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Netflix_movies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Investigating Netflix Movies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Exploring NYC Public School Test Result Scores</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Hypothesis_Testing_in_Healthcare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Hypothesis Testing in Healthcare- Drug Safety</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Predictive_Modeling_for_Agriculture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Sowing Success - How Machine Learning Helps Farmers Select the Best Crops</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Analyzing_Crime_in_Los_Angeles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Analyzing Crime in Los Angeles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Customer_Analytics_Preparing_Data_for_Modeling.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Project: Customer Analytics- Preparing Data for Modeling</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#task-1" id="toc-task-1" class="nav-link active" data-scroll-target="#task-1">Task 1</a></li>
+  <li><a href="#task-2" id="toc-task-2" class="nav-link" data-scroll-target="#task-2">Task 2</a></li>
+  <li><a href="#task-3" id="toc-task-3" class="nav-link" data-scroll-target="#task-3">Task 3</a></li>
+  <li><a href="#task-4" id="toc-task-4" class="nav-link" data-scroll-target="#task-4">Task 4</a></li>
+  <li><a href="#datacamp-codes" id="toc-datacamp-codes" class="nav-link" data-scroll-target="#datacamp-codes">DataCamp Codes</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project: Customer Analytics- Preparing Data for Modeling</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hr-image-small.png" class="img-fluid figure-img"></p>
+<figcaption>Two data scientists working on a dashboard.</figcaption>
+</figure>
+</div>
+<p>A common problem when creating models to generate business value from data is that the datasets can be so large that it can take days for the model to generate predictions. Ensuring that your dataset is stored as efficiently as possible is crucial for allowing these models to run on a more reasonable timescale without having to reduce the size of the dataset.</p>
+<p>You’ve been hired by a major online data science training provider called <em>Training Data Ltd.</em> to clean up one of their largest customer datasets. This dataset will eventually be used to predict whether their students are looking for a new job or not, information that they will then use to direct them to prospective recruiters.</p>
+<p>You’ve been given access to <code>customer_train.csv</code>, which is a subset of their entire customer dataset, so you can create a proof-of-concept of a much more efficient storage solution. The dataset contains anonymized student information, and whether they were looking for a new job or not during training:</p>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>student_id</code></td>
+<td>A unique ID for each student.</td>
+</tr>
+<tr class="even">
+<td><code>city</code></td>
+<td>A code for the city the student lives in.</td>
+</tr>
+<tr class="odd">
+<td><code>city_development_index</code></td>
+<td>A scaled development index for the city.</td>
+</tr>
+<tr class="even">
+<td><code>gender</code></td>
+<td>The student’s gender.</td>
+</tr>
+<tr class="odd">
+<td><code>relevant_experience</code></td>
+<td>An indicator of the student’s work relevant experience.</td>
+</tr>
+<tr class="even">
+<td><code>enrolled_university</code></td>
+<td>The type of university course enrolled in (if any).</td>
+</tr>
+<tr class="odd">
+<td><code>education_level</code></td>
+<td>The student’s education level.</td>
+</tr>
+<tr class="even">
+<td><code>major_discipline</code></td>
+<td>The educational discipline of the student.</td>
+</tr>
+<tr class="odd">
+<td><code>experience</code></td>
+<td>The student’s total work experience (in years).</td>
+</tr>
+<tr class="even">
+<td><code>company_size</code></td>
+<td>The number of employees at the student’s current employer.</td>
+</tr>
+<tr class="odd">
+<td><code>last_new_job</code></td>
+<td>The number of years between the student’s current and previous jobs.</td>
+</tr>
+<tr class="even">
+<td><code>training_hours</code></td>
+<td>The number of hours of training completed.</td>
+</tr>
+<tr class="odd">
+<td><code>job_change</code></td>
+<td>An indicator of whether the student is looking for a new job (<code>1</code>) or not (<code>0</code>).</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start your code here!</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ds_jobs<span class="op">=</span>pd.read_csv(<span class="st">"customer_train.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ds_jobs.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>(19158, 14)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ds_jobs.head(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table class="table">
+<thead>
+<tr class="header">
+<th>
+<p>
+</p>
+</th>
+<th>
+<p>
+student_id
+</p>
+</th>
+<th>
+<p>
+city
+</p>
+</th>
+<th>
+<p>
+city_development_index
+</p>
+</th>
+<th>
+<p>
+gender
+</p>
+</th>
+<th>
+<p>
+relevant_experience
+</p>
+</th>
+<th>
+<p>
+enrolled_university
+</p>
+</th>
+<th>
+<p>
+education_level
+</p>
+</th>
+<th>
+<p>
+major_discipline
+</p>
+</th>
+<th>
+<p>
+experience
+</p>
+</th>
+<th>
+<p>
+company_size
+</p>
+</th>
+<th>
+<p>
+company_type
+</p>
+</th>
+<th>
+<p>
+last_new_job
+</p>
+</th>
+<th>
+<p>
+training_hours
+</p>
+</th>
+<th>
+<p>
+job_change
+</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+<p>
+0
+</p>
+</td>
+<td>
+<p>
+8949
+</p>
+</td>
+<td>
+<p>
+city_103
+</p>
+</td>
+<td>
+<p>
+0.920
+</p>
+</td>
+<td>
+<p>
+Male
+</p>
+</td>
+<td>
+<p>
+Has relevant experience
+</p>
+</td>
+<td>
+<p>
+no_enrollment
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+&gt;20
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+1
+</p>
+</td>
+<td>
+<p>
+36
+</p>
+</td>
+<td>
+<p>
+1
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+1
+</p>
+</td>
+<td>
+<p>
+29725
+</p>
+</td>
+<td>
+<p>
+city_40
+</p>
+</td>
+<td>
+<p>
+0.776
+</p>
+</td>
+<td>
+<p>
+Male
+</p>
+</td>
+<td>
+<p>
+No relevant experience
+</p>
+</td>
+<td>
+<p>
+no_enrollment
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+15
+</p>
+</td>
+<td>
+<p>
+50-99
+</p>
+</td>
+<td>
+<p>
+Pvt Ltd
+</p>
+</td>
+<td>
+<p>
+&gt;4
+</p>
+</td>
+<td>
+<p>
+47
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+<p>
+2
+</p>
+</td>
+<td>
+<p>
+11561
+</p>
+</td>
+<td>
+<p>
+city_21
+</p>
+</td>
+<td>
+<p>
+0.624
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+No relevant experience
+</p>
+</td>
+<td>
+<p>
+Full time course
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+5
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+never
+</p>
+</td>
+<td>
+<p>
+83
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+3
+</p>
+</td>
+<td>
+<p>
+33241
+</p>
+</td>
+<td>
+<p>
+city_115
+</p>
+</td>
+<td>
+<p>
+0.789
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+No relevant experience
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+Business Degree
+</p>
+</td>
+<td>
+<p>
+&lt;1
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+Pvt Ltd
+</p>
+</td>
+<td>
+<p>
+never
+</p>
+</td>
+<td>
+<p>
+52
+</p>
+</td>
+<td>
+<p>
+1
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ds_jobs.memory_usage().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>2145824</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ds_jobs.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 19158 entries, 0 to 19157
+Data columns (total 14 columns):
+ #   Column                  Non-Null Count  Dtype  
+---  ------                  --------------  -----  
+ 0   student_id              19158 non-null  int64  
+ 1   city                    19158 non-null  object 
+ 2   city_development_index  19158 non-null  float64
+ 3   gender                  14650 non-null  object 
+ 4   relevant_experience     19158 non-null  object 
+ 5   enrolled_university     18772 non-null  object 
+ 6   education_level         18698 non-null  object 
+ 7   major_discipline        16345 non-null  object 
+ 8   experience              19093 non-null  object 
+ 9   company_size            13220 non-null  object 
+ 10  company_type            13018 non-null  object 
+ 11  last_new_job            18735 non-null  object 
+ 12  training_hours          19158 non-null  int64  
+ 13  job_change              19158 non-null  int64  
+dtypes: float64(1), int64(3), object(10)
+memory usage: 2.0+ MB</code></pre>
+<section id="task-1" class="level2">
+<h2 class="anchored" data-anchor-id="task-1">Task 1</h2>
+<p>Columns containing integers must be stored as 32-bit integers (int32).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>int_columns <span class="op">=</span> ds_jobs.select_dtypes(include<span class="op">=</span><span class="st">'int64'</span>).columns.tolist()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>int_columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>['student_id', 'training_hours', 'job_change']</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[int_columns]<span class="op">=</span>ds_jobs[int_columns].astype(<span class="st">'int32'</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ds_jobs.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 19158 entries, 0 to 19157
+Data columns (total 14 columns):
+ #   Column                  Non-Null Count  Dtype  
+---  ------                  --------------  -----  
+ 0   student_id              19158 non-null  int32  
+ 1   city                    19158 non-null  object 
+ 2   city_development_index  19158 non-null  float64
+ 3   gender                  14650 non-null  object 
+ 4   relevant_experience     19158 non-null  object 
+ 5   enrolled_university     18772 non-null  object 
+ 6   education_level         18698 non-null  object 
+ 7   major_discipline        16345 non-null  object 
+ 8   experience              19093 non-null  object 
+ 9   company_size            13220 non-null  object 
+ 10  company_type            13018 non-null  object 
+ 11  last_new_job            18735 non-null  object 
+ 12  training_hours          19158 non-null  int32  
+ 13  job_change              19158 non-null  int32  
+dtypes: float64(1), int32(3), object(10)
+memory usage: 1.8+ MB</code></pre>
+</section>
+<section id="task-2" class="level2">
+<h2 class="anchored" data-anchor-id="task-2">Task 2</h2>
+<p>Columns containing floats must be stored as 16-bit floats (float16).</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>float_columns <span class="op">=</span> ds_jobs.select_dtypes(include<span class="op">=</span><span class="st">'float64'</span>).columns.tolist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[float_columns]<span class="op">=</span>ds_jobs[float_columns].astype(<span class="st">"float16"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ds_jobs.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 19158 entries, 0 to 19157
+Data columns (total 14 columns):
+ #   Column                  Non-Null Count  Dtype  
+---  ------                  --------------  -----  
+ 0   student_id              19158 non-null  int32  
+ 1   city                    19158 non-null  object 
+ 2   city_development_index  19158 non-null  float16
+ 3   gender                  14650 non-null  object 
+ 4   relevant_experience     19158 non-null  object 
+ 5   enrolled_university     18772 non-null  object 
+ 6   education_level         18698 non-null  object 
+ 7   major_discipline        16345 non-null  object 
+ 8   experience              19093 non-null  object 
+ 9   company_size            13220 non-null  object 
+ 10  company_type            13018 non-null  object 
+ 11  last_new_job            18735 non-null  object 
+ 12  training_hours          19158 non-null  int32  
+ 13  job_change              19158 non-null  int32  
+dtypes: float16(1), int32(3), object(10)
+memory usage: 1.7+ MB</code></pre>
+</section>
+<section id="task-3" class="level2">
+<h2 class="anchored" data-anchor-id="task-3">Task 3</h2>
+<p>Columns containing nominal categorical data must be stored as the category data type.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ds_jobs.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Index(['student_id', 'city', 'city_development_index', 'gender',
+       'relevant_experience', 'enrolled_university', 'education_level',
+       'major_discipline', 'experience', 'company_size', 'company_type',
+       'last_new_job', 'training_hours', 'job_change'],
+      dtype='object')</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ds_jobs.head(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table class="table">
+<thead>
+<tr class="header">
+<th>
+<p>
+</p>
+</th>
+<th>
+<p>
+student_id
+</p>
+</th>
+<th>
+<p>
+city
+</p>
+</th>
+<th>
+<p>
+city_development_index
+</p>
+</th>
+<th>
+<p>
+gender
+</p>
+</th>
+<th>
+<p>
+relevant_experience
+</p>
+</th>
+<th>
+<p>
+enrolled_university
+</p>
+</th>
+<th>
+<p>
+education_level
+</p>
+</th>
+<th>
+<p>
+major_discipline
+</p>
+</th>
+<th>
+<p>
+experience
+</p>
+</th>
+<th>
+<p>
+company_size
+</p>
+</th>
+<th>
+<p>
+company_type
+</p>
+</th>
+<th>
+<p>
+last_new_job
+</p>
+</th>
+<th>
+<p>
+training_hours
+</p>
+</th>
+<th>
+<p>
+job_change
+</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+<p>
+0
+</p>
+</td>
+<td>
+<p>
+8949
+</p>
+</td>
+<td>
+<p>
+city_103
+</p>
+</td>
+<td>
+<p>
+0.919922
+</p>
+</td>
+<td>
+<p>
+Male
+</p>
+</td>
+<td>
+<p>
+Has relevant experience
+</p>
+</td>
+<td>
+<p>
+no_enrollment
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+&gt;20
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+1
+</p>
+</td>
+<td>
+<p>
+36
+</p>
+</td>
+<td>
+<p>
+1
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+1
+</p>
+</td>
+<td>
+<p>
+29725
+</p>
+</td>
+<td>
+<p>
+city_40
+</p>
+</td>
+<td>
+<p>
+0.775879
+</p>
+</td>
+<td>
+<p>
+Male
+</p>
+</td>
+<td>
+<p>
+No relevant experience
+</p>
+</td>
+<td>
+<p>
+no_enrollment
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+15
+</p>
+</td>
+<td>
+<p>
+50-99
+</p>
+</td>
+<td>
+<p>
+Pvt Ltd
+</p>
+</td>
+<td>
+<p>
+&gt;4
+</p>
+</td>
+<td>
+<p>
+47
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+<p>
+2
+</p>
+</td>
+<td>
+<p>
+11561
+</p>
+</td>
+<td>
+<p>
+city_21
+</p>
+</td>
+<td>
+<p>
+0.624023
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+No relevant experience
+</p>
+</td>
+<td>
+<p>
+Full time course
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+5
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+never
+</p>
+</td>
+<td>
+<p>
+83
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+3
+</p>
+</td>
+<td>
+<p>
+33241
+</p>
+</td>
+<td>
+<p>
+city_115
+</p>
+</td>
+<td>
+<p>
+0.789062
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+No relevant experience
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+Business Degree
+</p>
+</td>
+<td>
+<p>
+&lt;1
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+Pvt Ltd
+</p>
+</td>
+<td>
+<p>
+never
+</p>
+</td>
+<td>
+<p>
+52
+</p>
+</td>
+<td>
+<p>
+1
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+<p>
+4
+</p>
+</td>
+<td>
+<p>
+666
+</p>
+</td>
+<td>
+<p>
+city_162
+</p>
+</td>
+<td>
+<p>
+0.767090
+</p>
+</td>
+<td>
+<p>
+Male
+</p>
+</td>
+<td>
+<p>
+Has relevant experience
+</p>
+</td>
+<td>
+<p>
+no_enrollment
+</p>
+</td>
+<td>
+<p>
+Masters
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+&gt;20
+</p>
+</td>
+<td>
+<p>
+50-99
+</p>
+</td>
+<td>
+<p>
+Funded Startup
+</p>
+</td>
+<td>
+<p>
+4
+</p>
+</td>
+<td>
+<p>
+8
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+5
+</p>
+</td>
+<td>
+<p>
+21651
+</p>
+</td>
+<td>
+<p>
+city_176
+</p>
+</td>
+<td>
+<p>
+0.764160
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+Has relevant experience
+</p>
+</td>
+<td>
+<p>
+Part time course
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+11
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+1
+</p>
+</td>
+<td>
+<p>
+24
+</p>
+</td>
+<td>
+<p>
+1
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nominal_cat_columns<span class="op">=</span>[<span class="st">'city'</span>, <span class="st">'gender'</span>,<span class="st">'enrolled_university'</span>, <span class="st">'major_discipline'</span>, <span class="st">'company_type'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[nominal_cat_columns]<span class="op">=</span>ds_jobs[nominal_cat_columns].astype(<span class="st">"category"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ds_jobs.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 19158 entries, 0 to 19157
+Data columns (total 14 columns):
+ #   Column                  Non-Null Count  Dtype   
+---  ------                  --------------  -----   
+ 0   student_id              19158 non-null  int32   
+ 1   city                    19158 non-null  category
+ 2   city_development_index  19158 non-null  float16 
+ 3   gender                  14650 non-null  category
+ 4   relevant_experience     19158 non-null  object  
+ 5   enrolled_university     18772 non-null  category
+ 6   education_level         18698 non-null  object  
+ 7   major_discipline        16345 non-null  category
+ 8   experience              19093 non-null  object  
+ 9   company_size            13220 non-null  object  
+ 10  company_type            13018 non-null  category
+ 11  last_new_job            18735 non-null  object  
+ 12  training_hours          19158 non-null  int32   
+ 13  job_change              19158 non-null  int32   
+dtypes: category(5), float16(1), int32(3), object(5)
+memory usage: 1.1+ MB</code></pre>
+</section>
+<section id="task-4" class="level2">
+<h2 class="anchored" data-anchor-id="task-4">Task 4</h2>
+<p>Columns containing ordinal categorical data must be stored as ordered categories, and not mapped to numerical values, with an order that reflects the natural order of the column.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[<span class="st">"education_level"</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>array(['Graduate', 'Masters', 'High School', nan, 'Phd', 'Primary School'],
+      dtype=object)</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>education_order<span class="op">=</span>[<span class="st">'Primary School'</span>,<span class="st">'High School'</span>,<span class="st">'Graduate'</span>, <span class="st">'Masters'</span>,  <span class="st">'Phd'</span>, <span class="st">'nan'</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[<span class="st">"education_level"</span>]<span class="op">=</span>pd.Categorical(ds_jobs[<span class="st">"education_level"</span>],ordered<span class="op">=</span><span class="va">True</span>,categories<span class="op">=</span>education_order)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ds_jobs.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 19158 entries, 0 to 19157
+Data columns (total 14 columns):
+ #   Column                  Non-Null Count  Dtype   
+---  ------                  --------------  -----   
+ 0   student_id              19158 non-null  int32   
+ 1   city                    19158 non-null  category
+ 2   city_development_index  19158 non-null  float16 
+ 3   gender                  14650 non-null  category
+ 4   relevant_experience     19158 non-null  object  
+ 5   enrolled_university     18772 non-null  category
+ 6   education_level         18698 non-null  category
+ 7   major_discipline        16345 non-null  category
+ 8   experience              19093 non-null  object  
+ 9   company_size            13220 non-null  object  
+ 10  company_type            13018 non-null  category
+ 11  last_new_job            18735 non-null  object  
+ 12  training_hours          19158 non-null  int32   
+ 13  job_change              19158 non-null  int32   
+dtypes: category(6), float16(1), int32(3), object(4)
+memory usage: 978.9+ KB</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[<span class="st">"relevant_experience"</span>].unique()</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>order<span class="op">=</span>[<span class="st">'No relevant experience'</span>,<span class="st">'Has relevant experience'</span>]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>ds_jobs[<span class="st">"relevant_experience"</span>]<span class="op">=</span>pd.Categorical(ds_jobs[<span class="st">"relevant_experience"</span>],ordered<span class="op">=</span><span class="va">True</span>,categories<span class="op">=</span>order)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[<span class="st">"enrolled_university"</span>].unique()</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>order<span class="op">=</span>[<span class="st">'no_enrollment'</span>,<span class="st">'Part time course'</span>,<span class="st">'Full time course'</span>,<span class="st">'NaN'</span>]</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>ds_jobs[<span class="st">"enrolled_university"</span>]<span class="op">=</span>pd.Categorical(ds_jobs[<span class="st">"enrolled_university"</span>],ordered<span class="op">=</span><span class="va">True</span>,categories<span class="op">=</span>order)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>order<span class="op">=</span>[<span class="st">'&lt;1'</span>,<span class="st">'1'</span>,<span class="st">'2'</span>, <span class="st">'3'</span>,  <span class="st">'4'</span>,<span class="st">'5'</span>,<span class="st">'6'</span>, <span class="st">'7'</span>,  <span class="st">'8'</span>,<span class="st">'9'</span>,<span class="st">'10'</span>,<span class="st">'11'</span>,<span class="st">'12'</span>, <span class="st">'13'</span>,  <span class="st">'14'</span>,<span class="st">'15'</span>,<span class="st">'16'</span>, <span class="st">'17'</span>,  <span class="st">'18'</span>,<span class="st">'19'</span>, <span class="st">'20'</span>,<span class="st">'&gt;20'</span>,<span class="st">'nan'</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[<span class="st">"experience"</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>array(['&gt;20', '15', '5', '&lt;1', '11', '13', '7', '17', '2', '16', '1', '4',
+       '10', '14', '18', '19', '12', '3', '6', '9', '8', '20', nan],
+      dtype=object)</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>order<span class="op">=</span>[<span class="st">'&lt;1'</span>,<span class="st">'1'</span>,<span class="st">'2'</span>, <span class="st">'3'</span>,  <span class="st">'4'</span>,<span class="st">'5'</span>,<span class="st">'6'</span>, <span class="st">'7'</span>,  <span class="st">'8'</span>,<span class="st">'9'</span>,<span class="st">'10'</span>,<span class="st">'11'</span>,<span class="st">'12'</span>, <span class="st">'13'</span>,  <span class="st">'14'</span>,<span class="st">'15'</span>,<span class="st">'16'</span>, <span class="st">'17'</span>,  <span class="st">'18'</span>,<span class="st">'19'</span>, <span class="st">'20'</span>,<span class="st">'&gt;20'</span>,<span class="st">'nan'</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[<span class="st">"experience"</span>]<span class="op">=</span>pd.Categorical(ds_jobs[<span class="st">"experience"</span>],ordered<span class="op">=</span><span class="va">True</span>,categories<span class="op">=</span>order)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ds_jobs.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 19158 entries, 0 to 19157
+Data columns (total 14 columns):
+ #   Column                  Non-Null Count  Dtype   
+---  ------                  --------------  -----   
+ 0   student_id              19158 non-null  int32   
+ 1   city                    19158 non-null  category
+ 2   city_development_index  19158 non-null  float16 
+ 3   gender                  14650 non-null  category
+ 4   relevant_experience     19158 non-null  category
+ 5   enrolled_university     18772 non-null  category
+ 6   education_level         18698 non-null  category
+ 7   major_discipline        16345 non-null  category
+ 8   experience              19093 non-null  category
+ 9   company_size            13220 non-null  object  
+ 10  company_type            13018 non-null  category
+ 11  last_new_job            18735 non-null  object  
+ 12  training_hours          19158 non-null  int32   
+ 13  job_change              19158 non-null  int32   
+dtypes: category(8), float16(1), int32(3), object(2)
+memory usage: 717.9+ KB</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[<span class="st">"company_size"</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>array([nan, '50-99', '&lt;10', '10000+', '5000-9999', '1000-4999', '10-49',
+       '100-499', '500-999'], dtype=object)</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>order<span class="op">=</span>[<span class="st">'&lt;10'</span>,<span class="st">'10-49'</span>,<span class="st">'50-99'</span>, <span class="st">'100-499'</span>,  <span class="st">'500-999'</span>,<span class="st">'1000-4999'</span>,<span class="st">'5000-9999'</span>,<span class="st">'10000+'</span>,<span class="st">'nan'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[<span class="st">"company_size"</span>]<span class="op">=</span>pd.Categorical(ds_jobs[<span class="st">"company_size"</span>],ordered<span class="op">=</span><span class="va">True</span>,categories<span class="op">=</span>order)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ds_jobs.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 19158 entries, 0 to 19157
+Data columns (total 14 columns):
+ #   Column                  Non-Null Count  Dtype   
+---  ------                  --------------  -----   
+ 0   student_id              19158 non-null  int32   
+ 1   city                    19158 non-null  category
+ 2   city_development_index  19158 non-null  float16 
+ 3   gender                  14650 non-null  category
+ 4   relevant_experience     19158 non-null  category
+ 5   enrolled_university     18772 non-null  category
+ 6   education_level         18698 non-null  category
+ 7   major_discipline        16345 non-null  category
+ 8   experience              19093 non-null  category
+ 9   company_size            13220 non-null  category
+ 10  company_type            13018 non-null  category
+ 11  last_new_job            18735 non-null  object  
+ 12  training_hours          19158 non-null  int32   
+ 13  job_change              19158 non-null  int32   
+dtypes: category(9), float16(1), int32(3), object(1)
+memory usage: 587.3+ KB</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[<span class="st">"last_new_job"</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>array(['1', '&gt;4', 'never', '4', '3', '2', nan], dtype=object)</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>order<span class="op">=</span>[<span class="st">'never'</span>,<span class="st">'1'</span>,<span class="st">'2'</span>, <span class="st">'3'</span>,  <span class="st">'4'</span>,<span class="st">'&gt;4'</span>,<span class="st">'nan'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[<span class="st">"last_new_job"</span>]<span class="op">=</span>pd.Categorical(ds_jobs[<span class="st">"last_new_job"</span>],ordered<span class="op">=</span><span class="va">True</span>,categories<span class="op">=</span>order)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>ds_jobs.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 19158 entries, 0 to 19157
+Data columns (total 14 columns):
+ #   Column                  Non-Null Count  Dtype   
+---  ------                  --------------  -----   
+ 0   student_id              19158 non-null  int32   
+ 1   city                    19158 non-null  category
+ 2   city_development_index  19158 non-null  float16 
+ 3   gender                  14650 non-null  category
+ 4   relevant_experience     19158 non-null  category
+ 5   enrolled_university     18772 non-null  category
+ 6   education_level         18698 non-null  category
+ 7   major_discipline        16345 non-null  category
+ 8   experience              19093 non-null  category
+ 9   company_size            13220 non-null  category
+ 10  company_type            13018 non-null  category
+ 11  last_new_job            18735 non-null  category
+ 12  training_hours          19158 non-null  int32   
+ 13  job_change              19158 non-null  int32   
+dtypes: category(10), float16(1), int32(3)
+memory usage: 456.7 KB</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>ds_jobs[<span class="st">'company_size'</span>].cat.categories[<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>'1000-4999'</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>ds_jobs[<span class="st">'experience'</span>]<span class="op">&gt;=</span>ds_jobs[<span class="st">'experience'</span>].cat.categories[<span class="dv">10</span>]</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> ds_jobs[<span class="st">'company_size'</span>]<span class="op">&gt;=</span>ds_jobs[<span class="st">'company_size'</span>].cat.categories[<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>ds_jobs_clean <span class="op">=</span> ds_jobs[x <span class="op">&amp;</span> y]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>ds_jobs_clean.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table class="table">
+<thead>
+<tr class="header">
+<th>
+<p>
+</p>
+</th>
+<th>
+<p>
+student_id
+</p>
+</th>
+<th>
+<p>
+city
+</p>
+</th>
+<th>
+<p>
+city_development_index
+</p>
+</th>
+<th>
+<p>
+gender
+</p>
+</th>
+<th>
+<p>
+relevant_experience
+</p>
+</th>
+<th>
+<p>
+enrolled_university
+</p>
+</th>
+<th>
+<p>
+education_level
+</p>
+</th>
+<th>
+<p>
+major_discipline
+</p>
+</th>
+<th>
+<p>
+experience
+</p>
+</th>
+<th>
+<p>
+company_size
+</p>
+</th>
+<th>
+<p>
+company_type
+</p>
+</th>
+<th>
+<p>
+last_new_job
+</p>
+</th>
+<th>
+<p>
+training_hours
+</p>
+</th>
+<th>
+<p>
+job_change
+</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+<p>
+9
+</p>
+</td>
+<td>
+<p>
+699
+</p>
+</td>
+<td>
+<p>
+city_103
+</p>
+</td>
+<td>
+<p>
+0.919922
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+Has relevant experience
+</p>
+</td>
+<td>
+<p>
+no_enrollment
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+17
+</p>
+</td>
+<td>
+<p>
+10000+
+</p>
+</td>
+<td>
+<p>
+Pvt Ltd
+</p>
+</td>
+<td>
+<p>
+&gt;4
+</p>
+</td>
+<td>
+<p>
+123
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+12
+</p>
+</td>
+<td>
+<p>
+25619
+</p>
+</td>
+<td>
+<p>
+city_61
+</p>
+</td>
+<td>
+<p>
+0.913086
+</p>
+</td>
+<td>
+<p>
+Male
+</p>
+</td>
+<td>
+<p>
+Has relevant experience
+</p>
+</td>
+<td>
+<p>
+no_enrollment
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+&gt;20
+</p>
+</td>
+<td>
+<p>
+1000-4999
+</p>
+</td>
+<td>
+<p>
+Pvt Ltd
+</p>
+</td>
+<td>
+<p>
+3
+</p>
+</td>
+<td>
+<p>
+23
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+<p>
+31
+</p>
+</td>
+<td>
+<p>
+22293
+</p>
+</td>
+<td>
+<p>
+city_103
+</p>
+</td>
+<td>
+<p>
+0.919922
+</p>
+</td>
+<td>
+<p>
+Male
+</p>
+</td>
+<td>
+<p>
+Has relevant experience
+</p>
+</td>
+<td>
+<p>
+Part time course
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+19
+</p>
+</td>
+<td>
+<p>
+5000-9999
+</p>
+</td>
+<td>
+<p>
+Pvt Ltd
+</p>
+</td>
+<td>
+<p>
+&gt;4
+</p>
+</td>
+<td>
+<p>
+141
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+34
+</p>
+</td>
+<td>
+<p>
+26494
+</p>
+</td>
+<td>
+<p>
+city_16
+</p>
+</td>
+<td>
+<p>
+0.910156
+</p>
+</td>
+<td>
+<p>
+Male
+</p>
+</td>
+<td>
+<p>
+Has relevant experience
+</p>
+</td>
+<td>
+<p>
+no_enrollment
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+Business Degree
+</p>
+</td>
+<td>
+<p>
+12
+</p>
+</td>
+<td>
+<p>
+5000-9999
+</p>
+</td>
+<td>
+<p>
+Pvt Ltd
+</p>
+</td>
+<td>
+<p>
+3
+</p>
+</td>
+<td>
+<p>
+145
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+<p>
+40
+</p>
+</td>
+<td>
+<p>
+2547
+</p>
+</td>
+<td>
+<p>
+city_114
+</p>
+</td>
+<td>
+<p>
+0.925781
+</p>
+</td>
+<td>
+<p>
+Female
+</p>
+</td>
+<td>
+<p>
+Has relevant experience
+</p>
+</td>
+<td>
+<p>
+Full time course
+</p>
+</td>
+<td>
+<p>
+Masters
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+16
+</p>
+</td>
+<td>
+<p>
+1000-4999
+</p>
+</td>
+<td>
+<p>
+Public Sector
+</p>
+</td>
+<td>
+<p>
+2
+</p>
+</td>
+<td>
+<p>
+14
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+47
+</p>
+</td>
+<td>
+<p>
+25987
+</p>
+</td>
+<td>
+<p>
+city_103
+</p>
+</td>
+<td>
+<p>
+0.919922
+</p>
+</td>
+<td>
+<p>
+Other
+</p>
+</td>
+<td>
+<p>
+Has relevant experience
+</p>
+</td>
+<td>
+<p>
+no_enrollment
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+19
+</p>
+</td>
+<td>
+<p>
+10000+
+</p>
+</td>
+<td>
+<p>
+Public Sector
+</p>
+</td>
+<td>
+<p>
+4
+</p>
+</td>
+<td>
+<p>
+52
+</p>
+</td>
+<td>
+<p>
+1
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+<p>
+104
+</p>
+</td>
+<td>
+<p>
+1180
+</p>
+</td>
+<td>
+<p>
+city_16
+</p>
+</td>
+<td>
+<p>
+0.910156
+</p>
+</td>
+<td>
+<p>
+Male
+</p>
+</td>
+<td>
+<p>
+Has relevant experience
+</p>
+</td>
+<td>
+<p>
+no_enrollment
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+12
+</p>
+</td>
+<td>
+<p>
+5000-9999
+</p>
+</td>
+<td>
+<p>
+Pvt Ltd
+</p>
+</td>
+<td>
+<p>
+1
+</p>
+</td>
+<td>
+<p>
+52
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+108
+</p>
+</td>
+<td>
+<p>
+25349
+</p>
+</td>
+<td>
+<p>
+city_16
+</p>
+</td>
+<td>
+<p>
+0.910156
+</p>
+</td>
+<td>
+<p>
+Male
+</p>
+</td>
+<td>
+<p>
+Has relevant experience
+</p>
+</td>
+<td>
+<p>
+no_enrollment
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+&gt;20
+</p>
+</td>
+<td>
+<p>
+1000-4999
+</p>
+</td>
+<td>
+<p>
+Pvt Ltd
+</p>
+</td>
+<td>
+<p>
+&gt;4
+</p>
+</td>
+<td>
+<p>
+28
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+<p>
+115
+</p>
+</td>
+<td>
+<p>
+20576
+</p>
+</td>
+<td>
+<p>
+city_97
+</p>
+</td>
+<td>
+<p>
+0.924805
+</p>
+</td>
+<td>
+<p>
+Male
+</p>
+</td>
+<td>
+<p>
+Has relevant experience
+</p>
+</td>
+<td>
+<p>
+no_enrollment
+</p>
+</td>
+<td>
+<p>
+Graduate
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+&gt;20
+</p>
+</td>
+<td>
+<p>
+1000-4999
+</p>
+</td>
+<td>
+<p>
+Pvt Ltd
+</p>
+</td>
+<td>
+<p>
+&gt;4
+</p>
+</td>
+<td>
+<p>
+19
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+130
+</p>
+</td>
+<td>
+<p>
+3921
+</p>
+</td>
+<td>
+<p>
+city_36
+</p>
+</td>
+<td>
+<p>
+0.893066
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+No relevant experience
+</p>
+</td>
+<td>
+<p>
+no_enrollment
+</p>
+</td>
+<td>
+<p>
+Phd
+</p>
+</td>
+<td>
+<p>
+STEM
+</p>
+</td>
+<td>
+<p>
+&gt;20
+</p>
+</td>
+<td>
+<p>
+1000-4999
+</p>
+</td>
+<td>
+<p>
+Public Sector
+</p>
+</td>
+<td>
+<p>
+&gt;4
+</p>
+</td>
+<td>
+<p>
+4
+</p>
+</td>
+<td>
+<p>
+0
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>ds_jobs_clean.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 2201 entries, 9 to 19143
+Data columns (total 14 columns):
+ #   Column                  Non-Null Count  Dtype   
+---  ------                  --------------  -----   
+ 0   student_id              2201 non-null   int32   
+ 1   city                    2201 non-null   category
+ 2   city_development_index  2201 non-null   float16 
+ 3   gender                  1821 non-null   category
+ 4   relevant_experience     2201 non-null   category
+ 5   enrolled_university     2185 non-null   category
+ 6   education_level         2184 non-null   category
+ 7   major_discipline        2097 non-null   category
+ 8   experience              2201 non-null   category
+ 9   company_size            2201 non-null   category
+ 10  company_type            2144 non-null   category
+ 11  last_new_job            2184 non-null   category
+ 12  training_hours          2201 non-null   int32   
+ 13  job_change              2201 non-null   int32   
+dtypes: category(10), float16(1), int32(3)
+memory usage: 76.3 KB</code></pre>
+</section>
+<section id="datacamp-codes" class="level1">
+<h1>DataCamp Codes</h1>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>ds_jobs <span class="op">=</span> pd.read_csv(<span class="st">"customer_train.csv"</span>)</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the DataFrame for cleaning</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>ds_jobs_clean <span class="op">=</span> ds_jobs.copy()</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dictionary of columns containing ordered categorical data</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>ordered_cats <span class="op">=</span> {</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'relevant_experience'</span>: [<span class="st">'No relevant experience'</span>, <span class="st">'Has relevant experience'</span>],</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'enrolled_university'</span>: [<span class="st">'no_enrollment'</span>, <span class="st">'Part time course'</span>, <span class="st">'Full time course'</span>],</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'education_level'</span>: [<span class="st">'Primary School'</span>, <span class="st">'High School'</span>, <span class="st">'Graduate'</span>, <span class="st">'Masters'</span>, <span class="st">'Phd'</span>],</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'experience'</span>: [<span class="st">'&lt;1'</span>] <span class="op">+</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="bu">str</span>, <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">21</span>))) <span class="op">+</span> [<span class="st">'&gt;20'</span>],</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'company_size'</span>: [<span class="st">'&lt;10'</span>, <span class="st">'10-49'</span>, <span class="st">'50-99'</span>, <span class="st">'100-499'</span>, <span class="st">'500-999'</span>, <span class="st">'1000-4999'</span>, <span class="st">'5000-9999'</span>, <span class="st">'10000+'</span>],</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'last_new_job'</span>: [<span class="st">'never'</span>, <span class="st">'1'</span>, <span class="st">'2'</span>, <span class="st">'3'</span>, <span class="st">'4'</span>, <span class="st">'&gt;4'</span>]</span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through DataFrame columns to efficiently change data types</span></span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> ds_jobs_clean:</span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert integer columns to int32</span></span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ds_jobs_clean[col].dtype <span class="op">==</span> <span class="st">'int'</span>:</span>
+<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a>        ds_jobs_clean[col] <span class="op">=</span> ds_jobs_clean[col].astype(<span class="st">'int32'</span>)</span>
+<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb56-26"><a href="#cb56-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert float columns to float16</span></span>
+<span id="cb56-27"><a href="#cb56-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> ds_jobs_clean[col].dtype <span class="op">==</span> <span class="st">'float'</span>:</span>
+<span id="cb56-28"><a href="#cb56-28" aria-hidden="true" tabindex="-1"></a>        ds_jobs_clean[col] <span class="op">=</span> ds_jobs_clean[col].astype(<span class="st">'float16'</span>)</span>
+<span id="cb56-29"><a href="#cb56-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb56-30"><a href="#cb56-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert columns containing ordered categorical data to ordered categories using dict</span></span>
+<span id="cb56-31"><a href="#cb56-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> col <span class="kw">in</span> ordered_cats.keys():</span>
+<span id="cb56-32"><a href="#cb56-32" aria-hidden="true" tabindex="-1"></a>        category <span class="op">=</span> pd.CategoricalDtype(ordered_cats[col], ordered<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb56-33"><a href="#cb56-33" aria-hidden="true" tabindex="-1"></a>        ds_jobs_clean[col] <span class="op">=</span> ds_jobs_clean[col].astype(category)</span>
+<span id="cb56-34"><a href="#cb56-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb56-35"><a href="#cb56-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert remaining columns to standard categories</span></span>
+<span id="cb56-36"><a href="#cb56-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb56-37"><a href="#cb56-37" aria-hidden="true" tabindex="-1"></a>        ds_jobs_clean[col] <span class="op">=</span> ds_jobs_clean[col].astype(<span class="st">'category'</span>)</span>
+<span id="cb56-38"><a href="#cb56-38" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb56-39"><a href="#cb56-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter students with 10 or more years experience at companies with at least 1000 employees</span></span>
+<span id="cb56-40"><a href="#cb56-40" aria-hidden="true" tabindex="-1"></a>ds_jobs_clean <span class="op">=</span> ds_jobs_clean[(ds_jobs_clean[<span class="st">'experience'</span>] <span class="op">&gt;=</span> <span class="st">'10'</span>) <span class="op">&amp;</span> (ds_jobs_clean[<span class="st">'company_size'</span>] <span class="op">&gt;=</span> <span class="st">'1000-4999'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Project-Analyzing_Crime_in_Los_Angeles.html" class="pagination-link" aria-label="Project: Analyzing Crime in Los Angeles">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Project: Analyzing Crime in Los Angeles</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

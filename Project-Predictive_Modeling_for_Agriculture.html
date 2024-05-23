@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Hawlader Al-Mamun">
-<meta name="dcterms.date" content="2024-05-04">
 
-<title>Data Science With Python</title>
+<title>Data Science With Python - Project: Sowing Success - How Machine Learning Helps Farmers Select the Best Crops</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1_Introduction_to_Python.html" rel="next">
+<link href="./Project-Hypothesis_Testing_in_Healthcare.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Project-Predictive_Modeling_for_Agriculture.html">Project: Sowing Success - How Machine Learning Helps Farmers Select the Best Crops</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -109,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -199,20 +231,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Project-Predictive_Modeling_for_Agriculture.html" class="sidebar-item-text sidebar-link">
+  <a href="./Project-Predictive_Modeling_for_Agriculture.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Project: Sowing Success - How Machine Learning Helps Farmers Select the Best Crops</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Project-Analyzing_Crime_in_Los_Angeles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project: Analyzing Crime in Los Angeles</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Project-Customer_Analytics_Preparing_Data_for_Modeling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project: Customer Analytics- Preparing Data for Modeling</span></a>
   </div>
 </li>
     </ul>
@@ -225,14 +245,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
-  <ul class="collapse">
-  <li><a href="#contents" id="toc-contents" class="nav-link" data-scroll-target="#contents">Contents</a>
-  <ul class="collapse">
-  <li><a href="#practice-notebooks" id="toc-practice-notebooks" class="nav-link" data-scroll-target="#practice-notebooks">Practice Notebooks:</a></li>
-  <li><a href="#course-projects" id="toc-course-projects" class="nav-link" data-scroll-target="#course-projects">Course Projects:</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
   </ul>
 </nav>
     </div>
@@ -241,26 +254,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Science With Python</h1>
+<h1 class="title">Project: Sowing Success - How Machine Learning Helps Farmers Select the Best Crops</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Hawlader Al-Mamun </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">May 4, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -270,65 +271,108 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>Welcome to my DataCamp Data Science Portfolio repository!</p>
-<p>This repository serves as a showcase of my journey through various DataCamp courses in the field of data science. Here, you’ll find a collection of projects, practice notebooks, and code snippets that I’ve completed and worked on during my learning process.</p>
-<section id="contents" class="level2">
-<h2 class="anchored" data-anchor-id="contents">Contents</h2>
-<section id="practice-notebooks" class="level3">
-<h3 class="anchored" data-anchor-id="practice-notebooks">Practice Notebooks:</h3>
-<p>Here, you’ll find notebooks where I’ve practiced various data science concepts, techniques, and algorithms taught in DataCamp courses. Feel free to explore and learn alongside me!</p>
-<ol type="1">
-<li><a href="1_Introduction_to_Python.html">Introduction to Python</a></li>
-<li><a href="2_Intermediate_Python.html">Intermediate Python</a></li>
-<li><a href="3_Data_Manipulation_with_pandas.html">Data Manipulation with pandas</a></li>
-<li><a href="4_Joining_Data_with_pandas.html">Joining Data with pandas</a></li>
-<li><a href="5_Introduction_to_statistics_in_python.html">Introduction to Statistics in Python</a></li>
-<li><a href="6_Introduction_to_Data_Visualization_with_Matplotlib.html">Introduction to Data Visualization with Matplotlib</a></li>
-<li><a href="7_Introduction_to_Data_Visualization_with_Seaborn.html">Introduction to Data Visualization with Seaborn</a></li>
-<li><a href="8_Python_Data_Science_Toolbox_Part1.html">Python Data Science Toolbox (Part 1)</a></li>
-<li><a href="9_Python_Data_Science_Toolbox_Part2.qmd.html">Python Data Science Toolbox (Part 2)</a></li>
-<li><a href="10_Intermediate_Data_Visualization_with_Seaborn.html">Intermediate Data Visualization with Seaborn</a></li>
-<li>[Exploratory Data Analysis in Python]</li>
-<li>[Working with Categorical Data in Python]</li>
-<li>[Data Communication Concepts]</li>
-<li>[Introduction to Importing Data in Python]</li>
-<li>[Cleaning Data in Python]</li>
-<li>[Working with Dates and Times in Python]</li>
-<li>[Writing Functions in Python]</li>
-<li>[Introduction to Regression with statsmodels in Python]</li>
-<li>[Sampling in Python]</li>
-<li>[Hypothesis Testing in Python]</li>
-<li>[Supervised Learning with scikit-learn]</li>
-<li>[Unsupervised Learning in Python]</li>
-<li>[Machine Learning with Tree-Based Models in Python]</li>
-<li>[Intermediate Importing Data in Python]</li>
-<li>[Preprocessing for Machine Learning in Python]</li>
-<li>[Developing Python Packages]</li>
-<li>[Machine Learning for Business]</li>
-<li>[Introduction to SQL]</li>
-<li>[Intermediate SQL]</li>
-<li>[Joining Data in SQL]</li>
-<li>[Introduction to Git]</li>
-</ol>
-</section>
-<section id="course-projects" class="level3">
-<h3 class="anchored" data-anchor-id="course-projects">Course Projects:</h3>
-<p>This section contains projects completed as part of DataCamp courses. Each project includes a detailed analysis, code implementation, and insights gained from the data.</p>
-<ol type="1">
-<li><a href="Project-A_Visual_History_of_Nobel_Prize_Winners.html">Investigating Netflix Movies</a></li>
-<li><a href="Project-Netflix_movies.html">A Visual History of Nobel Prize Winners</a></li>
-<li><a href="Project-Exploring_NYC_Public_School_Test_Result_Scores.html">Project-Exploring NYC Public School Test Result Scores</a></li>
-<li><a href="Project-Hypothesis_Testing_in_Healthcare.html">Hypothesis Testing in Healthcare</a></li>
-<li><a href="Project-Predictive_Modeling_for_Agriculture.html">Predictive Modeling for Agriculture</a></li>
-<li><a href="Project-Analyzing_Crime_in_Los_Angeles.html">Analyzing Crime in Los Angeles</a></li>
-<li><a href="Project-Customer_Analytics_Preparing_Data_for_Modeling.html">Customer Analytics- Preparing Data for Modeling</a></li>
-</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/farmer_in_a_field.jpg" class="img-fluid figure-img"></p>
+<figcaption>Farmer in a field</figcaption>
+</figure>
+</div>
+<p>Measuring essential soil metrics such as nitrogen, phosphorous, potassium levels, and pH value is an important aspect of assessing soil condition. However, it can be an expensive and time-consuming process, which can cause farmers to prioritize which metrics to measure based on their budget constraints.</p>
+<p>Farmers have various options when it comes to deciding which crop to plant each season. Their primary objective is to maximize the yield of their crops, taking into account different factors. One crucial factor that affects crop growth is the condition of the soil in the field, which can be assessed by measuring basic elements such as nitrogen and potassium levels. Each crop has an ideal soil condition that ensures optimal growth and maximum yield.</p>
+<p>A farmer reached out to you as a machine learning expert for assistance in selecting the best crop for his field. They’ve provided you with a dataset called <code>soil_measures.csv</code>, which contains:</p>
+<ul>
+<li><code>"N"</code>: Nitrogen content ratio in the soil</li>
+<li><code>"P"</code>: Phosphorous content ratio in the soil</li>
+<li><code>"K"</code>: Potassium content ratio in the soil</li>
+<li><code>"pH"</code> value of the soil</li>
+<li><code>"crop"</code>: categorical values that contain various crops (target variable).</li>
+</ul>
+<p>Each row in this dataset represents various measures of the soil in a particular field. Based on these measurements, the crop specified in the <code>"crop"</code> column is the optimal choice for that field.</p>
+<p>In this project, you will apply machine learning to build a multi-class classification model to predict the type of <code>"crop"</code>, while using techniques to avoid multicollinearity, which is a concept where two or more features are highly correlated.</p>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<p>Build a multi-class Logistic Regression model to predict categories of “crop” with a F1 score of more than 0.5.</p>
+<ul>
+<li><p>Read in soil_measures.csv as a pandas DataFrame and perform some data checks, such as determining the number of crops, checking for missing values, and verifying that the data in each potential feature column is numeric.</p></li>
+<li><p>Split the data into training and test sets, setting test_size equal to 20% and using a random_state of 42.</p></li>
+<li><p>Predict the “crop” type using each feature individually by looping over all the features, and, for each feature, fit a Logistic Regression model and calculate f1_score(). When creating the model, set max_iter to 2000 so the model can converge, and pass an appropriate string value to the multi_class keyword argument.</p></li>
+<li><p>In order to avoid selecting two features that are highly correlated, perform a correlation analysis for each pair of features, enabling you to build a final model without the presence of multicollinearity.</p></li>
+<li><p>Once you have your final features, train and test a new Logistic Regression model called log_reg, then evaluate performance using f1_score(), saving the metric as a variable called model_performance.</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All required libraries are imported here for you.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> f1_score</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>crops <span class="op">=</span> pd.read_csv(<span class="st">"datasets/soil_measures.csv"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&nbsp;Write your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Individual crops</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>crop<span class="op">=</span>crops[<span class="st">'crop'</span>].unique()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(crop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>22</code></pre>
+<p>Split the data into training and test sets, setting test_size equal to 20% and using a random_state of 42.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> crops[<span class="st">'crop'</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> crops.drop(<span class="st">"crop"</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Predict the “crop” type using each feature individually by looping over all the features, and, for each feature, fit a Logistic Regression model and calculate f1_score(). When creating the model, set max_iter to 2000 so the model can converge, and pass an appropriate string value to the multi_class keyword argument.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> f1_score</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>logreg <span class="op">=</span> LogisticRegression(multi_class<span class="op">=</span><span class="st">'multinomial'</span>, max_iter<span class="op">=</span><span class="dv">2000</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> X_train.columns:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    dt_train <span class="op">=</span> X_train[[c]]  <span class="co"># Selecting the current feature for training</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    dt_test <span class="op">=</span> X_test[[c]]    <span class="co"># Selecting the current feature for testing</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    logreg.fit(dt_train, y_train)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    y_pred <span class="op">=</span> logreg.predict(dt_test)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    f1 <span class="op">=</span> f1_score(y_test, y_pred, average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"F1 score using feature '</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>f1<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>F1 score using feature 'N': 0.10507916708090527
+F1 score using feature 'P': 0.10457380486654515
+F1 score using feature 'K': 0.2007873036107074
+F1 score using feature 'ph': 0.04532731061152114</code></pre>
+<p>In order to avoid selecting two features that are highly correlated, perform a correlation analysis for each pair of features, enabling you to build a final model without the presence of multicollinearity.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the correlation matrix</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="op">=</span> X.corr()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the correlation heatmap</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>sns.heatmap(correlation_matrix, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, fmt<span class="op">=</span><span class="st">".2f"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation Heatmap of Features'</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Project-Predictive_Modeling_for_Agriculture_files/Project-Predictive_Modeling_for_Agriculture_9_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<p>Feature ‘K’ and ‘P’ are highly co-related. Dropping ‘P’</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>final_features <span class="op">=</span> [<span class="st">'N'</span>, <span class="st">'K'</span>, <span class="st">'ph'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X[final_features]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> f1_score</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>log_reg <span class="op">=</span> LogisticRegression(multi_class<span class="op">=</span><span class="st">'multinomial'</span>, max_iter<span class="op">=</span><span class="dv">2000</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>log_reg.fit(X_train, y_train)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> log_reg.predict(X_test)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>model_performance <span class="op">=</span> f1_score(y_test, y_pred, average<span class="op">=</span><span class="st">'weighted'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>model_performance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>0.558010495235685</code></pre>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -743,11 +787,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./Project-Hypothesis_Testing_in_Healthcare.html" class="pagination-link" aria-label="Project: Hypothesis Testing in Healthcare- Drug Safety">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Project: Hypothesis Testing in Healthcare- Drug Safety</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1_Introduction_to_Python.html" class="pagination-link" aria-label="Introduction to Python">
-        <span class="nav-page-text">Introduction to Python</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

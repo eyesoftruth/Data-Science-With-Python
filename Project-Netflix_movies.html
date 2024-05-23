@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html" rel="next">
 <link href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -169,6 +169,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./4_Joining_Data_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joining Data with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_Introduction_to_statistics_in_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./6_Introduction_to_Data_Visualization_with_Matplotlib.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Data Visualization with Matplotlib</span></a>
   </div>
@@ -199,14 +211,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">A Visual History of Nobel Prize Winners</span></a>
+ <span class="menu-text">Project: A Visual History of Nobel Prize Winners</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -217,8 +223,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+  <a href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Exploring NYC Public School Test Result Scores</span></a>
   </div>
 </li>
     </ul>
@@ -332,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="importing-pandas-and-matplotlib" class="level3">
 <h3 class="anchored" data-anchor-id="importing-pandas-and-matplotlib">Importing pandas and matplotlib</h3>
-<div id="9ff0f43f" class="cell" data-execution_count="1">
+<div id="be94bcd5" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing pandas and matplotlib</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -343,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="load-the-csv-file-and-store-as-netflix_df." class="level3">
 <h3 class="anchored" data-anchor-id="load-the-csv-file-and-store-as-netflix_df.">Load the CSV file and store as netflix_df.</h3>
-<div id="86e5a4ca" class="cell" data-execution_count="2">
+<div id="3549c86e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the CSV file and store as netflix_df.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>netflix_df <span class="op">=</span> pd.read_csv(<span class="st">"datasets/netflix_data.csv"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>netflix_df.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -408,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="filter-the-data-to-remove-tv-shows-and-store-as-netflix_subset" class="level3">
 <h3 class="anchored" data-anchor-id="filter-the-data-to-remove-tv-shows-and-store-as-netflix_subset">Filter the data to remove TV shows and store as netflix_subset</h3>
-<div id="2c536b2f" class="cell" data-execution_count="3">
+<div id="83c8d667" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter the data to remove TV shows and store as netflix_subset</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>netflix_subset <span class="op">=</span> netflix_df[netflix_df.<span class="bu">type</span><span class="op">!=</span><span class="st">'TV Show'</span>]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>netflix_subset.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -515,7 +521,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="investigate-the-netflix-movie-data-keeping-only-the-columns-title-country-genre-release_year-duration-and-saving-this-into-a-new-dataframe-called-netflix_movies." class="level3">
 <h3 class="anchored" data-anchor-id="investigate-the-netflix-movie-data-keeping-only-the-columns-title-country-genre-release_year-duration-and-saving-this-into-a-new-dataframe-called-netflix_movies.">Investigate the Netflix movie data, keeping only the columns “title”, “country”, “genre”, “release_year”, “duration”, and saving this into a new DataFrame called netflix_movies.</h3>
-<div id="4dfe6808" class="cell" data-execution_count="4">
+<div id="b729390a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Investigate the Netflix movie data, keeping only the columns "title", "country", "genre", "release_year", "duration", and saving this into a new DataFrame called netflix_movies.</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>netflix_movies <span class="op">=</span> netflix_subset[[<span class="st">"title"</span>, <span class="st">"country"</span>, <span class="st">"genre"</span>, <span class="st">"release_year"</span>, <span class="st">"duration"</span>]]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>netflix_movies.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -626,7 +632,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="filter-netflix_movies-to-find-the-movies-that-are-shorter-than-60-minutes-saving-the-resulting-dataframe-as-short_movies-inspect-the-result-to-find-possible-contributing-factors." class="level3">
 <h3 class="anchored" data-anchor-id="filter-netflix_movies-to-find-the-movies-that-are-shorter-than-60-minutes-saving-the-resulting-dataframe-as-short_movies-inspect-the-result-to-find-possible-contributing-factors.">Filter netflix_movies to find the movies that are shorter than 60 minutes, saving the resulting DataFrame as short_movies; inspect the result to find possible contributing factors.</h3>
-<div id="0ec3bed0" class="cell" data-execution_count="5">
+<div id="0c0e86f1" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter netflix_movies to find the movies that are shorter than 60 minutes, saving the resulting DataFrame as short_movies; inspect the result to find possible contributing factors.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>short_movies <span class="op">=</span> netflix_movies[netflix_movies.duration<span class="op">&lt;</span><span class="dv">60</span>]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>short_movies.head(<span class="dv">2</span>)</span>
@@ -635,13 +641,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>(420, 5)</code></pre>
 </div>
 </div>
-<div id="8ebfd200" class="cell" data-execution_count="6">
+<div id="25671d51" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>short_movies.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>Index(['title', 'country', 'genre', 'release_year', 'duration'], dtype='object')</code></pre>
 </div>
 </div>
-<div id="4cd9b05c" class="cell" data-execution_count="7">
+<div id="10277bd0" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sns.countplot(y<span class="op">=</span><span class="st">'genre'</span>, data<span class="op">=</span>short_movies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -655,7 +661,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="using-a-for-loop-and-ifelif-statements-iterate-through-the-rows-of-netflix_movies-and-assign-colors-of-your-choice-to-four-genre-groups-children-documentaries-stand-up-and-other-for-everything-else.-save-the-results-in-a-colors-list." class="level3">
 <h3 class="anchored" data-anchor-id="using-a-for-loop-and-ifelif-statements-iterate-through-the-rows-of-netflix_movies-and-assign-colors-of-your-choice-to-four-genre-groups-children-documentaries-stand-up-and-other-for-everything-else.-save-the-results-in-a-colors-list.">Using a for loop and if/elif statements, iterate through the rows of netflix_movies and assign colors of your choice to four genre groups (“Children”, “Documentaries”, “Stand-Up”, and “Other” for everything else). Save the results in a colors list.</h3>
-<div id="661a199e" class="cell" data-execution_count="8">
+<div id="700d0609" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using a for loop and if/elif statements, iterate through the rows of netflix_movies and assign colors of your choice to four genre groups ("Children", "Documentaries", "Stand-Up", and "Other" for everything else). Save the results in a colors list. "</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> []</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -675,7 +681,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="initialize-a-figure-object-called-fig-and-create-a-scatter-plot-for-movie-duration-by-release-year-using-the-colors-list-to-color-the-points-and-using-the-labels-release-year-for-the-x-axis-duration-min-for-the-y-axis-and-the-title-movie-duration-by-year-of-release" class="level3">
 <h3 class="anchored" data-anchor-id="initialize-a-figure-object-called-fig-and-create-a-scatter-plot-for-movie-duration-by-release-year-using-the-colors-list-to-color-the-points-and-using-the-labels-release-year-for-the-x-axis-duration-min-for-the-y-axis-and-the-title-movie-duration-by-year-of-release">Initialize a figure object called fig and create a scatter plot for movie duration by release year using the colors list to color the points and using the labels “Release year” for the x-axis, “Duration (min)” for the y-axis, and the title “Movie Duration by Year of Release</h3>
-<div id="cd5f45f8" class="cell" data-execution_count="9">
+<div id="d9711705" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Initialize a figure object called fig and create a scatter plot for movie duration by release year using the colors list to color the points and using the labels "Release year" for the x-axis, "Duration (min)" for the y-axis, and the title "Movie Duration by Year of Release</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(netflix_movies[<span class="st">'release_year'</span>],netflix_movies[<span class="st">'duration'</span>],color<span class="op">=</span>colors)</span>
@@ -692,7 +698,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="a52ec591" class="cell" data-execution_count="10">
+<div id="68526d87" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>answer<span class="op">=</span><span class="st">"maybe"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
@@ -1112,13 +1118,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="pagination-link" aria-label="A Visual History of Nobel Prize Winners">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">A Visual History of Nobel Prize Winners</span>
+      <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="pagination-link" aria-label="Project: A Visual History of Nobel Prize Winners">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Project: A Visual History of Nobel Prize Winners</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html" class="pagination-link" aria-label="Project: Exploring NYC Public School Test Result Scores">
+        <span class="nav-page-text">Project: Exploring NYC Public School Test Result Scores</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

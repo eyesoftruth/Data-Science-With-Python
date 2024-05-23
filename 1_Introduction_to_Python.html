@@ -166,6 +166,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./4_Joining_Data_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joining Data with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_Introduction_to_statistics_in_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./6_Introduction_to_Data_Visualization_with_Matplotlib.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Data Visualization with Matplotlib</span></a>
   </div>
@@ -196,26 +208,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A Visual History of Nobel Prize Winners</span></span></a>
+ <span class="menu-text">Project: A Visual History of Nobel Prize Winners</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Project-Netflix_movies.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project: Investigating Netflix Movies</span></span></a>
+ <span class="menu-text">Project: Investigating Netflix Movies</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+  <a href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Exploring NYC Public School Test Result Scores</span></a>
   </div>
 </li>
     </ul>
@@ -298,7 +304,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="explore-datasets" class="level2">
 <h2 class="anchored" data-anchor-id="explore-datasets">Explore Datasets</h2>
 <p>Use the arrays imported in the first cell to explore the data and practice your skills! - Print out the weight of the first ten baseball players. - What is the median weight of all baseball players in the data? - Print out the names of all players with a height greater than 80 (heights are in inches). - Who is taller on average? Baseball players or soccer players? Keep in mind that baseball heights are stored in inches! - The values in <code>soccer_shooting</code> are decimals. Convert them to whole numbers (e.g., 0.98 becomes 98). - Do taller players get higher ratings? Calculate the correlation between <code>soccer_ratings</code> and <code>soccer_heights</code> to find out! - What is the average rating for attacking players (<code>'A'</code>)?</p>
-<div id="19509ca5" class="cell" data-execution_count="2">
+<div id="b8e60f52" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a variable savings</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>savings<span class="op">=</span><span class="dv">100</span></span>
@@ -308,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>100</code></pre>
 </div>
 </div>
-<div id="218333e9" class="cell" data-execution_count="3">
+<div id="37bbeb76" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the variables monthly_savings and num_months</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>monthly_savings <span class="op">=</span> <span class="dv">10</span></span>
@@ -326,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>140</code></pre>
 </div>
 </div>
-<div id="3924547d" class="cell" data-execution_count="4">
+<div id="ed2fa096" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a variable half</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>half <span class="op">=</span> <span class="fl">0.5</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -336,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a variable is_good</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>is_good <span class="op">=</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="40dccc68" class="cell" data-execution_count="5">
+<div id="eec4a3c2" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>monthly_savings <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>num_months <span class="op">=</span> <span class="dv">12</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>intro <span class="op">=</span> <span class="st">"Hello! How are you?"</span></span>
@@ -358,7 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Hello! How are you?Hello! How are you?</code></pre>
 </div>
 </div>
-<div id="6e2ba17a" class="cell" data-execution_count="6">
+<div id="58a52972" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definition of savings and total_savings</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>savings <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>total_savings <span class="op">=</span> <span class="dv">150</span></span>
@@ -396,7 +402,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="ae65beaf" class="cell" data-execution_count="7">
+<div id="4358e168" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># area variables (in square meters)</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>hall <span class="op">=</span> <span class="fl">11.25</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>kit <span class="op">=</span> <span class="fl">18.0</span></span>
@@ -432,7 +438,7 @@ Instructions
 <p>-Finish the code that creates the areas list. Build the list so that the list first contains the name of each room as a string and then its area. In other words, add the strings “hallway”, “kitchen” and “bedroom” at the appropriate locations. - Print areas again; is the printout more informative this time?</p>
 </div>
 </div>
-<div id="f356e118" class="cell" data-execution_count="8">
+<div id="2472c5bc" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># area variables (in square meters)</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>hall <span class="op">=</span> <span class="fl">11.25</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>kit <span class="op">=</span> <span class="fl">18.0</span></span>
@@ -470,7 +476,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="604eff5a" class="cell" data-execution_count="9">
+<div id="6fb289e9" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># area variables (in square meters)</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>hall <span class="op">=</span> <span class="fl">11.25</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>kit <span class="op">=</span> <span class="fl">18.0</span></span>
@@ -517,7 +523,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="ae7ee9bc" class="cell" data-execution_count="10">
+<div id="6d1b373f" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the areas list</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="st">"hallway"</span>, <span class="fl">11.25</span>, <span class="st">"kitchen"</span>, <span class="fl">18.0</span>, <span class="st">"living room"</span>, <span class="fl">20.0</span>, <span class="st">"bedroom"</span>, <span class="fl">10.75</span>, <span class="st">"bathroom"</span>, <span class="fl">9.50</span>]</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -555,7 +561,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="a014e8ca" class="cell" data-execution_count="11">
+<div id="10f84931" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the areas list</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="st">"hallway"</span>, <span class="fl">11.25</span>, <span class="st">"kitchen"</span>, <span class="fl">18.0</span>, <span class="st">"living room"</span>, <span class="fl">20.0</span>, <span class="st">"bedroom"</span>, <span class="fl">10.75</span>, <span class="st">"bathroom"</span>, <span class="fl">9.50</span>]</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -592,7 +598,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="7d64c284" class="cell" data-execution_count="12">
+<div id="f11ae6c4" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the areas list</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="st">"hallway"</span>, <span class="fl">11.25</span>, <span class="st">"kitchen"</span>, <span class="fl">18.0</span>, <span class="st">"living room"</span>, <span class="fl">20.0</span>, <span class="st">"bedroom"</span>, <span class="fl">10.75</span>, <span class="st">"bathroom"</span>, <span class="fl">9.50</span>]</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -625,7 +631,7 @@ Instructions
 <li>Create upstairs again, as the last 4 elements of areas. This time, simplify the slicing by omitting the end index.</li>
 </ul>
 </section>
-<div id="d12b3459" class="cell" data-execution_count="13">
+<div id="f68fc3fb" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the areas list</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="st">"hallway"</span>, <span class="fl">11.25</span>, <span class="st">"kitchen"</span>, <span class="fl">18.0</span>, <span class="st">"living room"</span>, <span class="fl">20.0</span>, <span class="st">"bedroom"</span>, <span class="fl">10.75</span>, <span class="st">"bathroom"</span>, <span class="fl">9.50</span>]</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -640,7 +646,7 @@ Instructions
 <p>You saw before that a Python list can contain practically anything; even other lists! To subset lists of lists, you can use the same technique as before: square brackets. Try out the commands in the following code sample in the IPython Shell:</p>
 <p><code>x = [["a", "b", "c"],      ["d", "e", "f"],      ["g", "h", "i"]] x[2][0] x[2][:2]</code></p>
 <p><code>x[2]</code> results in a list, that you can subset again by adding additional square brackets. What will <code>house[-1][1]</code> return?</p>
-<div id="479f1dc7" class="cell" data-execution_count="14">
+<div id="99acdee8" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>house[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>9.5</code></pre>
@@ -668,7 +674,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="92111b9d" class="cell" data-execution_count="15">
+<div id="acf09810" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the areas list</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="st">"hallway"</span>, <span class="fl">11.25</span>, <span class="st">"kitchen"</span>, <span class="fl">18.0</span>, <span class="st">"living room"</span>, <span class="fl">20.0</span>, <span class="st">"bedroom"</span>, <span class="fl">10.75</span>, <span class="st">"bathroom"</span>, <span class="fl">9.50</span>]</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -699,7 +705,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="2d659091" class="cell" data-execution_count="16">
+<div id="a644d43b" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the areas list and make some changes</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="st">"hallway"</span>, <span class="fl">11.25</span>, <span class="st">"kitchen"</span>, <span class="fl">18.0</span>, <span class="st">"chill zone"</span>, <span class="fl">20.0</span>,</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">"bedroom"</span>, <span class="fl">10.75</span>, <span class="st">"bathroom"</span>, <span class="fl">10.50</span>]</span>
@@ -744,7 +750,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="aa917706" class="cell" data-execution_count="17">
+<div id="94662784" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list areas</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="fl">11.25</span>, <span class="fl">18.0</span>, <span class="fl">20.0</span>, <span class="fl">10.75</span>, <span class="fl">9.50</span>]</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -780,7 +786,7 @@ Instructions
 <li>Use int() to convert var2 to an integer. Store the output as out2.</li>
 </ul>
 </section>
-<div id="ad0b4dad" class="cell" data-execution_count="18">
+<div id="07caa1e9" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create variables var1 and var2</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>var1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>var2 <span class="op">=</span> <span class="va">True</span></span>
@@ -823,7 +829,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="093837b9" class="cell" data-execution_count="19">
+<div id="53721272" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create lists first and second</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>first <span class="op">=</span> [<span class="fl">11.25</span>, <span class="fl">18.0</span>, <span class="fl">20.0</span>]</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>second <span class="op">=</span> [<span class="fl">10.75</span>, <span class="fl">9.50</span>]</span>
@@ -860,7 +866,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="e90b51db" class="cell" data-execution_count="20">
+<div id="dc1fdcdb" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># string to experiment with: place</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>place <span class="op">=</span> <span class="st">"poolhouse"</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -888,7 +894,7 @@ POOLHOUSE
 <li><code>count()</code>, to get the number of times an element appears in a list.</li>
 </ul>
 <p>You’ll be working on the list with the area of different parts of a house: areas. Instructions - Use the index() method to get the index of the element in areas that is equal to 20.0. Print out this index. - Call count() on areas to find out how many times 9.50 appears in the list. Again, simply print out this number.</p>
-<div id="a0074caf" class="cell" data-execution_count="21">
+<div id="4e90b08e" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list areas</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="fl">11.25</span>, <span class="fl">18.0</span>, <span class="fl">20.0</span>, <span class="fl">10.75</span>, <span class="fl">9.50</span>]</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -928,7 +934,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="e92480c5" class="cell" data-execution_count="22">
+<div id="6c09bb1c" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list areas</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> [<span class="fl">11.25</span>, <span class="fl">18.0</span>, <span class="fl">20.0</span>, <span class="fl">10.75</span>, <span class="fl">9.50</span>]</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -973,7 +979,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="9c079d58" class="cell" data-execution_count="23">
+<div id="8f57d4c5" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the math package</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1015,7 +1021,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="2cdf58d0" class="cell" data-execution_count="24">
+<div id="211dee14" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import radians function of math package</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> radians</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1053,7 +1059,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="f3cbcfc9" class="cell" data-execution_count="25">
+<div id="75ff19c2" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the numpy package as np</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1091,7 +1097,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="45235688" class="cell" data-execution_count="26">
+<div id="7a479faf" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>height_in <span class="op">=</span> baseball_heights.astype(<span class="bu">int</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>height_in[<span class="dv">0</span>:<span class="dv">10</span>]</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>weight_lb <span class="op">=</span> baseball_weights.astype(<span class="bu">int</span>)</span>
@@ -1100,7 +1106,7 @@ Instructions
 <pre><code>array([180, 215, 210, ..., 205, 190, 195])</code></pre>
 </div>
 </div>
-<div id="9a1c2273" class="cell" data-execution_count="27">
+<div id="9a336531" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1138,7 +1144,7 @@ Note
 <p># Instructions - Create a numpy array from the weight_lb list with the correct units. Multiply by 0.453592 to go from pounds to kilograms. Store the resulting numpy array as np_weight_kg. - Use np_height_m and np_weight_kg to calculate the BMI of each player. Use the following equation: - - BMI = weight(kg)/height(m)^2 - Save the resulting numpy array as bmi. - Print out bmi.</p>
 </div>
 </div>
-<div id="19a18fda" class="cell" data-execution_count="28">
+<div id="a2d8af84" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1179,7 +1185,7 @@ Note
 <p># Instructions - Create a boolean numpy array: the element of the array should be True if the corresponding baseball player’s BMI is below 21. You can use the &lt; operator for this. Name the array light. - Print the array light. - Print out a numpy array with the BMIs of all baseball players whose BMI is below 21. Use light inside square brackets to do a selection on the bmi array.</p>
 </div>
 </div>
-<div id="b1195859" class="cell" data-execution_count="29">
+<div id="a697adc6" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1211,7 +1217,7 @@ Note
 <p>Second, the typical arithmetic operators, such as +, -, * and / have a different meaning for regular Python lists and numpy arrays.</p>
 <p>Have a look at this line of code:</p>
 <p><code>np.array([True, 1, 2]) + np.array([3, 4, False])</code></p>
-<div id="f6120ca3" class="cell" data-execution_count="30">
+<div id="adfabad8" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>np.array([<span class="va">True</span>, <span class="dv">1</span>, <span class="dv">2</span>]) <span class="op">+</span> np.array([<span class="dv">3</span>, <span class="dv">4</span>, <span class="va">False</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>array([4, 5, 2])</code></pre>
@@ -1237,7 +1243,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="feaace2e" class="cell" data-execution_count="31">
+<div id="350a15e0" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1273,7 +1279,7 @@ Note
 <p># Instructions - Use np.array() to create a 2D numpy array from baseball. Name it np_baseball. - Print out the type of np_baseball. - Print out the shape attribute of np_baseball. Use np_baseball.shape.</p>
 </div>
 </div>
-<div id="ce7c5dc1" class="cell" data-execution_count="32">
+<div id="db9146c1" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1317,7 +1323,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="89d9ceea" class="cell" data-execution_count="33">
+<div id="cddb4c24" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy package</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1355,12 +1361,12 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="168c6ed1" class="cell" data-execution_count="34">
+<div id="c041e636" class="cell" data-execution_count="34">
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>277</code></pre>
 </div>
 </div>
-<div id="b75e7f80" class="cell" data-execution_count="35">
+<div id="20564085" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy package</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1385,7 +1391,7 @@ Instructions
 <h2 class="anchored" data-anchor-id="d-arithmetic">2D Arithmetic</h2>
 <p>Remember how you calculated the Body Mass Index for all baseball players? numpy was able to perform all calculations element-wise (i.e.&nbsp;element by element). For 2D numpy arrays this isn’t any different! You can combine matrices with single numbers, with vectors, and with other matrices.</p>
 <p>Execute the code below in the IPython shell and see if you understand: <code>import numpy as np np_mat = np.array([[1, 2],                    [3, 4],                    [5, 6]]) np_mat * 2 np_mat + np.array([10, 10]) np_mat + np_mat</code> np_baseball is coded for you; it’s again a 2D numpy array with 3 columns representing height (in inches), weight (in pounds) and age (in years). baseball is available as a regular list of lists and updated is available as 2D numpy array. Instructions - You managed to get hold of the changes in height, weight and age of all baseball players. It is available as a 2D numpy array, updated. Add np_baseball and updated and print out the result. - You want to convert the units of height and weight to metric (meters and kilograms, respectively). As a first step, create a numpy array with three values: 0.0254, 0.453592 and 1. Name this array conversion. - Multiply np_baseball with conversion and print out the result.</p>
-<div id="dd81cdf6" class="cell" data-execution_count="37">
+<div id="0b6559a7" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy package</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1439,7 +1445,7 @@ Instructions
 <li>Print out the median of np_height_in.</li>
 </ul>
 </section>
-<div id="7ae1d730" class="cell" data-execution_count="38">
+<div id="9a9a525f" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1477,7 +1483,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="c8cfd424" class="cell" data-execution_count="39">
+<div id="0a2fd5dc" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1511,11 +1517,11 @@ Correlation: [[1.         0.45629209]
 <p>You’ve contacted FIFA for some data and they handed you two lists. The lists are the following:</p>
 <p><code>positions = ['GK', 'M', 'A', 'D', ...] heights = [191, 184, 185, 180, ...]</code> Each element in the lists corresponds to a player. The first list, positions, contains strings representing each player’s position. The possible positions are: ‘GK’ (goalkeeper), ‘M’ (midfield), ‘A’ (attack) and ‘D’ (defense). The second list, heights, contains integers representing the height of the player in cm. The first player in the lists is a goalkeeper and is pretty tall (191 cm).</p>
 <p>You’re fairly confident that the median height of goalkeepers is higher than that of other players on the soccer field. Some of your friends don’t believe you, so you are determined to show them using the data you received from FIFA and your newly acquired Python skills. heights and positions are available as lists Instructions - Convert heights and positions, which are regular lists, to numpy arrays. Call them np_heights and np_positions. - Extract all the heights of the goalkeepers. You can use a little trick here: use <code>np_positions == 'GK'</code> as an index for np_heights. Assign the result to gk_heights. - Extract all the heights of all the other players. This time use np_positions != ‘GK’ as an index for np_heights. Assign the result to other_heights. - Print out the median height of the goalkeepers using <code>np.median()</code>. Replace None with the correct code. - Do the same for the other players. Print out their median height. Replace None with the correct code.</p>
-<div id="ac9a8edd" class="cell" data-execution_count="40">
+<div id="037f27b9" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>positions<span class="op">=</span>soccer_positions</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>heights <span class="op">=</span> soccer_heights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b7bf2ec1" class="cell" data-execution_count="41">
+<div id="830ce959" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a></span>

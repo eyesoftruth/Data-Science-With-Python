@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
+<link href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" rel="next">
 <link href="./9_Python_Data_Science_Toolbox_Part2.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -169,6 +169,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./4_Joining_Data_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joining Data with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_Introduction_to_statistics_in_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./6_Introduction_to_Data_Visualization_with_Matplotlib.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Data Visualization with Matplotlib</span></a>
   </div>
@@ -199,12 +211,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project: A Visual History of Nobel Prize Winners</span></a>
   </div>
@@ -217,8 +223,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+  <a href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Exploring NYC Public School Test Result Scores</span></a>
   </div>
 </li>
     </ul>
@@ -334,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Run the hidden code cell below to import the data used in this course.</p>
-<div id="398e5421" class="cell" data-execution_count="1">
+<div id="34979e3b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing the course packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -372,7 +378,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="0780074b" class="cell" data-execution_count="2">
+<div id="caf9ed93" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grant_file<span class="op">=</span><span class="st">"datasets/schoolimprovement2010grants.csv"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># import all modules</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -382,7 +388,7 @@ Instructions
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the DataFrame</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(grant_file)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="59">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 <div>
 
@@ -447,7 +453,7 @@ Instructions
 <h2 class="anchored" data-anchor-id="comparing-a-histogram-and-displot">Comparing a histogram and displot</h2>
 <p>The pandas library supports simple plotting of data, which is very convenient when data is already likely to be in a pandas DataFrame.</p>
 <p>Seaborn generally does more statistical analysis on data and can provide more sophisticated insight into the data. In this exercise, we will compare a pandas histogram vs the seaborn displot. ## Instructions - Use the pandas’ plot.hist() function to plot a histogram of the Award_Amount column. - Use Seaborn’s displot() function to plot a distribution plot of the same column.</p>
-<div id="a127f351" class="cell" data-execution_count="3">
+<div id="0426b9af" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display pandas histogram</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Award_Amount'</span>].plot.hist()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
@@ -464,7 +470,7 @@ Instructions
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-4-output-1.png" width="597" height="433" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-4-output-1.png" width="593" height="428" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -474,7 +480,7 @@ Instructions
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-4-output-3.png" width="464" height="464" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-4-output-3.png" width="470" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -501,7 +507,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="47f3edcf" class="cell" data-execution_count="4">
+<div id="2507c860" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a displot</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sns.displot(df[<span class="st">'Award_Amount'</span>],</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>             bins<span class="op">=</span><span class="dv">20</span>)</span>
@@ -511,7 +517,7 @@ Instructions
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-5-output-1.png" width="464" height="464" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-5-output-1.png" width="470" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -536,7 +542,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="dcc966ad" class="cell" data-execution_count="5">
+<div id="d305dc6e" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a displot of the Award Amount</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sns.displot(df[<span class="st">'Award_Amount'</span>],</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>             kind<span class="op">=</span><span class="st">'kde'</span>,</span>
@@ -548,7 +554,7 @@ Instructions
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-6-output-1.png" width="464" height="464" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-6-output-1.png" width="470" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -573,7 +579,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="6ba234b3" class="cell" data-execution_count="6">
+<div id="a1f1f14d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>pd.read_csv(<span class="st">"datasets/insurance_premiums.csv"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a regression plot of premiums vs. insurance_losses</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>sns.regplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'insurance_losses'</span>, y<span class="op">=</span><span class="st">'premiums'</span>)</span>
@@ -582,12 +588,12 @@ Instructions
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-7-output-1.png" width="616" height="435" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-7-output-1.png" width="613" height="429" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="168e396e" class="cell" data-execution_count="7">
+<div id="900e02c0" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an lmplot of premiums vs. insurance_losses</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sns.lmplot(data<span class="op">=</span>df,x<span class="op">=</span><span class="st">'insurance_losses'</span>,y<span class="op">=</span><span class="st">'premiums'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the second plot</span></span>
@@ -595,7 +601,7 @@ Instructions
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-8-output-1.png" width="465" height="464" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-8-output-1.png" width="470" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -619,7 +625,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="2e1e19b4" class="cell" data-execution_count="8">
+<div id="d3e7d8be" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a regression plot using hue</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sns.lmplot(data<span class="op">=</span>df,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>           x<span class="op">=</span><span class="st">"insurance_losses"</span>,</span>
@@ -631,7 +637,7 @@ Instructions
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-9-output-1.png" width="571" height="464" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-9-output-1.png" width="574" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -655,7 +661,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="39a08b62" class="cell" data-execution_count="9">
+<div id="738ce840" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a regression plot with multiple rows</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sns.lmplot(data<span class="op">=</span>df,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>           x<span class="op">=</span><span class="st">"insurance_losses"</span>,</span>
@@ -667,7 +673,7 @@ Instructions
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-10-output-1.png" width="464" height="1903" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-10-output-1.png" width="470" height="1910" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -675,7 +681,7 @@ Instructions
 </section>
 <section id="theme-examples-with-sns.set_style" class="level2">
 <h2 class="anchored" data-anchor-id="theme-examples-with-sns.set_style">Theme examples with sns.set_style()</h2>
-<div id="adfdc730" class="cell" data-execution_count="10">
+<div id="77d3e39d" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> style <span class="kw">in</span> [<span class="st">'white'</span>,<span class="st">'dark'</span>,<span class="st">'whitegrid'</span>,<span class="st">'darkgrid'</span>,<span class="st">'ticks'</span>]:    </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    sns.set_style(style)    </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    sns.displot(df[<span class="st">'premiums'</span>])    </span>
@@ -683,35 +689,35 @@ Instructions
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-11-output-1.png" width="464" height="464" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-11-output-1.png" width="470" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-11-output-2.png" width="464" height="464" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-11-output-2.png" width="470" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-11-output-3.png" width="464" height="464" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-11-output-3.png" width="470" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-11-output-4.png" width="464" height="464" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-11-output-4.png" width="470" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-11-output-5.png" width="464" height="464" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-11-output-5.png" width="470" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -737,7 +743,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="4099ba59" class="cell" data-execution_count="11">
+<div id="4b35eef4" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the pandas histogram</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'premiums'</span>].plot.hist()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
@@ -753,7 +759,7 @@ Instructions
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-12-output-1.png" width="589" height="415" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-12-output-1.png" width="581" height="410" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -787,7 +793,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="d05f8db3" class="cell" data-execution_count="12">
+<div id="10644b8d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">'dark'</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sns.displot(df[<span class="st">'premiums'</span>])</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
@@ -837,7 +843,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="199a0885" class="cell" data-execution_count="13">
+<div id="e5056b67" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">2</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the style to white</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">'white'</span>)</span>
@@ -869,7 +875,7 @@ Instructions
 <h1>Colors in Seaborn</h1>
 <section id="defining-a-color-for-a-plot" class="level2">
 <h2 class="anchored" data-anchor-id="defining-a-color-for-a-plot">Defining a color for a plot</h2>
-<div id="f481be73" class="cell" data-execution_count="14">
+<div id="5e7c5fe2" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>college_data</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(color_codes<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>sns.displot(df[<span class="st">'Tuition'</span>], color<span class="op">=</span><span class="st">'g'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -884,7 +890,7 @@ Instructions
 </section>
 <section id="palettes" class="level2">
 <h2 class="anchored" data-anchor-id="palettes">Palettes</h2>
-<div id="860de5d8" class="cell" data-execution_count="15">
+<div id="cb7c4b46" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>palettes <span class="op">=</span> [<span class="st">'deep'</span>, <span class="st">'muted'</span>, <span class="st">'pastel'</span>, <span class="st">'bright'</span>, <span class="st">'dark'</span>,<span class="st">'colorblind'</span>]</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> palettes:</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    sns.set_palette(p)</span>
@@ -934,7 +940,7 @@ Instructions
 </div>
 <section id="displaying-palettes" class="level3">
 <h3 class="anchored" data-anchor-id="displaying-palettes">Displaying Palettes</h3>
-<div id="dd5bad74" class="cell" data-execution_count="16">
+<div id="265a63e2" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>palettes <span class="op">=</span> [<span class="st">'deep'</span>, <span class="st">'muted'</span>, <span class="st">'pastel'</span>, <span class="st">'bright'</span>,<span class="st">'dark'</span>,<span class="st">'colorblind'</span>]</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> palettes:    </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    sns.set_palette(p)    </span>
@@ -1003,7 +1009,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="f1c12627" class="cell" data-execution_count="17">
+<div id="50629977" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set style, enable color code, and create a magenta displot</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(color_codes<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>sns.displot(df[<span class="st">'Tuition'</span>], color<span class="op">=</span><span class="st">'m'</span>)</span>
@@ -1037,7 +1043,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="9bbb3a93" class="cell" data-execution_count="18">
+<div id="94ebe395" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through differences between bright and colorblind palettes</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> [<span class="st">'bright'</span>, <span class="st">'colorblind'</span>]:</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    sns.set_palette(p)</span>
@@ -1087,7 +1093,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="2363f6a6" class="cell" data-execution_count="19">
+<div id="bfeee482" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sns.palplot(sns.color_palette(<span class="st">"Purples"</span>,<span class="dv">8</span>))</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>sns.palplot(sns.color_palette(<span class="st">"husl"</span>,<span class="dv">10</span>))</span>
@@ -1126,7 +1132,7 @@ Instructions
 <li>Most customization available through matplotlib</li>
 <li>Axes objectsAxes can be passed to seaborn functions</li>
 </ul>
-<div id="1f8e683e" class="cell" data-execution_count="20">
+<div id="f4bc3aa1" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(df[<span class="st">'Tuition'</span>], ax<span class="op">=</span>ax)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">'Tuition 2013-14'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1144,11 +1150,11 @@ Instructions
 <ul>
 <li>The axes object supports many common customizations</li>
 </ul>
-<div id="81e8d946" class="cell" data-execution_count="21">
+<div id="524a14ef" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(df[<span class="st">'Tuition'</span>], ax<span class="op">=</span>ax)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Tuition 2013-14"</span>,       ylabel<span class="op">=</span><span class="st">"Distribution"</span>, xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">50000</span>), title<span class="op">=</span><span class="st">"2013-14 Tuition and Fees Distribution"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="78">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>[Text(0.5, 0, 'Tuition 2013-14'),
  Text(0, 0.5, 'Distribution'),
  (0.0, 50000.0),
@@ -1168,7 +1174,7 @@ Instructions
 <ul>
 <li>It is possible to combine and configure multiple plots</li>
 </ul>
-<div id="389d25b2" class="cell" data-execution_count="22">
+<div id="3ce078ba" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fig, (ax0, ax1) <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">2</span>,sharey<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">4</span>))</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(df[<span class="st">'Tuition'</span>], stat<span class="op">=</span><span class="st">'density'</span>, ax<span class="op">=</span>ax0)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>sns.histplot(df.query(<span class="st">'Regions == "South East"'</span>)[<span class="st">'Tuition'</span>], stat<span class="op">=</span><span class="st">'density'</span>, ax<span class="op">=</span>ax1)</span>
@@ -1204,7 +1210,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="9e46344b" class="cell" data-execution_count="23">
+<div id="a4670348" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a figure and axes</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1243,7 +1249,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="f64a13d4" class="cell" data-execution_count="24">
+<div id="94629d5e" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a figure and axes</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1285,7 +1291,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="e21d9619" class="cell" data-execution_count="25">
+<div id="badd3b40" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>mean<span class="op">=</span>df[<span class="st">'Tuition'</span>].mean()</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>median<span class="op">=</span>df[<span class="st">'Tuition'</span>].median()</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a figure and axes. Then plot the data</span></span>
@@ -1329,7 +1335,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="972a586d" class="cell" data-execution_count="26">
+<div id="62416fa0" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a plot with 1 row and 2 columns that share the y axis label</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>fig, (ax0, ax1) <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">2</span>, sharey<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1409,10 +1415,10 @@ Instructions
 </section>
 <section id="plots-of-each-observation---stripplot-1" class="level2">
 <h2 class="anchored" data-anchor-id="plots-of-each-observation---stripplot-1">Plots of each observation - stripplot</h2>
-<div id="5eaa4fd3" class="cell" data-execution_count="27">
+<div id="1bbfc740" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>insurance</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="84">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <div>
 <div>
 
@@ -1500,7 +1506,7 @@ Instructions
 </div>
 </div>
 </div>
-<div id="b704e81b" class="cell" data-execution_count="28">
+<div id="f0ef17a0" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>sns.stripplot(data<span class="op">=</span>df, y<span class="op">=</span><span class="st">"Region"</span>, x<span class="op">=</span><span class="st">"insurance_losses"</span>, jitter<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1513,7 +1519,7 @@ Instructions
 </section>
 <section id="plots-of-each-observation---swarmplot-1" class="level2">
 <h2 class="anchored" data-anchor-id="plots-of-each-observation---swarmplot-1">Plots of each observation - swarmplot</h2>
-<div id="2d00d246" class="cell" data-execution_count="29">
+<div id="4b0212d3" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sns.swarmplot(data<span class="op">=</span>df, y<span class="op">=</span><span class="st">"Region"</span>, x<span class="op">=</span><span class="st">"insurance_losses"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1526,7 +1532,7 @@ Instructions
 </section>
 <section id="abstract-representations---boxplot-1" class="level2">
 <h2 class="anchored" data-anchor-id="abstract-representations---boxplot-1">Abstract representations - boxplot</h2>
-<div id="69cce668" class="cell" data-execution_count="30">
+<div id="a8e03f9d" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df, y<span class="op">=</span><span class="st">"Region"</span>, x<span class="op">=</span><span class="st">"insurance_losses"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1539,7 +1545,7 @@ Instructions
 </section>
 <section id="abstract-representation---violinplot-1" class="level2">
 <h2 class="anchored" data-anchor-id="abstract-representation---violinplot-1">Abstract representation - violinplot</h2>
-<div id="24b9efec" class="cell" data-execution_count="31">
+<div id="8ad0f382" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sns.violinplot(data<span class="op">=</span>df, y<span class="op">=</span><span class="st">"Region"</span>, x<span class="op">=</span><span class="st">"insurance_losses"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1552,7 +1558,7 @@ Instructions
 </section>
 <section id="abstract-representation---boxenplot-1" class="level2">
 <h2 class="anchored" data-anchor-id="abstract-representation---boxenplot-1">Abstract representation - boxenplot</h2>
-<div id="414e0dec" class="cell" data-execution_count="32">
+<div id="b3cc1e05" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sns.boxenplot(data<span class="op">=</span>df, y<span class="op">=</span><span class="st">"Region"</span>, x<span class="op">=</span><span class="st">"insurance_losses"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1565,7 +1571,7 @@ Instructions
 </section>
 <section id="statistical-estimates---barplot-1" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-estimates---barplot-1">Statistical estimates - barplot</h2>
-<div id="6d1c805c" class="cell" data-execution_count="33">
+<div id="d1f952db" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(data<span class="op">=</span>df, y<span class="op">=</span><span class="st">"Region"</span>, x<span class="op">=</span><span class="st">"insurance_losses"</span>)<span class="co">#,hue='State')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1578,7 +1584,7 @@ Instructions
 </section>
 <section id="statistical-estimates---pointplot-1" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-estimates---pointplot-1">Statistical estimates - pointplot</h2>
-<div id="75eac368" class="cell" data-execution_count="34">
+<div id="e4dc8fae" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>sns.pointplot(data<span class="op">=</span>df, y<span class="op">=</span><span class="st">"Region"</span>, x<span class="op">=</span><span class="st">"insurance_losses"</span>)<span class="co">#,hue='State')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1609,7 +1615,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="5dbc67ee" class="cell" data-execution_count="35">
+<div id="6466d5be" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>college_data</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1621,9 +1627,9 @@ Instructions
       dtype='object')</code></pre>
 </div>
 </div>
-<div id="c1d490e0" class="cell" data-execution_count="36">
+<div id="ba3a71d9" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="93">
+<div class="cell-output cell-output-display" data-execution_count="36">
 <div>
 <div>
 
@@ -1784,7 +1790,7 @@ Instructions
 </div>
 </div>
 </div>
-<div id="46b771f3" class="cell" data-execution_count="37">
+<div id="90e20885" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the stripplot</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>sns.stripplot(data<span class="op">=</span>df,</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>         x<span class="op">=</span><span class="st">'Tuition'</span>,</span>
@@ -1801,7 +1807,7 @@ Instructions
 </div>
 </div>
 </div>
-<div id="b1a6e884" class="cell" data-execution_count="38">
+<div id="c8e8875f" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the stripplot</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>sns.swarmplot(data<span class="op">=</span>df,</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>         x<span class="op">=</span><span class="st">'Tuition'</span>,</span>
@@ -1873,7 +1879,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="376b6bd3" class="cell" data-execution_count="39">
+<div id="f5fc09b3" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the DataFrame</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>df_grant <span class="op">=</span> pd.read_csv(<span class="st">"datasets/schoolimprovement2010grants.csv"</span>)</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a boxplot</span></span>
@@ -1910,7 +1916,7 @@ Instructions
 </div>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/53/yp3kynfd7rn5y13c2wwfm33rmgtrfb/T/ipykernel_55122/1096742578.py:12: FutureWarning: 
+<pre><code>/var/folders/53/yp3kynfd7rn5y13c2wwfm33rmgtrfb/T/ipykernel_38419/1096742578.py:12: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
 
@@ -1953,7 +1959,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="0d7de0c4" class="cell" data-execution_count="40">
+<div id="a75d2c7c" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show a countplot with the number of models used with each region a different color</span></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co">sns.countplot(data=df,</span></span>
@@ -1981,7 +1987,7 @@ Instructions
 <span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a><span class="co">plt.show()</span></span>
 <span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a><span class="co">plt.clf()</span></span>
 <span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="97">
+<div class="cell-output cell-output-display" data-execution_count="40">
 <pre><code>'\n# Show a countplot with the number of models used with each region a different color\nsns.countplot(data=df,\n         y="Model Selected",\n         hue="Region")\n\nplt.show()\nplt.clf()\n\n# Create a pointplot and include the capsize in order to show caps on the error bars\nsns.pointplot(data=df,\n         y=\'Award_Amount\',\n         x=\'Model Selected\',\n         capsize=.1)\n\nplt.show()\nplt.clf()\n\n# Create a barplot with each Region shown as a different color\nsns.barplot(data=df,\n         y=\'Award_Amount\',\n         x=\'Model Selected\',\n         hue=\'Region\')\n\nplt.show()\nplt.clf()\n'</code></pre>
 </div>
 </div>
@@ -2006,10 +2012,10 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="7f6b20ad" class="cell" data-execution_count="41">
+<div id="711a8581" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> college_data</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="98">
+<div class="cell-output cell-output-display" data-execution_count="41">
 <div>
 <div>
 
@@ -2122,7 +2128,7 @@ Instructions
 </div>
 </div>
 </div>
-<div id="e8306aa8" class="cell" data-execution_count="42">
+<div id="322828b5" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display a regression plot for Tuition</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(data<span class="op">=</span>df,</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>         y<span class="op">=</span><span class="st">'Tuition'</span>,</span>
@@ -2178,7 +2184,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="090beda6" class="cell" data-execution_count="43">
+<div id="335825e1" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a regression plot of Tuition and the Percentage of Pell Grants</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(data<span class="op">=</span>df,</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">'Tuition'</span>,</span>
@@ -2222,7 +2228,7 @@ Instructions
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-44-output-3.png" width="613" height="438" class="figure-img"></p>
+<p><img src="10_Intermediate_Data_Visualization_with_Seaborn_files/figure-html/cell-44-output-3.png" width="613" height="440" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -2250,7 +2256,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="e02d3b6b" class="cell" data-execution_count="44">
+<div id="7ed0c019" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot by disabling the regression line</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(data<span class="op">=</span>df,</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">'Tuition'</span>,</span>
@@ -2321,7 +2327,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="03f91b52" class="cell" data-execution_count="45">
+<div id="75ba3cee" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>daily_show</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a crosstab table of the data</span></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>pd_crosstab <span class="op">=</span> pd.crosstab(df[<span class="st">"Group"</span>], df[<span class="st">"YEAR"</span>])</span>
@@ -2401,7 +2407,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="e9c0000e" class="cell" data-execution_count="46">
+<div id="47b1182f" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the crosstab DataFrame</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>pd_crosstab <span class="op">=</span> pd.crosstab(df[<span class="st">"Group"</span>], df[<span class="st">"YEAR"</span>])</span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2440,7 +2446,7 @@ Map individual plots to the grid.</code></pre>
 <li>Create a FacetGrid that shows a point plot of the Average SAT scores SAT_AVG_ALL.</li>
 <li>Use row_order to control the display order of the degree types.</li>
 </ul>
-<div id="fdad5eb7" class="cell" data-execution_count="47">
+<div id="b12f2c7b" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>college_data</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create FacetGrid with Degree_Type and specify the order of the rows using row_order</span></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>g2 <span class="op">=</span> sns.FacetGrid(df, </span>
@@ -2474,7 +2480,7 @@ Map individual plots to the grid.</code></pre>
 <h2 class="anchored" data-anchor-id="using-a-catplot">Using a catplot</h2>
 <p>In many cases, Seaborn’s catplot() can be a simpler way to create a FacetGrid. Instead of creating a grid and mapping the plot, we can use the catplot() to create a plot with one line of code.</p>
 <p>For this exercise, we will recreate one of the plots from the previous exercise using catplot() and show how to create a boxplot on a data-aware grid. Instructions - Create a catplot() that contains a boxplot (box) of Tuition values varying by Degree_Type across rows. - Create a catplot() of SAT Averages (SAT_AVG_ALL) facetted across Degree_Type that shows a pointplot (point). Use row_order to order the degrees from highest to lowest level.</p>
-<div id="dfa27d3a" class="cell" data-execution_count="48">
+<div id="5b3e83f5" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a factor plot that contains boxplots of Tuition values</span></span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>sns.catplot(data<span class="op">=</span>df,</span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>         x<span class="op">=</span><span class="st">'Tuition'</span>,</span>
@@ -2536,9 +2542,9 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="c811b004" class="cell" data-execution_count="49">
+<div id="40f018c2" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="106">
+<div class="cell-output cell-output-display" data-execution_count="49">
 <pre><code>Index(['INSTNM', 'OPEID', 'REGION', 'SAT_AVG_ALL', 'PCTPELL', 'PCTFLOAN',
        'ADM_RATE_ALL', 'UG', 'AVGFACSAL', 'COMPL_RPY_5YR_RT', 'DEBT_MDN',
        'MEDIAN_HH_INC', 'ICLEVEL', 'HIGHDEG', 'CONTROL', 'WOMENONLY',
@@ -2547,7 +2553,7 @@ Instructions
       dtype='object')</code></pre>
 </div>
 </div>
-<div id="b2f159c5" class="cell" data-execution_count="50">
+<div id="955ffc55" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> college_data</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>degree_ord <span class="op">=</span>[<span class="st">'Graduate'</span>, <span class="st">'Bachelors'</span>, <span class="st">'Associates'</span>]</span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a FacetGrid varying by column and columns ordered with the degree_order variable</span></span>
@@ -2654,7 +2660,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="f85aef6a" class="cell" data-execution_count="51">
+<div id="4aec9d15" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>insurance</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a PairGrid with a scatter plot for fatal_collisions and premiums</span></span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.PairGrid(df, <span class="bu">vars</span><span class="op">=</span>[<span class="st">"fatal_collisions"</span>, <span class="st">"premiums"</span>])</span>
@@ -2710,7 +2716,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="3a2bfba5" class="cell" data-execution_count="52">
+<div id="84df6ed7" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a> <span class="co">#Create a pairwise plot of the variables using a scatter plot</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>df,</span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">vars</span><span class="op">=</span>[<span class="st">"fatal_collisions"</span>, <span class="st">"premiums"</span>],</span>
@@ -2771,7 +2777,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="71e4c43f" class="cell" data-execution_count="53">
+<div id="9dd96dbb" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a pairplot with different x and y variables</span></span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>df,</span>
 <span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>        x_vars<span class="op">=</span>[<span class="st">"fatal_collisions_speeding"</span>, <span class="st">"fatal_collisions_alc"</span>],</span>
@@ -2834,7 +2840,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="5aa14d74" class="cell" data-execution_count="54">
+<div id="2f4067b1" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>bike_share</span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a JointGrid comparing humidity and total_rentals</span></span>
 <span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"whitegrid"</span>)</span>
@@ -2895,7 +2901,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="a98f68e3" class="cell" data-execution_count="55">
+<div id="9224eba7" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot temp vs. total_rentals as a regression plot</span></span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"temp"</span>,</span>
 <span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>         y<span class="op">=</span><span class="st">"total_rentals"</span>,</span>
@@ -2956,7 +2962,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="8f74fc0c" class="cell" data-execution_count="56">
+<div id="d90f614d" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a jointplot of temp vs. casual riders</span></span>
 <span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Include a kdeplot over the scatter plot</span></span>
 <span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.jointplot(x<span class="op">=</span><span class="st">"temp"</span>,</span>
@@ -3003,7 +3009,7 @@ Instructions
 </section>
 <section id="bee-swarm-plot-example" class="level2">
 <h2 class="anchored" data-anchor-id="bee-swarm-plot-example">Bee swarm plot example</h2>
-<div id="d26f84c7" class="cell" data-execution_count="57">
+<div id="a1302761" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -3453,8 +3459,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="pagination-link" aria-label="Project: A Visual History of Nobel Prize Winners">
+        <span class="nav-page-text">Project: A Visual History of Nobel Prize Winners</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -166,6 +166,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./4_Joining_Data_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joining Data with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_Introduction_to_statistics_in_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./6_Introduction_to_Data_Visualization_with_Matplotlib.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Data Visualization with Matplotlib</span></a>
   </div>
@@ -196,26 +208,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A Visual History of Nobel Prize Winners</span></span></a>
+ <span class="menu-text">Project: A Visual History of Nobel Prize Winners</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Project-Netflix_movies.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project: Investigating Netflix Movies</span></span></a>
+ <span class="menu-text">Project: Investigating Netflix Movies</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+  <a href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Exploring NYC Public School Test Result Scores</span></a>
   </div>
 </li>
     </ul>
@@ -272,7 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="import-the-course-packages-and-datasets" class="level3">
 <h3 class="anchored" data-anchor-id="import-the-course-packages-and-datasets">Import the course packages and datasets</h3>
-<div id="697f6275" class="cell" data-execution_count="1">
+<div id="fd821d42" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the course packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -282,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>gapminder <span class="op">=</span> pd.read_csv(<span class="st">"datasets/gapminder.csv"</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>brics <span class="op">=</span> pd.read_csv(<span class="st">"datasets/brics.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b3964063" class="cell" data-execution_count="2">
+<div id="fbf4fb32" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gapminder.head(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       country  year  population    cont  life_exp      gdp_cap
@@ -291,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 2      Algeria  2007  33333216.0  Africa    72.301  6223.367465</code></pre>
 </div>
 </div>
-<div id="0e7c4d69" class="cell" data-execution_count="3">
+<div id="5f08a12e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(brics.head(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  country_ab country    capital    area  population
@@ -304,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="line-plot-1" class="level3">
 <h3 class="anchored" data-anchor-id="line-plot-1">Line plot (1)</h3>
 <p>With <code>matplotlib</code>, you can create a bunch of different plots in Python. The most basic plot is the line plot. A general recipe is given here.</p>
-<div id="9c899d84" class="cell" data-execution_count="4">
+<div id="76b7af60" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -327,7 +333,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="cd077f8c" class="cell" data-execution_count="6">
+<div id="15da0cfc" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the last item from year and pop</span></span>
@@ -383,7 +389,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="84c913f6" class="cell" data-execution_count="7">
+<div id="dfbfe494" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the last item of gdp_cap and life_exp</span></span>
@@ -434,7 +440,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="8e94a652" class="cell" data-execution_count="8">
+<div id="8b0b3cbb" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the line plot below to a scatter plot</span></span>
@@ -476,7 +482,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="e63c4e7f" class="cell" data-execution_count="10">
+<div id="0ebd89dd" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import package</span></span>
@@ -518,7 +524,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="d662e1b5" class="cell" data-execution_count="11">
+<div id="8a4b58d5" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create histogram of life_exp data</span></span>
@@ -557,7 +563,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="aa5d2dbb" class="cell" data-execution_count="12">
+<div id="0028680c" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build histogram with 5 bins</span></span>
@@ -610,7 +616,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="504754ab" class="cell" data-execution_count="14">
+<div id="bd85a7b1" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of life_exp, 15 bins</span></span>
@@ -668,7 +674,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="19fa0fd9" class="cell" data-execution_count="15">
+<div id="639b4f1f" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic scatter plot, log scale</span></span>
@@ -722,7 +728,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="7939dd88" class="cell" data-execution_count="16">
+<div id="69ab442c" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot</span></span>
@@ -779,7 +785,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="7eb84c9f" class="cell" data-execution_count="17">
+<div id="7724f0f3" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy as np</span></span>
@@ -842,7 +848,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="f2cba2ce" class="cell" data-execution_count="19">
+<div id="f9735d34" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify c and alpha inside plt.scatter()</span></span>
@@ -885,7 +891,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="e14beb86" class="cell" data-execution_count="20">
+<div id="dbaaba45" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot</span></span>
@@ -936,7 +942,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="ad9dc28f" class="cell" data-execution_count="21">
+<div id="38f6c5c4" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definition of countries and capital</span></span>
@@ -978,7 +984,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="d476903f" class="cell" data-execution_count="22">
+<div id="afae2613" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definition of countries and capital</span></span>
@@ -1015,7 +1021,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="25646027" class="cell" data-execution_count="23">
+<div id="915d1215" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definition of dictionary</span></span>
@@ -1052,7 +1058,7 @@ Instructions
 </ul>
 </div>
 </div>
-<div id="35e82d02" class="cell" data-execution_count="24">
+<div id="ed58c06a" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definition of dictionary</span></span>

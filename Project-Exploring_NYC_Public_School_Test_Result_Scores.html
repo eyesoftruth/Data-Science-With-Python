@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Hawlader Al-Mamun">
-<meta name="dcterms.date" content="2024-05-04">
 
-<title>Data Science With Python</title>
+<title>Data Science With Python - Project: Exploring NYC Public School Test Result Scores</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1_Introduction_to_Python.html" rel="next">
+<link href="./Project-Netflix_movies.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html">Project: Exploring NYC Public School Test Result Scores</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -109,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -187,32 +219,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html" class="sidebar-item-text sidebar-link">
+  <a href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Project: Exploring NYC Public School Test Result Scores</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Project-Hypothesis_Testing_in_Healthcare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project: Hypothesis Testing in Healthcare- Drug Safety</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Project-Predictive_Modeling_for_Agriculture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project: Sowing Success - How Machine Learning Helps Farmers Select the Best Crops</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Project-Analyzing_Crime_in_Los_Angeles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project: Analyzing Crime in Los Angeles</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Project-Customer_Analytics_Preparing_Data_for_Modeling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project: Customer Analytics- Preparing Data for Modeling</span></a>
   </div>
 </li>
     </ul>
@@ -225,14 +233,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
-  <ul class="collapse">
-  <li><a href="#contents" id="toc-contents" class="nav-link" data-scroll-target="#contents">Contents</a>
-  <ul class="collapse">
-  <li><a href="#practice-notebooks" id="toc-practice-notebooks" class="nav-link" data-scroll-target="#practice-notebooks">Practice Notebooks:</a></li>
-  <li><a href="#course-projects" id="toc-course-projects" class="nav-link" data-scroll-target="#course-projects">Course Projects:</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#task-1" id="toc-task-1" class="nav-link active" data-scroll-target="#task-1">Task 1</a></li>
+  <li><a href="#task-2" id="toc-task-2" class="nav-link" data-scroll-target="#task-2">Task 2</a></li>
+  <li><a href="#task-3" id="toc-task-3" class="nav-link" data-scroll-target="#task-3">Task 3</a></li>
   </ul>
 </nav>
     </div>
@@ -241,26 +244,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Science With Python</h1>
+<h1 class="title">Project: Exploring NYC Public School Test Result Scores</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Hawlader Al-Mamun </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">May 4, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -270,65 +261,292 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>Welcome to my DataCamp Data Science Portfolio repository!</p>
-<p>This repository serves as a showcase of my journey through various DataCamp courses in the field of data science. Here, you’ll find a collection of projects, practice notebooks, and code snippets that I’ve completed and worked on during my learning process.</p>
-<section id="contents" class="level2">
-<h2 class="anchored" data-anchor-id="contents">Contents</h2>
-<section id="practice-notebooks" class="level3">
-<h3 class="anchored" data-anchor-id="practice-notebooks">Practice Notebooks:</h3>
-<p>Here, you’ll find notebooks where I’ve practiced various data science concepts, techniques, and algorithms taught in DataCamp courses. Feel free to explore and learn alongside me!</p>
-<ol type="1">
-<li><a href="1_Introduction_to_Python.html">Introduction to Python</a></li>
-<li><a href="2_Intermediate_Python.html">Intermediate Python</a></li>
-<li><a href="3_Data_Manipulation_with_pandas.html">Data Manipulation with pandas</a></li>
-<li><a href="4_Joining_Data_with_pandas.html">Joining Data with pandas</a></li>
-<li><a href="5_Introduction_to_statistics_in_python.html">Introduction to Statistics in Python</a></li>
-<li><a href="6_Introduction_to_Data_Visualization_with_Matplotlib.html">Introduction to Data Visualization with Matplotlib</a></li>
-<li><a href="7_Introduction_to_Data_Visualization_with_Seaborn.html">Introduction to Data Visualization with Seaborn</a></li>
-<li><a href="8_Python_Data_Science_Toolbox_Part1.html">Python Data Science Toolbox (Part 1)</a></li>
-<li><a href="9_Python_Data_Science_Toolbox_Part2.qmd.html">Python Data Science Toolbox (Part 2)</a></li>
-<li><a href="10_Intermediate_Data_Visualization_with_Seaborn.html">Intermediate Data Visualization with Seaborn</a></li>
-<li>[Exploratory Data Analysis in Python]</li>
-<li>[Working with Categorical Data in Python]</li>
-<li>[Data Communication Concepts]</li>
-<li>[Introduction to Importing Data in Python]</li>
-<li>[Cleaning Data in Python]</li>
-<li>[Working with Dates and Times in Python]</li>
-<li>[Writing Functions in Python]</li>
-<li>[Introduction to Regression with statsmodels in Python]</li>
-<li>[Sampling in Python]</li>
-<li>[Hypothesis Testing in Python]</li>
-<li>[Supervised Learning with scikit-learn]</li>
-<li>[Unsupervised Learning in Python]</li>
-<li>[Machine Learning with Tree-Based Models in Python]</li>
-<li>[Intermediate Importing Data in Python]</li>
-<li>[Preprocessing for Machine Learning in Python]</li>
-<li>[Developing Python Packages]</li>
-<li>[Machine Learning for Business]</li>
-<li>[Introduction to SQL]</li>
-<li>[Intermediate SQL]</li>
-<li>[Joining Data in SQL]</li>
-<li>[Introduction to Git]</li>
-</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/schoolbus.jpg" class="img-fluid figure-img"></p>
+<figcaption>New York City schoolbus</figcaption>
+</figure>
+</div>
+<p>Every year, American high school students take SATs, which are standardized tests intended to measure literacy, numeracy, and writing skills. There are three sections - reading, math, and writing, each with a maximum score of 800 points. These tests are extremely important for students and colleges, as they play a pivotal role in the admissions process.</p>
+<p>Analyzing the performance of schools is important for a variety of stakeholders, including policy and education professionals, researchers, government, and even parents considering which school their children should attend.</p>
+<p>You have been provided with a dataset called <code>schools.csv</code>, which is previewed below.</p>
+<p>You have been tasked with answering three key questions about New York City (NYC) public school SAT performance.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-run this cell </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the data</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>schools <span class="op">=</span> pd.read_csv(<span class="st">"schools.csv"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(schools.sort_values(<span class="st">"average_math"</span>,ascending<span class="op">=</span><span class="va">False</span>).average_math.head(<span class="dv">15</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Start coding here...</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add as many cells as you like...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>88     754
+170    714
+93     711
+365    701
+68     683
+280    682
+333    680
+174    669
+0      657
+45     641
+5      634
+213    633
+204    631
+237    625
+3      613
+Name: average_math, dtype: int64</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>schools.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Index(['school_name', 'borough', 'building_code', 'average_math',
+       'average_reading', 'average_writing', 'percent_tested'],
+      dtype='object')</code></pre>
+<section id="task-1" class="level2">
+<h2 class="anchored" data-anchor-id="task-1">Task 1</h2>
+<p>Create a pandas DataFrame called best_math_schools containing the “school_name” and “average_math” score for all schools where the results are at least 80% of the maximum possible score, sorted by “average_math” in descending order.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>math_scores <span class="op">=</span> schools[[<span class="st">"school_name"</span>,<span class="st">"average_math"</span>]]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>math_scores <span class="op">=</span> math_scores[math_scores[<span class="st">"average_math"</span>]<span class="op">&gt;=</span>(<span class="dv">800</span><span class="op">*</span><span class="fl">.8</span>)]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math_scores.shape)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>best_math_schools <span class="op">=</span> math_scores.sort_values(<span class="st">"average_math"</span>,ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(best_math_schools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>(10, 2)
+                                           school_name  average_math
+88                              Stuyvesant High School           754
+170                       Bronx High School of Science           714
+93                 Staten Island Technical High School           711
+365  Queens High School for the Sciences at York Co...           701
+68   High School for Mathematics, Science, and Engi...           683
+280                     Brooklyn Technical High School           682
+333                        Townsend Harris High School           680
+174  High School of American Studies at Lehman College           669
+0    New Explorations into Science, Technology and ...           657
+45                       Eleanor Roosevelt High School           641</code></pre>
 </section>
-<section id="course-projects" class="level3">
-<h3 class="anchored" data-anchor-id="course-projects">Course Projects:</h3>
-<p>This section contains projects completed as part of DataCamp courses. Each project includes a detailed analysis, code implementation, and insights gained from the data.</p>
-<ol type="1">
-<li><a href="Project-A_Visual_History_of_Nobel_Prize_Winners.html">Investigating Netflix Movies</a></li>
-<li><a href="Project-Netflix_movies.html">A Visual History of Nobel Prize Winners</a></li>
-<li><a href="Project-Exploring_NYC_Public_School_Test_Result_Scores.html">Project-Exploring NYC Public School Test Result Scores</a></li>
-<li><a href="Project-Hypothesis_Testing_in_Healthcare.html">Hypothesis Testing in Healthcare</a></li>
-<li><a href="Project-Predictive_Modeling_for_Agriculture.html">Predictive Modeling for Agriculture</a></li>
-<li><a href="Project-Analyzing_Crime_in_Los_Angeles.html">Analyzing Crime in Los Angeles</a></li>
-<li><a href="Project-Customer_Analytics_Preparing_Data_for_Modeling.html">Customer Analytics- Preparing Data for Modeling</a></li>
-</ol>
+<section id="task-2" class="level2">
+<h2 class="anchored" data-anchor-id="task-2">Task 2</h2>
+<p>Identify the top 10 performing schools based on scores across the three SAT sections, storing as a pandas DataFrame called top_10_schools containing the school name and a column named “total_SAT”, with results sorted by total_SAT in descending order.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>schools[<span class="st">'total_SAT'</span>] <span class="op">=</span> schools.loc[:,[<span class="st">"average_math"</span>,<span class="st">"average_reading"</span>,<span class="st">"average_writing"</span>]].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>schools.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table class="table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>school_name</th>
+<th>borough</th>
+<th>building_code</th>
+<th>average_math</th>
+<th>average_reading</th>
+<th>average_writing</th>
+<th>percent_tested</th>
+<th>total_SAT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>New Explorations into Science, Technology and ...</td>
+<td>Manhattan</td>
+<td>M022</td>
+<td>657</td>
+<td>601</td>
+<td>601</td>
+<td>NaN</td>
+<td>1859</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Essex Street Academy</td>
+<td>Manhattan</td>
+<td>M445</td>
+<td>395</td>
+<td>411</td>
+<td>387</td>
+<td>78.9</td>
+<td>1193</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Lower Manhattan Arts Academy</td>
+<td>Manhattan</td>
+<td>M445</td>
+<td>418</td>
+<td>428</td>
+<td>415</td>
+<td>65.1</td>
+<td>1261</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>High School for Dual Language and Asian Studies</td>
+<td>Manhattan</td>
+<td>M445</td>
+<td>613</td>
+<td>453</td>
+<td>463</td>
+<td>95.9</td>
+<td>1529</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Henry Street School for International Studies</td>
+<td>Manhattan</td>
+<td>M056</td>
+<td>410</td>
+<td>406</td>
+<td>381</td>
+<td>59.7</td>
+<td>1197</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>top_10_schools <span class="op">=</span> schools.sort_values(<span class="st">"total_SAT"</span>,ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>top_10_schools <span class="op">=</span> top_10_schools.iloc[<span class="dv">0</span>:<span class="dv">10</span>][[<span class="st">"school_name"</span>,<span class="st">"total_SAT"</span>]]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>top_10_schools.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>(10, 2)</code></pre>
+</section>
+<section id="task-3" class="level2">
+<h2 class="anchored" data-anchor-id="task-3">Task 3</h2>
+<p>Locate the NYC borough with the largest standard deviation for “total_SAT”, storing as a DataFrame called largest_std_dev with “borough” as the index and three columns: “num_schools” for the number of schools in the borough, “average_SAT” for the mean of “total_SAT”, and “std_SAT” for the standard deviation of “total_SAT”. Round all numeric values to two decimal places.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>schools.borough.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>array(['Manhattan', 'Staten Island', 'Bronx', 'Queens', 'Brooklyn'],
+      dtype=object)</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>schools_std_dev <span class="op">=</span> schools.groupby(<span class="st">"borough"</span>)[<span class="st">"total_SAT"</span>].agg([<span class="st">'count'</span>,<span class="st">'mean'</span>,<span class="st">'std'</span>]).<span class="bu">round</span>(<span class="dv">2</span>).rename(columns<span class="op">=</span>{<span class="st">"count"</span>:<span class="st">"num_schools"</span>,<span class="st">"mean"</span>:<span class="st">"average_SAT"</span>,<span class="st">"std"</span>:<span class="st">"std_SAT"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>schools_std_dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>num_schools</th>
+<th>average_SAT</th>
+<th>std_SAT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>borough</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Bronx</td>
+<td>98</td>
+<td>1202.72</td>
+<td>150.39</td>
+</tr>
+<tr class="odd">
+<td>Brooklyn</td>
+<td>109</td>
+<td>1230.26</td>
+<td>154.87</td>
+</tr>
+<tr class="even">
+<td>Manhattan</td>
+<td>89</td>
+<td>1340.13</td>
+<td>230.29</td>
+</tr>
+<tr class="odd">
+<td>Queens</td>
+<td>69</td>
+<td>1345.48</td>
+<td>195.25</td>
+</tr>
+<tr class="even">
+<td>Staten Island</td>
+<td>10</td>
+<td>1439.00</td>
+<td>222.30</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>largest_std_dev <span class="op">=</span> schools_std_dev.sort_values(<span class="st">"std_SAT"</span>,ascending<span class="op">=</span><span class="va">False</span>).iloc[[<span class="dv">0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>largest_std_dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>num_schools</th>
+<th>average_SAT</th>
+<th>std_SAT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>borough</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Manhattan</td>
+<td>89</td>
+<td>1340.13</td>
+<td>230.29</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -743,11 +961,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./Project-Netflix_movies.html" class="pagination-link" aria-label="Project: Investigating Netflix Movies">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Project: Investigating Netflix Movies</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1_Introduction_to_Python.html" class="pagination-link" aria-label="Introduction to Python">
-        <span class="nav-page-text">Introduction to Python</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
