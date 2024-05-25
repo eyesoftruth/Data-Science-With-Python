@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science With Python - Introduction to Importing Data in Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" rel="next">
+<link href="./12_Working_with_Categorical_Data_in_Python.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./14_Introduction_to_Importing_Data_in_Python.html">Introduction to Importing Data in Python</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Science With Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_Introduction_to_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_Intermediate_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intermediate Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_Data_Manipulation_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_Joining_Data_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joining Data with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_Introduction_to_statistics_in_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_Introduction_to_Data_Visualization_with_Matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualization with Matplotlib</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7_Introduction_to_Data_Visualization_with_Seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualization with Seaborn</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_Python_Data_Science_Toolbox_Part1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Data Science Toolbox (Part 1)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9_Python_Data_Science_Toolbox_Part2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Data Science Toolbox (Part 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Intermediate_Data_Visualization_with_Seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intermediate Data Visualization with Seaborn</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_Working_with_Categorical_Data_in_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Working with Categorical Data in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14_Introduction_to_Importing_Data_in_Python.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introduction to Importing Data in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: A Visual History of Nobel Prize Winners</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Netflix_movies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Investigating Netflix Movies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Exploring NYC Public School Test Result Scores</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Hypothesis_Testing_in_Healthcare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Hypothesis Testing in Healthcare- Drug Safety</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Predictive_Modeling_for_Agriculture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Sowing Success - How Machine Learning Helps Farmers Select the Best Crops</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Analyzing_Crime_in_Los_Angeles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Analyzing Crime in Los Angeles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Customer_Analytics_Preparing_Data_for_Modeling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Customer Analytics- Preparing Data for Modeling</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-1-introduction-and-flat-files" id="toc-chapter-1-introduction-and-flat-files" class="nav-link active" data-scroll-target="#chapter-1-introduction-and-flat-files">Chapter 1: Introduction and flat files</a>
+  <ul class="collapse">
+  <li><a href="#importing-entire-text-files" id="toc-importing-entire-text-files" class="nav-link" data-scroll-target="#importing-entire-text-files">Importing entire text files</a></li>
+  <li><a href="#importing-text-files-line-by-line" id="toc-importing-text-files-line-by-line" class="nav-link" data-scroll-target="#importing-text-files-line-by-line">Importing text files line by line</a></li>
+  <li><a href="#using-numpy-to-import-flat-files" id="toc-using-numpy-to-import-flat-files" class="nav-link" data-scroll-target="#using-numpy-to-import-flat-files">Using NumPy to import flat files</a></li>
+  <li><a href="#customizing-your-numpy-import" id="toc-customizing-your-numpy-import" class="nav-link" data-scroll-target="#customizing-your-numpy-import">Customizing your NumPy import</a></li>
+  <li><a href="#importing-different-datatypes" id="toc-importing-different-datatypes" class="nav-link" data-scroll-target="#importing-different-datatypes">Importing different datatypes</a></li>
+  <li><a href="#working-with-mixed-datatypes" id="toc-working-with-mixed-datatypes" class="nav-link" data-scroll-target="#working-with-mixed-datatypes">Working with mixed datatypes</a></li>
+  <li><a href="#using-pandas-to-import-flat-files-as-dataframes-1" id="toc-using-pandas-to-import-flat-files-as-dataframes-1" class="nav-link" data-scroll-target="#using-pandas-to-import-flat-files-as-dataframes-1">Using pandas to import flat files as DataFrames (1)</a></li>
+  <li><a href="#using-pandas-to-import-flat-files-as-dataframes-2" id="toc-using-pandas-to-import-flat-files-as-dataframes-2" class="nav-link" data-scroll-target="#using-pandas-to-import-flat-files-as-dataframes-2">Using pandas to import flat files as DataFrames (2)</a></li>
+  <li><a href="#customizing-your-pandas-import" id="toc-customizing-your-pandas-import" class="nav-link" data-scroll-target="#customizing-your-pandas-import">Customizing your pandas import</a>
+  <ul class="collapse">
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#chapter-2-importing-data-from-other-file-types" id="toc-chapter-2-importing-data-from-other-file-types" class="nav-link" data-scroll-target="#chapter-2-importing-data-from-other-file-types">Chapter 2: Importing data from other file types</a>
+  <ul class="collapse">
+  <li><a href="#loading-a-pickled-file" id="toc-loading-a-pickled-file" class="nav-link" data-scroll-target="#loading-a-pickled-file">Loading a pickled file</a></li>
+  <li><a href="#listing-sheets-in-excel-files" id="toc-listing-sheets-in-excel-files" class="nav-link" data-scroll-target="#listing-sheets-in-excel-files">Listing sheets in Excel files</a></li>
+  <li><a href="#importing-sheets-from-excel-files" id="toc-importing-sheets-from-excel-files" class="nav-link" data-scroll-target="#importing-sheets-from-excel-files">Importing sheets from Excel files</a></li>
+  <li><a href="#customizing-your-spreadsheet-import" id="toc-customizing-your-spreadsheet-import" class="nav-link" data-scroll-target="#customizing-your-spreadsheet-import">Customizing your spreadsheet import</a></li>
+  <li><a href="#importing-sas-files" id="toc-importing-sas-files" class="nav-link" data-scroll-target="#importing-sas-files">Importing SAS files</a></li>
+  <li><a href="#importing-stata-files" id="toc-importing-stata-files" class="nav-link" data-scroll-target="#importing-stata-files">Importing Stata files</a></li>
+  <li><a href="#using-h5py-to-import-hdf5-files" id="toc-using-h5py-to-import-hdf5-files" class="nav-link" data-scroll-target="#using-h5py-to-import-hdf5-files">Using h5py to import HDF5 files</a></li>
+  <li><a href="#extracting-data-from-your-hdf5-file" id="toc-extracting-data-from-your-hdf5-file" class="nav-link" data-scroll-target="#extracting-data-from-your-hdf5-file">Extracting data from your HDF5 file</a></li>
+  <li><a href="#loading-.mat-files" id="toc-loading-.mat-files" class="nav-link" data-scroll-target="#loading-.mat-files">Loading .mat files</a></li>
+  <li><a href="#the-structure-of-.mat-in-python" id="toc-the-structure-of-.mat-in-python" class="nav-link" data-scroll-target="#the-structure-of-.mat-in-python">The structure of .mat in Python</a></li>
+  </ul></li>
+  <li><a href="#chapter-4-working-with-relational-databases-in-python" id="toc-chapter-4-working-with-relational-databases-in-python" class="nav-link" data-scroll-target="#chapter-4-working-with-relational-databases-in-python">Chapter 4: Working with relational databases in Python</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-database-engine" id="toc-creating-a-database-engine" class="nav-link" data-scroll-target="#creating-a-database-engine">Creating a database engine</a>
+  <ul class="collapse">
+  <li><a href="#instructions-1" id="toc-instructions-1" class="nav-link" data-scroll-target="#instructions-1">Instructions</a></li>
+  </ul></li>
+  <li><a href="#what-are-the-tables-in-the-database" id="toc-what-are-the-tables-in-the-database" class="nav-link" data-scroll-target="#what-are-the-tables-in-the-database">What are the tables in the database?</a></li>
+  <li><a href="#the-hello-world-of-sql-queries" id="toc-the-hello-world-of-sql-queries" class="nav-link" data-scroll-target="#the-hello-world-of-sql-queries">The Hello World of SQL Queries!</a></li>
+  <li><a href="#customizing-the-hello-world-of-sql-queries" id="toc-customizing-the-hello-world-of-sql-queries" class="nav-link" data-scroll-target="#customizing-the-hello-world-of-sql-queries">Customizing the Hello World of SQL Queries</a></li>
+  <li><a href="#filtering-your-database-records-using-sqls-where" id="toc-filtering-your-database-records-using-sqls-where" class="nav-link" data-scroll-target="#filtering-your-database-records-using-sqls-where">Filtering your database records using SQL’s WHERE</a></li>
+  <li><a href="#ordering-your-sql-records-with-order-by" id="toc-ordering-your-sql-records-with-order-by" class="nav-link" data-scroll-target="#ordering-your-sql-records-with-order-by">Ordering your SQL records with ORDER BY</a></li>
+  <li><a href="#pandas-and-the-hello-world-of-sql-queries" id="toc-pandas-and-the-hello-world-of-sql-queries" class="nav-link" data-scroll-target="#pandas-and-the-hello-world-of-sql-queries">Pandas and The Hello World of SQL Queries!</a>
+  <ul class="collapse">
+  <li><a href="#instructions-2" id="toc-instructions-2" class="nav-link" data-scroll-target="#instructions-2">Instructions</a></li>
+  </ul></li>
+  <li><a href="#pandas-for-more-complex-querying" id="toc-pandas-for-more-complex-querying" class="nav-link" data-scroll-target="#pandas-for-more-complex-querying">Pandas for more complex querying</a></li>
+  <li><a href="#the-power-of-sql-lies-in-relationships-between-tables-inner-join" id="toc-the-power-of-sql-lies-in-relationships-between-tables-inner-join" class="nav-link" data-scroll-target="#the-power-of-sql-lies-in-relationships-between-tables-inner-join">The power of SQL lies in relationships between tables: INNER JOIN</a>
+  <ul class="collapse">
+  <li><a href="#instructions-3" id="toc-instructions-3" class="nav-link" data-scroll-target="#instructions-3">Instructions</a></li>
+  </ul></li>
+  <li><a href="#filtering-your-inner-join" id="toc-filtering-your-inner-join" class="nav-link" data-scroll-target="#filtering-your-inner-join">Filtering your INNER JOIN</a>
+  <ul class="collapse">
+  <li><a href="#instructions-4" id="toc-instructions-4" class="nav-link" data-scroll-target="#instructions-4">Instructions</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction to Importing Data in Python</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the course packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.io</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> h5py</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sas7bdat <span class="im">import</span> SAS7BDAT</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sqlalchemy <span class="im">import</span> create_engine</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the course datasets</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>titanic <span class="op">=</span> pd.read_csv(<span class="st">"datasets/titanic_sub.csv"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>battledeath_2002 <span class="op">=</span> pd.ExcelFile(<span class="st">"datasets/battledeath.xlsx"</span>).parse(<span class="st">"2002"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> create_engine(<span class="st">'sqlite:///datasets/Chinook.sqlite'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>con <span class="op">=</span> engine.<span class="ex">connect</span>()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>rs <span class="op">=</span> con.execute(<span class="st">'SELECT * FROM Album'</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>chinook <span class="op">=</span> pd.DataFrame(rs.fetchall())</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>seaslug <span class="op">=</span> np.loadtxt(<span class="st">"datasets/seaslug.txt"</span>, delimiter<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, dtype<span class="op">=</span><span class="bu">str</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="chapter-1-introduction-and-flat-files" class="level1">
+<h1>Chapter 1: Introduction and flat files</h1>
+<p>In this chapter, you’ll learn how to import data into Python from all types of flat files, which are a simple and prevalent form of data storage. You’ve previously learned how to use NumPy and pandas—you will learn how to use these packages to import flat files and customize your imports.</p>
+<section id="importing-entire-text-files" class="level2">
+<h2 class="anchored" data-anchor-id="importing-entire-text-files">Importing entire text files</h2>
+<p>In this exercise, you’ll be working with the file moby_dick.txt. It is a text file that contains the opening sentences of Moby Dick, one of the great American novels! Here you’ll get experience opening a text file, printing its contents to the shell and, finally, closing it. ### Instructions - Open the file moby_dick.txt as read-only and store it in the variable file. Make sure to pass the filename enclosed in quotation marks ’’. - Print the contents of the file to the shell using the print() function. As Hugo showed in the video, you’ll need to apply the method read() to the object file. - Check whether the file is closed by executing print(file.closed). - Close the file using the close() method. - Check again that the file is closed as you did above.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Open a file: file</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">'datasets/seaslug.txt'</span>, mode<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print it</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">file</span>.read())</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check whether file is closed</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">file</span>.closed)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Close file</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.close()</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Check whether file is closed</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">file</span>.closed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Time    Percent
+99  0.067
+99  0.133
+99  0.067
+99  0
+99  0
+0   0.5
+0   0.467
+0   0.857
+0   0.5
+0   0.357
+0   0.533
+5   0.467
+5   0.467
+5   0.125
+5   0.4
+5   0.214
+5   0.4
+10  0.067
+10  0.067
+10  0.333
+10  0.333
+10  0.133
+10  0.133
+15  0.267
+15  0.286
+15  0.333
+15  0.214
+15  0
+15  0
+20  0.267
+20  0.2
+20  0.267
+20  0.437
+20  0.077
+20  0.067
+25  0.133
+25  0.267
+25  0.412
+25  0
+25  0.067
+25  0.133
+30  0
+30  0.071
+30  0
+30  0.067
+30  0.067
+30  0.133
+False
+True</code></pre>
+</section>
+<section id="importing-text-files-line-by-line" class="level2">
+<h2 class="anchored" data-anchor-id="importing-text-files-line-by-line">Importing text files line by line</h2>
+<p>For large files, we may not want to print all of their content to the shell: you may wish to print only the first few lines. Enter the readline() method, which allows you to do this. When a file called file is open, you can print out the first line by executing file.readline(). If you execute the same command again, the second line will print, and so on.</p>
+<p>In the introductory video, Hugo also introduced the concept of a context manager. He showed that you can bind a variable file by using a context manager construct:</p>
+<pre><code>with open('huck_finn.txt') as file:</code></pre>
+<p>While still within this construct, the variable file will be bound to open(‘huck_finn.txt’); thus, to print the file to the shell, all the code you need to execute is:</p>
+<pre><code>with open('huck_finn.txt') as file:
+    print(file.readline())</code></pre>
+<p>You’ll now use these tools to print the first few lines of moby_dick.txt! ### Instructions - Open moby_dick.txt using the with context manager and the variable file. - Print the first three lines of the file to the shell by using readline() three times within the context manager.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read &amp; print the first 3 lines</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'datasets/seaslug.txt'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">file</span>.readline())</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">file</span>.readline())</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">file</span>.readline())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Time    Percent
+
+99  0.067
+
+99  0.133</code></pre>
+</section>
+<section id="using-numpy-to-import-flat-files" class="level2">
+<h2 class="anchored" data-anchor-id="using-numpy-to-import-flat-files">Using NumPy to import flat files</h2>
+<p>In this exercise, you’re now going to load the MNIST digit recognition dataset using the numpy function loadtxt() and see just how easy it can be:</p>
+<pre><code>The first argument will be the filename.
+The second will be the delimiter which, in this case, is a comma.</code></pre>
+<p>You can find more information about the MNIST dataset here on the webpage of Yann LeCun, who is currently Director of AI Research at Facebook and Founding Director of the NYU Center for Data Science, among many other things. ### Instructions - Fill in the arguments of np.loadtxt() by passing file and a comma ‘,’ for the delimiter. - Fill in the argument of print() to print the type of the object digits. Use the function type(). - Execute the rest of the code to visualize one of the rows of the data.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import package</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign filename to variable: file</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">'digits.csv'</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load file as array: digits</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>digits <span class="op">=</span> np.loadtxt(<span class="bu">file</span>, delimiter<span class="op">=</span><span class="st">','</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print datatype of digits</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(digits))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Select and reshape a row</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> digits[<span class="dv">21</span>, <span class="dv">1</span>:]</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>im_sq <span class="op">=</span> np.reshape(im, (<span class="dv">28</span>, <span class="dv">28</span>))</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot reshaped data (matplotlib.pyplot already loaded as plt)</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>plt.imshow(im_sq, cmap<span class="op">=</span><span class="st">'Greys'</span>, interpolation<span class="op">=</span><span class="st">'nearest'</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="customizing-your-numpy-import" class="level2">
+<h2 class="anchored" data-anchor-id="customizing-your-numpy-import">Customizing your NumPy import</h2>
+<p>What if there are rows, such as a header, that you don’t want to import? What if your file has a delimiter other than a comma? What if you only wish to import particular columns?</p>
+<p>There are a number of arguments that np.loadtxt() takes that you’ll find useful:</p>
+<pre><code>delimiter changes the delimiter that loadtxt() is expecting.
+    You can use ',' for comma-delimited.
+    You can use '\t' for tab-delimited. 
+skiprows allows you to specify how many rows (not indices) you wish to skip
+usecols takes a list of the indices of the columns you wish to keep.</code></pre>
+<p>The file that you’ll be importing, digits_header.txt, has a header and is tab-delimited. ### Instructions - Complete the arguments of np.loadtxt(): the file you’re importing is tab-delimited, you want to skip the first row and you only want to import the first and third columns. - Complete the argument of the print() call in order to print the entire array that you just imported.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the filename: file</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">'digits_header.txt'</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data: data</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.loadtxt(<span class="bu">file</span>, delimiter<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, skiprows<span class="op">=</span><span class="dv">1</span>, usecols<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">2</span>])</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print data</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="importing-different-datatypes" class="level2">
+<h2 class="anchored" data-anchor-id="importing-different-datatypes">Importing different datatypes</h2>
+<p>The file seaslug.txt</p>
+<pre><code>has a text header, consisting of strings
+is tab-delimited.</code></pre>
+<p>These data consists of percentage of sea slug larvae that had metamorphosed in a given time period. Read more here.</p>
+<p>Due to the header, if you tried to import it as-is using np.loadtxt(), Python would throw you a ValueError and tell you that it could not convert string to float. There are two ways to deal with this: firstly, you can set the data type argument dtype equal to str (for string).</p>
+<p>Alternatively, you can skip the first row as we have seen before, using the skiprows argument. ### Instructions - Complete the first call to np.loadtxt() by passing file as the first argument. - Execute print(data[0]) to print the first element of data. - Complete the second call to np.loadtxt(). The file you’re importing is tab-delimited, the datatype is float, and you want to skip the first row. - Print the 10th element of data_float by completing the print() command. Be guided by the previous print() call. Execute the rest of the code to visualize the data.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign filename: file</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">'datasets/seaslug.txt'</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import file: data</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.loadtxt(<span class="bu">file</span>, delimiter<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, dtype<span class="op">=</span><span class="bu">str</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first element of data</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="dv">0</span>])</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data as floats and skip the first row: data_float</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>data_float <span class="op">=</span> np.loadtxt(<span class="bu">file</span>, delimiter<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, dtype<span class="op">=</span><span class="bu">float</span>, skiprows<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the 10th element of data_float</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_float[<span class="dv">9</span>])</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a scatterplot of the data</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>plt.scatter(data_float[:, <span class="dv">0</span>], data_float[:, <span class="dv">1</span>])</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'time (min.)'</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'percentage of larvae'</span>)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>['Time' 'Percent']
+[0.    0.357]</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="14_Introduction_to_Importing_Data_in_Python_files/14_Introduction_to_Importing_Data_in_Python_12_1.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="working-with-mixed-datatypes" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-mixed-datatypes">Working with mixed datatypes</h2>
+<p>You have just used np.genfromtxt() to import data containing mixed datatypes. There is also another function np.recfromcsv() that behaves similarly to np.genfromtxt(), except that its default dtype is None. In this exercise, you’ll practice using this to achieve the same result. ### Instructions - Import titanic.csv using the function np.recfromcsv() and assign it to the variable, d.&nbsp;You’ll only need to pass file to it because it has the defaults delimiter=‘,’ and names=True in addition to dtype=None! - Run the remaining code to print the first three entries of the resulting array d.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the filename: file</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">'datasets/titanic_sub.csv'</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import file using np.recfromcsv: d</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> np.recfromcsv(<span class="bu">file</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out first three entries of d</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d[:<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>[(1, 0, 3, b'male', 22., 1, 0, b'A/5 21171',  7.25  , b'', b'S')
+ (2, 1, 1, b'female', 38., 1, 0, b'PC 17599', 71.2833, b'C85', b'C')
+ (3, 1, 3, b'female', 26., 0, 0, b'STON/O2. 3101282',  7.925 , b'', b'S')]</code></pre>
+</section>
+<section id="using-pandas-to-import-flat-files-as-dataframes-1" class="level2">
+<h2 class="anchored" data-anchor-id="using-pandas-to-import-flat-files-as-dataframes-1">Using pandas to import flat files as DataFrames (1)</h2>
+<p>In the last exercise, you were able to import flat files containing columns with different datatypes as numpy arrays. However, the DataFrame object in pandas is a more appropriate structure in which to store such data and, thankfully, we can easily import files of mixed data types as DataFrames using the pandas functions read_csv() and read_table(). ### Instructions - Import the pandas package using the alias pd. - Read titanic.csv into a DataFrame called df. The file name is already stored in the file object. - In a print() call, view the head of the DataFrame.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import pandas</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the filename: file</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">'datasets/titanic_sub.csv'</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the file into a DataFrame: df</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="bu">file</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># View the head of the DataFrame</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>   PassengerId  Survived  Pclass  ...     Fare  Cabin  Embarked
+0            1         0       3  ...   7.2500    NaN         S
+1            2         1       1  ...  71.2833    C85         C
+2            3         1       3  ...   7.9250    NaN         S
+3            4         1       1  ...  53.1000   C123         S
+4            5         0       3  ...   8.0500    NaN         S
+
+[5 rows x 11 columns]</code></pre>
+</section>
+<section id="using-pandas-to-import-flat-files-as-dataframes-2" class="level2">
+<h2 class="anchored" data-anchor-id="using-pandas-to-import-flat-files-as-dataframes-2">Using pandas to import flat files as DataFrames (2)</h2>
+<p>In the last exercise, you were able to import flat files into a pandas DataFrame. As a bonus, it is then straightforward to retrieve the corresponding numpy array using the attribute values. You’ll now have a chance to do this using the MNIST dataset, which is available as digits.csv. ### Instructions - Import the first 5 rows of the file into a DataFrame using the function pd.read_csv() and assign the result to data. You’ll need to use the arguments nrows and header (there is no header in this file). - Build a numpy array from the resulting DataFrame in data and assign to data_array. - Execute print(type(data_array)) to print the datatype of data_array.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the filename: file</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">'datasets/titanic_sub.csv'</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the first 5 rows of the file into a DataFrame: data</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="bu">file</span>, nrows<span class="op">=</span><span class="dv">5</span>, header<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a numpy array from the DataFrame: data_array</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>data_array <span class="op">=</span> data.values</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the datatype of data_array to the shell</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(data_array))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;class 'numpy.ndarray'&gt;</code></pre>
+</section>
+<section id="customizing-your-pandas-import" class="level2">
+<h2 class="anchored" data-anchor-id="customizing-your-pandas-import">Customizing your pandas import</h2>
+<p>The pandas package is also great at dealing with many of the issues you will encounter when importing data as a data scientist, such as comments occurring in flat files, empty lines and missing values. Note that missing values are also commonly referred to as NA or NaN. To wrap up this chapter, you’re now going to import a slightly corrupted copy of the Titanic dataset titanic_corrupt.txt, which</p>
+<pre><code>contains comments after the character '#'
+is tab-delimited.</code></pre>
+<section id="instructions" class="level3">
+<h3 class="anchored" data-anchor-id="instructions">Instructions</h3>
+<ul>
+<li>Complete the sep (the pandas version of delim), comment and na_values arguments of pd.read_csv(). comment takes characters that comments occur after in the file, which in this case is ‘#’. na_values takes a list of strings to recognize as NA/NaN, in this case the string ‘Nothing’.</li>
+<li>Execute the rest of the code to print the head of the resulting DataFrame and plot the histogram of the ‘Age’ of passengers aboard the Titanic.</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import matplotlib.pyplot as plt</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign filename: file</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">'titanic_corrupt.txt'</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Import file: data</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="bu">file</span>, sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, comment<span class="op">=</span><span class="st">'#'</span>, na_values<span class="op">=</span>[<span class="st">'Nothing'</span>])</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the head of the DataFrame</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.head())</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 'Age' variable in a histogram</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>pd.DataFrame.hist(data[[<span class="st">'Age'</span>]])</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Age (years)'</span>)</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'count'</span>)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="chapter-2-importing-data-from-other-file-types" class="level1">
+<h1>Chapter 2: Importing data from other file types</h1>
+<p>You’ve learned how to import flat files, but there are many other file types you will potentially have to work with as a data scientist. In this chapter, you’ll learn how to import data into Python from a wide array of important file types. These include pickled files, Excel spreadsheets, SAS and Stata files, HDF5 files, a file type for storing large quantities of numerical data, and MATLAB files.</p>
+<section id="loading-a-pickled-file" class="level2">
+<h2 class="anchored" data-anchor-id="loading-a-pickled-file">Loading a pickled file</h2>
+<p>There are a number of datatypes that cannot be saved easily to flat files, such as lists and dictionaries. If you want your files to be human readable, you may want to save them as text files in a clever manner. JSONs, which you will see in a later chapter, are appropriate for Python dictionaries.</p>
+<p>However, if you merely want to be able to import them into Python, you can serialize them. All this means is converting the object into a sequence of bytes, or a bytestream.</p>
+<p>In this exercise, you’ll import the pickle package, open a previously pickled data structure from a file and load it. ### Instructions - Import the pickle package. - Complete the second argument of open() so that it is read only for a binary file. This argument will be a string of two letters, one signifying ‘read only’, the other ‘binary’. - Pass the correct argument to pickle.load(); it should use the variable that is bound to open. - Print the data, d.&nbsp;- Print the datatype of d; take your mind back to your previous use of the function type().</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import pickle package</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Open pickle file and load data</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'data.pkl'</span>, <span class="st">'rb'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> pickle.load(<span class="bu">file</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print data</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print datatype</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(d))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="listing-sheets-in-excel-files" class="level2">
+<h2 class="anchored" data-anchor-id="listing-sheets-in-excel-files">Listing sheets in Excel files</h2>
+<p>Whether you like it or not, any working data scientist will need to deal with Excel spreadsheets at some point in time. You won’t always want to do so in Excel, however!</p>
+<p>Here, you’ll learn how to use pandas to import Excel spreadsheets and how to list the names of the sheets in any loaded .xlsx file.</p>
+<p>Recall from the video that, given an Excel file imported into a variable spreadsheet, you can retrieve a list of the sheet names using the attribute spreadsheet.sheet_names.</p>
+<p>Specifically, you’ll be loading and checking out the spreadsheet ‘battledeath.xlsx’, modified from the Peace Research Institute Oslo’s (PRIO) dataset. This data contains age-adjusted mortality rates due to war in various countries over several years. ### Instructions - Assign the spreadsheet filename (provided above) to the variable file. - Pass the correct argument to pd.ExcelFile() to load the file using pandas, assigning the result to the variable xls. - Print the sheetnames of the Excel spreadsheet by passing the necessary argument to the print() function.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import pandas</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign spreadsheet filename: file</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">'datasets/battledeath.xlsx'</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load spreadsheet: xls</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>xls <span class="op">=</span> pd.ExcelFile(<span class="bu">file</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print sheet names</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(xls.sheet_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>['2002', '2004']</code></pre>
+</section>
+<section id="importing-sheets-from-excel-files" class="level2">
+<h2 class="anchored" data-anchor-id="importing-sheets-from-excel-files">Importing sheets from Excel files</h2>
+<p>In the previous exercises, you saw that the Excel file contains two sheets, ‘2002’ and ‘2004’. The next step is to import these.</p>
+<p>In this exercise, you’ll learn how to import any given sheet of your loaded .xlsx file as a DataFrame. You’ll be able to do so by specifying either the sheet’s name or its index.</p>
+<p>The spreadsheet ‘battledeath.xlsx’ is already loaded as xls. ### Instructions - Load the sheet ‘2004’ into the DataFrame df1 using its name as a string. - Print the head of df1 to the shell. - Load the sheet 2002 into the DataFrame df2 using its index (0). - Print the head of df2 to the shell.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a sheet into a DataFrame by name: df1</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> xls.parse(<span class="st">'2004'</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the head of the DataFrame df1</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df1.head())</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a sheet into a DataFrame by index: df2</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> xls.parse(<span class="dv">0</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the head of the DataFrame df2</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df2.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>  War(country)      2004
+0  Afghanistan  9.451028
+1      Albania  0.130354
+2      Algeria  3.407277
+3      Andorra  0.000000
+4       Angola  2.597931
+  War, age-adjusted mortality due to       2002
+0                        Afghanistan  36.083990
+1                            Albania   0.128908
+2                            Algeria  18.314120
+3                            Andorra   0.000000
+4                             Angola  18.964560</code></pre>
+</section>
+<section id="customizing-your-spreadsheet-import" class="level2">
+<h2 class="anchored" data-anchor-id="customizing-your-spreadsheet-import">Customizing your spreadsheet import</h2>
+<p>Here, you’ll parse your spreadsheets and use additional arguments to skip rows, rename columns and select only particular columns.</p>
+<p>The spreadsheet ‘battledeath.xlsx’ is already loaded as xls.</p>
+<p>As before, you’ll use the method parse(). This time, however, you’ll add the additional arguments skiprows, names and usecols. These skip rows, name the columns and designate which columns to parse, respectively. All these arguments can be assigned to lists containing the specific row numbers, strings and column numbers, as appropriate. ### Instructions - Parse the first sheet by index. In doing so, skip the first row of data and name the columns ‘Country’ and ‘AAM due to War (2002)’ using the argument names. The values passed to skiprows and names all need to be of type list. - Parse the second sheet by index. In doing so, parse only the first column with the usecols parameter, skip the first row and rename the column ‘Country’. The argument passed to usecols also needs to be of type list.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parse the first sheet and rename the columns: df1</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> xls.parse(<span class="dv">0</span>, skiprows<span class="op">=</span>[<span class="dv">0</span>], names<span class="op">=</span>[<span class="st">'Country'</span>, <span class="st">'AAM due to War (2002)'</span>])</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the head of the DataFrame df1</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df1.head())</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Parse the first column of the second sheet and rename the column: df2</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> xls.parse(<span class="dv">1</span>, usecols<span class="op">=</span>[<span class="dv">0</span>], skiprows<span class="op">=</span>[<span class="dv">0</span>], names<span class="op">=</span>[<span class="st">'Country'</span>])</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the head of the DataFrame df2</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df2.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>               Country  AAM due to War (2002)
+0              Albania               0.128908
+1              Algeria              18.314120
+2              Andorra               0.000000
+3               Angola              18.964560
+4  Antigua and Barbuda               0.000000
+               Country
+0              Albania
+1              Algeria
+2              Andorra
+3               Angola
+4  Antigua and Barbuda</code></pre>
+</section>
+<section id="importing-sas-files" class="level2">
+<h2 class="anchored" data-anchor-id="importing-sas-files">Importing SAS files</h2>
+<p>In this exercise, you’ll figure out how to import a SAS file as a DataFrame using SAS7BDAT and pandas. The file ‘sales.sas7bdat’ is already in your working directory and both pandas and matplotlib.pyplot have already been imported as follows:</p>
+<p>import pandas as pd import matplotlib.pyplot as plt</p>
+<p>The data are adapted from the website of the undergraduate text book Principles of Econometrics by Hill, Griffiths and Lim. ### Instructions - Import the module SAS7BDAT from the library sas7bdat. - In the context of the file ‘sales.sas7bdat’, load its contents to a DataFrame df_sas, using the method to_data_frame() on the object file. - Print the head of the DataFrame df_sas. - Execute your entire script to produce a histogram plot!</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import sas7bdat package</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sas7bdat <span class="im">import</span> SAS7BDAT</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Save file to a DataFrame: df_sas</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> SAS7BDAT(<span class="st">'datasets/sales.sas7bdat'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    df_sas <span class="op">=</span> <span class="bu">file</span>.to_data_frame()</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print head of DataFrame</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_sas.head())</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histograms of a DataFrame feature (pandas and pyplot already imported)</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>pd.DataFrame.hist(df_sas[[<span class="st">'P'</span>]])</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'count'</span>)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     YEAR     P           S
+0  1950.0  12.9  181.899994
+1  1951.0  11.9  245.000000
+2  1952.0  10.7  250.199997
+3  1953.0  11.3  265.899994
+4  1954.0  11.2  248.500000</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="14_Introduction_to_Importing_Data_in_Python_files/14_Introduction_to_Importing_Data_in_Python_31_1.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="importing-stata-files" class="level2">
+<h2 class="anchored" data-anchor-id="importing-stata-files">Importing Stata files</h2>
+<p>Here, you’ll gain expertise in importing Stata files as DataFrames using the pd.read_stata() function from pandas. The last exercise’s file, ‘disarea.dta’, is still in your working directory. ### Instructions - Use pd.read_stata() to load the file ‘disarea.dta’ into the DataFrame df. - Print the head of the DataFrame df. - Visualize your results by plotting a histogram of the column disa10. We’ve already provided this code for you, so just run it!</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import pandas</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Stata file into a pandas DataFrame: df</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_stata(<span class="st">'datasets/disarea.dta'</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the head of the DataFrame df</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histogram of one column of the DataFrame</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>pd.DataFrame.hist(df[[<span class="st">'disa10'</span>]])</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Extent of disease'</span>)</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Number of countries'</span>)</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>  wbcode               country  disa1  disa2  ...  disa22  disa23  disa24  disa25
+0    AFG           Afghanistan   0.00   0.00  ...    0.00    0.02    0.00    0.00
+1    AGO                Angola   0.32   0.02  ...    0.99    0.98    0.61    0.00
+2    ALB               Albania   0.00   0.00  ...    0.00    0.00    0.00    0.16
+3    ARE  United Arab Emirates   0.00   0.00  ...    0.00    0.00    0.00    0.00
+4    ARG             Argentina   0.00   0.24  ...    0.00    0.01    0.00    0.11
+
+[5 rows x 27 columns]</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="14_Introduction_to_Importing_Data_in_Python_files/14_Introduction_to_Importing_Data_in_Python_33_1.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="using-h5py-to-import-hdf5-files" class="level2">
+<h2 class="anchored" data-anchor-id="using-h5py-to-import-hdf5-files">Using h5py to import HDF5 files</h2>
+<p>The file ‘LIGO_data.hdf5’ is already in your working directory. In this exercise, you’ll import it using the h5py library. You’ll also print out its datatype to confirm you have imported it correctly. You’ll then study the structure of the file in order to see precisely what HDF groups it contains.</p>
+<p>You can find the LIGO data plus loads of documentation and tutorials here. There is also a great tutorial on Signal Processing with the data here. ### Instructions - Import the package h5py. - Assign the name of the file to the variable file. - Load the file as read only into the variable data. - Print the datatype of data. - Print the names of the groups in the HDF5 file ‘LIGO_data.hdf5’.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> h5py</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign filename: file</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">'datasets/L-L1_LOSC_4_V1-1126259446-32.hdf5'</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load file: data</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> h5py.File(<span class="bu">file</span>, <span class="st">'r'</span>)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the datatype of the loaded file</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(data))</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the keys of the file</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> data.keys():</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(key)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;class 'h5py._hl.files.File'&gt;
+meta
+quality
+strain</code></pre>
+</section>
+<section id="extracting-data-from-your-hdf5-file" class="level2">
+<h2 class="anchored" data-anchor-id="extracting-data-from-your-hdf5-file">Extracting data from your HDF5 file</h2>
+<p>In this exercise, you’ll extract some of the LIGO experiment’s actual data from the HDF5 file and you’ll visualize it.</p>
+<p>To do so, you’ll need to first explore the HDF5 group ‘strain’. ### Instructions - Assign the HDF5 group data[‘strain’] to group. - In the for loop, print out the keys of the HDF5 group in group. - Assign the time series data data[‘strain’][‘Strain’] to a NumPy array called strain. - Set num_samples equal to 10000, the number of time points we wish to sample. - Execute the rest of the code to produce a plot of the time series data in LIGO_data.hdf5.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the HDF5 group: group</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>group <span class="op">=</span> data[<span class="st">'strain'</span>]</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check out keys of group</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> group.keys():</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(key)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Set variable equal to time series data: strain</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>strain <span class="op">=</span> np.array(data[<span class="st">'strain'</span>][<span class="st">'Strain'</span>])</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Set number of time points to sample: num_samples</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>num_samples <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Set time vector</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span><span class="op">/</span>num_samples)</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>plt.plot(time, strain[:num_samples])</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'GPS Time (s)'</span>)</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'strain'</span>)</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Strain</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="14_Introduction_to_Importing_Data_in_Python_files/14_Introduction_to_Importing_Data_in_Python_37_1.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="loading-.mat-files" class="level2">
+<h2 class="anchored" data-anchor-id="loading-.mat-files">Loading .mat files</h2>
+<p>In this exercise, you’ll figure out how to load a MATLAB file using scipy.io.loadmat() and you’ll discover what Python datatype it yields.</p>
+<p>The file ‘albeck_gene_expression.mat’ is in your working directory. This file contains gene expression data from the Albeck Lab at UC Davis. ### Instructions - Import the package scipy.io. - Load the file ‘albeck_gene_expression.mat’ into the variable mat; do so using the function scipy.io.loadmat(). - Use the function type() to print the datatype of mat to the IPython shell.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import package</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.io</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load MATLAB file: mat</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>mat <span class="op">=</span> scipy.io.loadmat(<span class="st">'albeck_gene_expression.mat'</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the datatype type of mat</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(mat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="the-structure-of-.mat-in-python" class="level2">
+<h2 class="anchored" data-anchor-id="the-structure-of-.mat-in-python">The structure of .mat in Python</h2>
+<p>Here, you’ll discover what is in the MATLAB dictionary that you loaded in the previous exercise.</p>
+<p>The file ‘albeck_gene_expression.mat’ is already loaded into the variable mat. The following libraries have already been imported as follows:</p>
+<pre><code>import scipy.io
+import matplotlib.pyplot as plt
+import numpy as np</code></pre>
+<p>Once again, this file contains gene expression data from the Albeck Lab at UCDavis. ### Instructions - Use the method .keys() on the dictionary mat to print the keys. Most of these keys (in fact the ones that do NOT begin and end with ‘__’) are variables from the corresponding MATLAB environment. - Print the type of the value corresponding to the key ‘CYratioCyt’ in mat. Recall that mat[‘CYratioCyt’] accesses the value. - Print the shape of the value corresponding to the key ‘CYratioCyt’ using the numpy function shape(). - Execute the entire script to see some oscillatory gene expression data!</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the keys of the MATLAB dictionary</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mat.keys())</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the type of the value corresponding to the key 'CYratioCyt'</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(mat[<span class="st">'CYratioCyt'</span>]))</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the shape of the value corresponding to the key 'CYratioCyt'</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.shape(mat[<span class="st">'CYratioCyt'</span>]))</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the array and plot it</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> mat[<span class="st">'CYratioCyt'</span>][<span class="dv">25</span>, <span class="dv">5</span>:]</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>plt.plot(data)</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'time (min.)'</span>)</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'normalized fluorescence (measure of expression)'</span>)</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="chapter-4-working-with-relational-databases-in-python" class="level1">
+<h1>Chapter 4: Working with relational databases in Python</h1>
+<p>In this chapter, you’ll learn how to extract meaningful data from relational databases, an essential skill for any data scientist. You will learn about relational models, how to create SQL queries, how to filter and order your SQL records, and how to perform advanced queries by joining database tables.</p>
+<section id="creating-a-database-engine" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-database-engine">Creating a database engine</h2>
+<p>Here, you’re going to fire up your very first SQL engine. You’ll create an engine to connect to the SQLite database ‘Chinook.sqlite’, which is in your working directory. Remember that to create an engine to connect to ‘Northwind.sqlite’, Hugo executed the command</p>
+<pre><code>engine = create_engine('sqlite:///Northwind.sqlite')</code></pre>
+<p>Here, ‘sqlite:///Northwind.sqlite’ is called the connection string to the SQLite database Northwind.sqlite. A little bit of background on the Chinook database: the Chinook database contains information about a semi-fictional digital media store in which media data is real and customer, employee and sales data has been manually created.</p>
+<p>Why the name Chinook, you ask? According to their website,</p>
+<pre><code>The name of this sample database was based on the Northwind database. Chinooks are winds in the interior West of North America, where the Canadian Prairies and Great Plains meet various mountain ranges. Chinooks are most prevalent over southern Alberta in Canada. Chinook is a good name choice for a database that intends to be an alternative to Northwind.</code></pre>
+<section id="instructions-1" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-1">Instructions</h3>
+<ul>
+<li>Import the function create_engine from the module sqlalchemy.</li>
+<li>Create an engine to connect to the SQLite database ‘Chinook.sqlite’ and assign it to engine.</li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import necessary module</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sqlalchemy <span class="im">import</span> create_engine</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create engine: engine</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> create_engine(<span class="st">'sqlite:///Chinook.sqlite'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="what-are-the-tables-in-the-database" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-the-tables-in-the-database">What are the tables in the database?</h2>
+<p>In this exercise, you’ll once again create an engine to connect to ‘Chinook.sqlite’. Before you can get any data out of the database, however, you’ll need to know what tables it contains!</p>
+<p>To this end, you’ll save the table names to a list using the method table_names() on the engine and then you will print the list. ### Instructions - Import the function create_engine from the module sqlalchemy. - Create an engine to connect to the SQLite database ‘Chinook.sqlite’ and assign it to engine. - Using the method table_names() on the engine engine, assign the table names of ‘Chinook.sqlite’ to the variable table_names. - Print the object table_names to the shell.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import necessary module</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sqlalchemy <span class="im">import</span> create_engine</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create engine: engine</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> create_engine(<span class="st">'sqlite:///Chinook.sqlite'</span>)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the table names to a list: table_names</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>table_names <span class="op">=</span> engine.table_names()</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table names to the shell</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>[]</code></pre>
+</section>
+<section id="the-hello-world-of-sql-queries" class="level2">
+<h2 class="anchored" data-anchor-id="the-hello-world-of-sql-queries">The Hello World of SQL Queries!</h2>
+<p>Now, it’s time for liftoff! In this exercise, you’ll perform the Hello World of SQL queries, SELECT, in order to retrieve all columns of the table Album in the Chinook database. Recall that the query SELECT * selects all columns. ### Instructions - Open the engine connection as con using the method connect() on the engine. - Execute the query that selects ALL columns from the Album table. Store the results in rs. - Store all of your query results in the DataFrame df by applying the fetchall() method to the results rs. - Close the connection!</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sqlalchemy <span class="im">import</span> create_engine</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create engine: engine</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> create_engine(<span class="st">'sqlite:///Chinook.sqlite'</span>)</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Open engine connection</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>con <span class="op">=</span> engine.<span class="ex">connect</span>()</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform query: rs</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>rs <span class="op">=</span> con.execute(<span class="st">"SELECT * FROM Album"</span>)</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Save results of the query to DataFrame: df</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(rs.fetchall())</span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Close connection</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>con.close()</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print head of DataFrame df</span></span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="customizing-the-hello-world-of-sql-queries" class="level2">
+<h2 class="anchored" data-anchor-id="customizing-the-hello-world-of-sql-queries">Customizing the Hello World of SQL Queries</h2>
+<p>Congratulations on executing your first SQL query! Now you’re going to figure out how to customize your query in order to:</p>
+<pre><code>Select specified columns from a table;
+Select a specified number of rows;
+Import column names from the database table.</code></pre>
+<p>Recall that Hugo performed a very similar query customization in the video:</p>
+<p>engine = create_engine(‘sqlite:///Northwind.sqlite’)</p>
+<p>with engine.connect() as con: rs = con.execute(“SELECT OrderID, OrderDate, ShipName FROM Orders”) df = pd.DataFrame(rs.fetchmany(size=5)) df.columns = rs.keys()</p>
+<p>Packages have already been imported as follows:</p>
+<p>from sqlalchemy import create_engine import pandas as pd</p>
+<p>The engine has also already been created:</p>
+<p>engine = create_engine(‘sqlite:///Chinook.sqlite’)</p>
+<p>The engine connection is already open with the statement</p>
+<p>with engine.connect() as con:</p>
+<p>All the code you need to complete is within this context. ### Instructions - Execute the SQL query that selects the columns LastName and Title from the Employee table. Store the results in the variable rs. - Apply the method fetchmany() to rs in order to retrieve 3 of the records. Store them in the DataFrame df. - Using the rs object, set the DataFrame’s column names to the corresponding names of the table columns.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Open engine in context manager</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform query and save results to DataFrame: df</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> con:</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    rs <span class="op">=</span> con.execute(<span class="st">"SELECT LastName, Title FROM Employee"</span>)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(rs.fetchmany(size<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    df.columns <span class="op">=</span> rs.keys()</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the length of the DataFrame df</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(df))</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the head of the DataFrame df</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="filtering-your-database-records-using-sqls-where" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-your-database-records-using-sqls-where">Filtering your database records using SQL’s WHERE</h2>
+<p>You can now execute a basic SQL query to select records from any table in your database and you can also perform simple query customizations to select particular columns and numbers of rows.</p>
+<p>There are a couple more standard SQL query chops that will aid you in your journey to becoming an SQL ninja.</p>
+<p>Let’s say, for example that you wanted to get all records from the Customer table of the Chinook database for which the Country is ‘Canada’. You can do this very easily in SQL using a SELECT statement followed by a WHERE clause as follows:</p>
+<p>SELECT * FROM Customer WHERE Country = ‘Canada’</p>
+<p>In fact, you can filter any SELECT statement by any condition using a WHERE clause. This is called filtering your records.</p>
+<p>In this interactive exercise, you’ll select all records of the Employee table for which ‘EmployeeId’ is greater than or equal to 6.</p>
+<p>Packages are already imported as follows:</p>
+<p>import pandas as pd from sqlalchemy import create_engine</p>
+<p>Query away! ### Instructions - Complete the argument of create_engine() so that the engine for the SQLite database ‘Chinook.sqlite’ is created. - Execute the query that selects all records from the Employee table where ‘EmployeeId’ is greater than or equal to 6. Use the &gt;= operator and assign the results to rs. - Apply the method fetchall() to rs in order to fetch all records in rs. Store them in the DataFrame df. - Using the rs object, set the DataFrame’s column names to the corresponding names of the table columns.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create engine: engine</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> create_engine(<span class="st">'sqlite:///Chinook.sqlite'</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Open engine in context manager</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform query and save results to DataFrame: df</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> con:</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>    rs <span class="op">=</span> con.execute(<span class="st">"SELECT * FROM Employee WHERE EmployeeId &gt;= 6"</span>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(rs.fetchall())</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>    df.columns <span class="op">=</span> rs.keys()</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the head of the DataFrame df</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ordering-your-sql-records-with-order-by" class="level2">
+<h2 class="anchored" data-anchor-id="ordering-your-sql-records-with-order-by">Ordering your SQL records with ORDER BY</h2>
+<p>You can also order your SQL query results. For example, if you wanted to get all records from the Customer table of the Chinook database and order them in increasing order by the column SupportRepId, you could do so with the following query:</p>
+<p>“SELECT * FROM Customer ORDER BY SupportRepId”</p>
+<p>In fact, you can order any SELECT statement by any column.</p>
+<p>In this interactive exercise, you’ll select all records of the Employee table and order them in increasing order by the column BirthDate.</p>
+<p>Packages are already imported as follows:</p>
+<p>import pandas as pd from sqlalchemy import create_engine</p>
+<p>Get querying! ### Instructions - Using the function create_engine(), create an engine for the SQLite database Chinook.sqlite and assign it to the variable engine. - In the context manager, execute the query that selects all records from the Employee table and orders them in increasing order by the column BirthDate. Assign the result to rs. - In a call to pd.DataFrame(), apply the method fetchall() to rs in order to fetch all records in rs. Store them in the DataFrame df. - Set the DataFrame’s column names to the corresponding names of the table columns.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create engine: engine</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> create_engine(<span class="st">'sqlite:///Chinook.sqlite'</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Open engine in context manager</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> con:</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    rs <span class="op">=</span> con.execute(<span class="st">"SELECT * FROM Employee ORDER BY BirthDate"</span>)</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(rs.fetchall())</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set the DataFrame's column names</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>    df.columns <span class="op">=</span> rs.keys()</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Print head of DataFrame</span></span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pandas-and-the-hello-world-of-sql-queries" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-and-the-hello-world-of-sql-queries">Pandas and The Hello World of SQL Queries!</h2>
+<p>Here, you’ll take advantage of the power of pandas to write the results of your SQL query to a DataFrame in one swift line of Python code!</p>
+<p>You’ll first import pandas and create the SQLite ‘Chinook.sqlite’ engine. Then you’ll query the database to select all records from the Album table.</p>
+<p>Recall that to select all records from the Orders table in the Northwind database, Hugo executed the following command:</p>
+<p>df = pd.read_sql_query(“SELECT * FROM Orders”, engine)</p>
+<section id="instructions-2" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-2">Instructions</h3>
+<ul>
+<li>Import the pandas package using the alias pd.</li>
+<li>Using the function create_engine(), create an engine for the SQLite database Chinook.sqlite and assign it to the variable engine.</li>
+<li>Use the pandas function read_sql_query() to assign to the variable df the DataFrame of results from the following query: select all records from the table Album.</li>
+<li>The remainder of the code is included to confirm that the DataFrame created by this method is equal to that created by the previous method that you learned.</li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sqlalchemy <span class="im">import</span> create_engine</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create engine: engine</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> create_engine(<span class="st">'sqlite:///Chinook.sqlite'</span>)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute query and store records in DataFrame: df</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_sql_query(<span class="st">"SELECT * FROM Album"</span>, engine)</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print head of DataFrame</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Open engine in context manager and store query result in df1</span></span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> con:</span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>    rs <span class="op">=</span> con.execute(<span class="st">"SELECT * FROM Album"</span>)</span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>    df1 <span class="op">=</span> pd.DataFrame(rs.fetchall())</span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>    df1.columns <span class="op">=</span> rs.keys()</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm that both methods yield the same result</span></span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.equals(df1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="pandas-for-more-complex-querying" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-for-more-complex-querying">Pandas for more complex querying</h2>
+<p>Here, you’ll become more familiar with the pandas function read_sql_query() by using it to execute a more complex query: a SELECT statement followed by both a WHERE clause AND an ORDER BY clause.</p>
+<p>You’ll build a DataFrame that contains the rows of the Employee table for which the EmployeeId is greater than or equal to 6 and you’ll order these entries by BirthDate. ### Instructions - Using the function create_engine(), create an engine for the SQLite database Chinook.sqlite and assign it to the variable engine. - Use the pandas function read_sql_query() to assign to the variable df the DataFrame of results from the following query: select all records from the Employee table where the EmployeeId is greater than or equal to 6 and ordered by BirthDate (make sure to use WHERE and ORDER BY in this precise</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sqlalchemy <span class="im">import</span> create_engine</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create engine: engine</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> create_engine(<span class="st">'sqlite:///Chinook.sqlite'</span>)</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute query and store records in DataFrame: df</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_sql_query(</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SELECT * FROM Employee WHERE EmployeeId &gt;= 6 ORDER BY BirthDate"</span>,</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>    engine</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Print head of DataFrame</span></span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="the-power-of-sql-lies-in-relationships-between-tables-inner-join" class="level2">
+<h2 class="anchored" data-anchor-id="the-power-of-sql-lies-in-relationships-between-tables-inner-join">The power of SQL lies in relationships between tables: INNER JOIN</h2>
+<p>Here, you’ll perform your first INNER JOIN! You’ll be working with your favourite SQLite database, Chinook.sqlite. For each record in the Album table, you’ll extract the Title along with the Name of the Artist. The latter will come from the Artist table and so you will need to INNER JOIN these two tables on the ArtistID column of both.</p>
+<p>Recall that to INNER JOIN the Orders and Customers tables from the Northwind database, Hugo executed the following SQL query:</p>
+<p>“SELECT OrderID, CompanyName FROM Orders INNER JOIN Customers on Orders.CustomerID = Customers.CustomerID”</p>
+<p>The following code has already been executed to import the necessary packages and to create the engine:</p>
+<p>import pandas as pd from sqlalchemy import create_engine engine = create_engine(‘sqlite:///Chinook.sqlite’)</p>
+<section id="instructions-3" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-3">Instructions</h3>
+<ul>
+<li>Assign to rs the results from the following query: select all the records, extracting the Title of the record and Name of the artist of each record from the Album table and the Artist table, respectively. To do so, INNER JOIN these two tables on the ArtistID column of both.</li>
+<li>In a call to pd.DataFrame(), apply the method fetchall() to rs in order to fetch all records in rs. Store them in the DataFrame df.</li>
+<li>Set the DataFrame’s column names to the corresponding names of the table columns.</li>
+</ul>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Open engine in context manager</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform query and save results to DataFrame: df</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> con:</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    rs <span class="op">=</span> con.execute(<span class="st">"SELECT Title, Name FROM Album INNER JOIN Artist on Album.ArtistID = Artist.ArtistID"</span>)</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(rs.fetchall())</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    df.columns <span class="op">=</span> rs.keys()</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print head of DataFrame df</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="filtering-your-inner-join" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-your-inner-join">Filtering your INNER JOIN</h2>
+<p>Congrats on performing your first INNER JOIN! You’re now going to finish this chapter with one final exercise in which you perform an INNER JOIN and filter the result using a WHERE clause.</p>
+<p>Recall that to INNER JOIN the Orders and Customers tables from the Northwind database, Hugo executed the following SQL query:</p>
+<p>“SELECT OrderID, CompanyName FROM Orders INNER JOIN Customers on Orders.CustomerID = Customers.CustomerID”</p>
+<p>The following code has already been executed to import the necessary packages and to create the engine:</p>
+<p>import pandas as pd from sqlalchemy import create_engine engine = create_engine(‘sqlite:///Chinook.sqlite’)</p>
+<section id="instructions-4" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-4">Instructions</h3>
+<ul>
+<li>Use the pandas function read_sql_query() to assign to the variable df the DataFrame of results from the following query: select all records from PlaylistTrack INNER JOIN Track on PlaylistTrack.TrackId = Track.TrackId that satisfy the condition Milliseconds &lt; 250000.</li>
+</ul>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute query and store records in DataFrame: df</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_sql_query(</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SELECT * FROM PlaylistTrack INNER JOIN Track ON PlaylistTrack.TrackId = Track.TrackId WHERE Milliseconds &lt; 250000"</span>,</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    engine</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print head of DataFrame</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./12_Working_with_Categorical_Data_in_Python.html" class="pagination-link" aria-label="Working with Categorical Data in Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Working with Categorical Data in Python</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="pagination-link" aria-label="Project: A Visual History of Nobel Prize Winners">
+        <span class="nav-page-text">Project: A Visual History of Nobel Prize Winners</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

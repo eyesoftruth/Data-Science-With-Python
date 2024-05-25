@@ -1,0 +1,2984 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science With Python - Working with Categorical Data in Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" rel="next">
+<link href="./10_Intermediate_Data_Visualization_with_Seaborn.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12_Working_with_Categorical_Data_in_Python.html">Working with Categorical Data in Python</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Science With Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_Introduction_to_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_Intermediate_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intermediate Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_Data_Manipulation_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_Joining_Data_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joining Data with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_Introduction_to_statistics_in_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_Introduction_to_Data_Visualization_with_Matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualization with Matplotlib</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7_Introduction_to_Data_Visualization_with_Seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualization with Seaborn</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_Python_Data_Science_Toolbox_Part1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Data Science Toolbox (Part 1)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9_Python_Data_Science_Toolbox_Part2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Data Science Toolbox (Part 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Intermediate_Data_Visualization_with_Seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intermediate Data Visualization with Seaborn</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_Working_with_Categorical_Data_in_Python.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Working with Categorical Data in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: A Visual History of Nobel Prize Winners</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Netflix_movies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Investigating Netflix Movies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Exploring NYC Public School Test Result Scores</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Hypothesis_Testing_in_Healthcare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Hypothesis Testing in Healthcare- Drug Safety</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Predictive_Modeling_for_Agriculture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Sowing Success - How Machine Learning Helps Farmers Select the Best Crops</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Analyzing_Crime_in_Los_Angeles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Analyzing Crime in Los Angeles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Customer_Analytics_Preparing_Data_for_Modeling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Customer Analytics- Preparing Data for Modeling</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-1-introduction-to-categorical-data" id="toc-chapter-1-introduction-to-categorical-data" class="nav-link active" data-scroll-target="#chapter-1-introduction-to-categorical-data">Chapter 1: Introduction to Categorical Data</a>
+  <ul class="collapse">
+  <li><a href="#exploring-a-target-variable" id="toc-exploring-a-target-variable" class="nav-link" data-scroll-target="#exploring-a-target-variable">Exploring a target variable</a></li>
+  <li><a href="#setting-dtypes-and-saving-memory" id="toc-setting-dtypes-and-saving-memory" class="nav-link" data-scroll-target="#setting-dtypes-and-saving-memory">Setting dtypes and saving memory</a></li>
+  <li><a href="#creating-a-categorical-pandas-series" id="toc-creating-a-categorical-pandas-series" class="nav-link" data-scroll-target="#creating-a-categorical-pandas-series">Creating a categorical pandas Series</a></li>
+  <li><a href="#setting-dtype-when-reading-data" id="toc-setting-dtype-when-reading-data" class="nav-link" data-scroll-target="#setting-dtype-when-reading-data">Setting dtype when reading data</a></li>
+  <li><a href="#create-lots-of-groups" id="toc-create-lots-of-groups" class="nav-link" data-scroll-target="#create-lots-of-groups">Create lots of groups</a></li>
+  <li><a href="#setting-up-a-.groupby-statement" id="toc-setting-up-a-.groupby-statement" class="nav-link" data-scroll-target="#setting-up-a-.groupby-statement">Setting up a .groupby() statement</a></li>
+  <li><a href="#using-pandas-functions-effectively" id="toc-using-pandas-functions-effectively" class="nav-link" data-scroll-target="#using-pandas-functions-effectively">Using pandas functions effectively</a></li>
+  </ul></li>
+  <li><a href="#chapter-2-categorical-pandas-series" id="toc-chapter-2-categorical-pandas-series" class="nav-link" data-scroll-target="#chapter-2-categorical-pandas-series">Chapter 2: Categorical pandas Series</a>
+  <ul class="collapse">
+  <li><a href="#adding-categories" id="toc-adding-categories" class="nav-link" data-scroll-target="#adding-categories">Adding categories</a></li>
+  <li><a href="#removing-categories" id="toc-removing-categories" class="nav-link" data-scroll-target="#removing-categories">Removing categories</a></li>
+  <li><a href="#renaming-categories" id="toc-renaming-categories" class="nav-link" data-scroll-target="#renaming-categories">Renaming categories</a></li>
+  <li><a href="#collapsing-categories" id="toc-collapsing-categories" class="nav-link" data-scroll-target="#collapsing-categories">Collapsing categories</a>
+  <ul class="collapse">
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  </ul></li>
+  <li><a href="#reordering-categories-in-a-series" id="toc-reordering-categories-in-a-series" class="nav-link" data-scroll-target="#reordering-categories-in-a-series">Reordering categories in a Series</a></li>
+  <li><a href="#using-.groupby-after-reordering" id="toc-using-.groupby-after-reordering" class="nav-link" data-scroll-target="#using-.groupby-after-reordering">Using .groupby() after reordering</a></li>
+  <li><a href="#cleaning-variables" id="toc-cleaning-variables" class="nav-link" data-scroll-target="#cleaning-variables">Cleaning variables</a></li>
+  <li><a href="#accessing-and-filtering-data" id="toc-accessing-and-filtering-data" class="nav-link" data-scroll-target="#accessing-and-filtering-data">Accessing and filtering data</a></li>
+  </ul></li>
+  <li><a href="#chapter-3-visualizing-categorical-data" id="toc-chapter-3-visualizing-categorical-data" class="nav-link" data-scroll-target="#chapter-3-visualizing-categorical-data">Chapter 3: Visualizing Categorical Data</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-box-plot" id="toc-creating-a-box-plot" class="nav-link" data-scroll-target="#creating-a-box-plot">Creating a box plot</a></li>
+  <li><a href="#creating-a-bar-plot" id="toc-creating-a-bar-plot" class="nav-link" data-scroll-target="#creating-a-bar-plot">Creating a bar plot</a></li>
+  <li><a href="#ordering-categories" id="toc-ordering-categories" class="nav-link" data-scroll-target="#ordering-categories">Ordering categories</a></li>
+  <li><a href="#bar-plot-using-hue" id="toc-bar-plot-using-hue" class="nav-link" data-scroll-target="#bar-plot-using-hue">Bar plot using hue</a></li>
+  <li><a href="#creating-a-point-plot" id="toc-creating-a-point-plot" class="nav-link" data-scroll-target="#creating-a-point-plot">Creating a point plot</a></li>
+  <li><a href="#creating-a-count-plot" id="toc-creating-a-count-plot" class="nav-link" data-scroll-target="#creating-a-count-plot">Creating a count plot</a></li>
+  <li><a href="#one-visualization-per-group" id="toc-one-visualization-per-group" class="nav-link" data-scroll-target="#one-visualization-per-group">One visualization per group</a></li>
+  <li><a href="#updating-categorical-plots" id="toc-updating-categorical-plots" class="nav-link" data-scroll-target="#updating-categorical-plots">Updating categorical plots</a></li>
+  </ul></li>
+  <li><a href="#chapter-4-pitfalls-and-encoding" id="toc-chapter-4-pitfalls-and-encoding" class="nav-link" data-scroll-target="#chapter-4-pitfalls-and-encoding">Chapter 4: Pitfalls and Encoding</a>
+  <ul class="collapse">
+  <li><a href="#overcoming-pitfalls-string-issues" id="toc-overcoming-pitfalls-string-issues" class="nav-link" data-scroll-target="#overcoming-pitfalls-string-issues">Overcoming pitfalls: string issues</a></li>
+  <li><a href="#overcoming-pitfalls-using-numpy-arrays" id="toc-overcoming-pitfalls-using-numpy-arrays" class="nav-link" data-scroll-target="#overcoming-pitfalls-using-numpy-arrays">Overcoming pitfalls: using NumPy arrays</a></li>
+  <li><a href="#create-a-label-encoding-and-map" id="toc-create-a-label-encoding-and-map" class="nav-link" data-scroll-target="#create-a-label-encoding-and-map">Create a label encoding and map</a></li>
+  <li><a href="#using-saved-mappings" id="toc-using-saved-mappings" class="nav-link" data-scroll-target="#using-saved-mappings">Using saved mappings</a>
+  <ul class="collapse">
+  <li><a href="#instructions-1" id="toc-instructions-1" class="nav-link" data-scroll-target="#instructions-1">Instructions</a></li>
+  </ul></li>
+  <li><a href="#creating-a-boolean-encoding" id="toc-creating-a-boolean-encoding" class="nav-link" data-scroll-target="#creating-a-boolean-encoding">Creating a Boolean encoding</a></li>
+  <li><a href="#one-hot-encoding-specific-columns" id="toc-one-hot-encoding-specific-columns" class="nav-link" data-scroll-target="#one-hot-encoding-specific-columns">One-hot encoding specific columns</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Working with Categorical Data in Python</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>adult<span class="op">=</span>pd.read_csv(<span class="st">"datasets/adult.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>used_cars<span class="op">=</span>pd.read_csv(<span class="st">"datasets/cars.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dogs<span class="op">=</span>pd.read_csv(<span class="st">"datasets/ShelterDogs.csv"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>lasvegas_trip<span class="op">=</span>pd.read_csv(<span class="st">"datasets/lasvegas_tripadvisor.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="chapter-1-introduction-to-categorical-data" class="level1">
+<h1>Chapter 1: Introduction to Categorical Data</h1>
+<p>Almost every dataset contains categorical information—and often it’s an unexplored goldmine of information. In this chapter, you’ll learn how pandas handles categorical columns using the data type category. You’ll also discover how to group data by categories to unearth great summary statistics.</p>
+<section id="exploring-a-target-variable" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-a-target-variable">Exploring a target variable</h2>
+<p>You have been asked to build a machine learning model to predict whether or not a person makes over $50,000 in a year. To understand the target variable, Above/Below 50k, you decide to explore the variable in more detail.</p>
+<p>The Python package pandas will be used throughout this course and will be loaded as pd throughout. The adult census income dataset, adult, has also been preloaded for you. ### Instructions - Explore the Above/Below 50k variable by printing out a description of the variable’s contents. - Explore the Above/Below 50k variable by printing out a frequency table of the values found in this column. - Rerun .value_counts(), but this time print out the relative frequency values instead of the counts.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore the Above/Below 50k variable</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adult[<span class="st">"Above/Below 50k"</span>].describe())</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a frequency table of "Above/Below 50k"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adult[<span class="st">"Above/Below 50k"</span>].value_counts())</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print relative frequency values</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adult[<span class="st">"Above/Below 50k"</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>count      32561
+unique         2
+top        &lt;=50K
+freq       24720
+Name: Above/Below 50k, dtype: object
+ &lt;=50K    24720
+ &gt;50K      7841
+Name: Above/Below 50k, dtype: int64
+ &lt;=50K    0.75919
+ &gt;50K     0.24081
+Name: Above/Below 50k, dtype: float64</code></pre>
+</section>
+<section id="setting-dtypes-and-saving-memory" class="level2">
+<h2 class="anchored" data-anchor-id="setting-dtypes-and-saving-memory">Setting dtypes and saving memory</h2>
+<p>A colleague of yours is exploring a list of occupations and how they relate to salary. She has given you a list of these occupations, list_of_occupations, and has a few simple questions such as “How many different titles are there?” and “Which position is the most common?”. ### Instructions - Create a pandas Series, series1, using the list_of_occupations (do not set the dtype). - Print both the data type and number of bytes used of this new Series. - Create a second pandas Series, series2, using the list_of_occupations and set the dtype to “category”. - Print both the data type and number of bytes used of this new Series.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>adult.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Index(['Age', 'Workclass', 'fnlgwt', 'Education', 'Education Num',
+       'Marital Status', 'Occupation', 'Relationship', 'Race', 'Sex',
+       'Capital Gain', 'Capital Loss', 'Hours/Week', 'Country',
+       'Above/Below 50k'],
+      dtype='object')</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>list_of_occupations <span class="op">=</span> adult.Occupation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Series, default dtype</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>series1 <span class="op">=</span> pd.Series(list_of_occupations)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the data type and number of bytes for series1</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"series1 data type:"</span>, series1.dtype)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"series1 number of bytes:"</span>, series1.nbytes)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Series, "category" dtype</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>series2 <span class="op">=</span> pd.Series(list_of_occupations, dtype<span class="op">=</span><span class="st">"category"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the data type and number of bytes for series2</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"series2 data type:"</span>, series2.dtype)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"series2 number of bytes:"</span>, series2.nbytes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>series1 data type: object
+series1 number of bytes: 260488
+series2 data type: category
+series2 number of bytes: 32681</code></pre>
+</section>
+<section id="creating-a-categorical-pandas-series" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-categorical-pandas-series">Creating a categorical pandas Series</h2>
+<p>Another colleague at work has collected information on the number of “Gold”, “Silver”, and “Bronze” medals won by the USA at the Summer &amp; Winter Olympics since 1896. She has provided this as a list, medals_won. Before taking a look at the total number of each medal won, you want to create a categorical pandas Series. However, you know that these medals have a specific order to them and that Gold is better than Silver, but Silver is better than Bronze. Use the object, medals_won, to help. ### Instructions - Create a categorical pandas Series without using pd.Series(). - Specify the three known medal categories such that “Bronze” &lt; “Silver” &lt; “Gold”. - Specify that the order of the categories is important when creating this Series.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>medals_won <span class="op">=</span> [<span class="st">'Silver'</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a> <span class="st">'Silver'</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a> <span class="st">'Bronze'</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a> <span class="st">'Silver'</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a> <span class="st">'Gold'</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a> <span class="st">'Silver'</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a> <span class="st">'Silver'</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a> <span class="st">'Gold'</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a> <span class="st">'Gold'</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a> <span class="st">'Bronze'</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a> <span class="st">'Bronze'</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a> <span class="st">'Gold'</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a> <span class="st">'Silver'</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a> <span class="st">'Silver'</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a> <span class="st">'Silver'</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a> <span class="st">'Gold'</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a> <span class="st">'Gold'</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a> <span class="st">'Bronze'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a categorical Series and specify the categories (let pandas know the order matters!)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>medals <span class="op">=</span> pd.Categorical(medals_won,categories<span class="op">=</span>[<span class="st">"Bronze"</span> , <span class="st">"Silver"</span> , <span class="st">"Gold"</span>],ordered<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(medals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>['Silver', 'Silver', 'Bronze', 'Silver', 'Gold', ..., 'Silver', 'Silver', 'Gold', 'Gold', 'Bronze']
+Length: 18
+Categories (3, object): ['Bronze' &lt; 'Silver' &lt; 'Gold']</code></pre>
+</section>
+<section id="setting-dtype-when-reading-data" class="level2">
+<h2 class="anchored" data-anchor-id="setting-dtype-when-reading-data">Setting dtype when reading data</h2>
+<p>You are preparing to create a machine learning model to predict a person’s income category using the adult census income dataset. You don’t have access to any cloud resources and you want to make sure that your laptop will be able to load the full dataset and process its contents. You have read in the first five rows of the dataset adult to help you understand what kind of columns are available. ### Instructions - Call the correct attribute on the adult DataFrame to review the data types. - Create a dictionary with keys: “Workclass”, “Education”, “Relationship”, and “Above/Below 50k”. Set the value for each key to be “category”. - Use the newly created dictionary, adult_dtypes, when reading in adult.csv</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the dtypes</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adult.dtypes)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dictionary with column names as keys and "category" as values</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>adult_dtypes <span class="op">=</span> {</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>   <span class="st">"Workclass"</span>: <span class="st">"category"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>   <span class="st">"Education"</span>: <span class="st">"category"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>   <span class="st">"Relationship"</span>: <span class="st">"category"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>   <span class="st">"Above/Below 50k"</span>: <span class="st">"category"</span> </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the CSV using the dtypes parameter</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>adult2 <span class="op">=</span> pd.read_csv(</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"datasets/adult.csv"</span>,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  dtype<span class="op">=</span>adult_dtypes</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adult2.dtypes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Age                 int64
+Workclass          object
+fnlgwt              int64
+Education          object
+Education Num       int64
+Marital Status     object
+Occupation         object
+Relationship       object
+Race               object
+Sex                object
+Capital Gain        int64
+Capital Loss        int64
+Hours/Week          int64
+Country            object
+Above/Below 50k    object
+dtype: object
+Age                   int64
+Workclass          category
+fnlgwt                int64
+Education          category
+Education Num         int64
+Marital Status       object
+Occupation           object
+Relationship       category
+Race                 object
+Sex                  object
+Capital Gain          int64
+Capital Loss          int64
+Hours/Week            int64
+Country              object
+Above/Below 50k    category
+dtype: object</code></pre>
+</section>
+<section id="create-lots-of-groups" class="level2">
+<h2 class="anchored" data-anchor-id="create-lots-of-groups">Create lots of groups</h2>
+<p>You want to find the mean Age of adults when grouping by the following categories:</p>
+<pre><code>"Workclass" (which has 9 categories)
+"Above/Below 50k" (which has 2 categories)
+"Education" (which has 16 categories).</code></pre>
+<p>You have developed the following bit of code:</p>
+<p>gb = adult.groupby(by=[ “Workclass”, “Above/Below 50k”, “Education”])</p>
+<p>How many groups are in the gb object and what is the maximum possible number of groups that could have been created? The dataset adult, and the gb object have been preloaded for you.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gb <span class="op">=</span> adult.groupby(by<span class="op">=</span>[ <span class="st">"Workclass"</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Above/Below 50k"</span>, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Education"</span>])</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gb.mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>                                                  Age  ...  Hours/Week
+Workclass    Above/Below 50k Education                 ...            
+ ?            &lt;=50K           10th          33.357143  ...   32.744898
+                              11th          32.372881  ...   31.711864
+                              12th          30.736842  ...   34.236842
+                              1st-4th       63.833333  ...   34.916667
+                              5th-6th       53.642857  ...   35.821429
+...                                               ...  ...         ...
+ State-gov    &gt;50K            Some-college  44.322581  ...   41.225806
+ Without-pay  &lt;=50K           7th-8th       65.000000  ...   50.000000
+                              Assoc-acdm    62.000000  ...   50.000000
+                              HS-grad       42.555556  ...   28.000000
+                              Some-college  53.000000  ...   35.333333
+
+[208 rows x 6 columns]</code></pre>
+</section>
+<section id="setting-up-a-.groupby-statement" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-a-.groupby-statement">Setting up a .groupby() statement</h2>
+<p>The gender wage gap is a hot-topic item in the United States and across the world. Using the adult census income dataset, loaded as adult, you want to check if some of the recently published data lines up with this income survey. ### Instructions - Split the adult dataset across the “Sex” and “Above/Below 50k” columns, saving this object as gb. - Print out the number of observations found in each group. - Using gb, find the average of each numerical column.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Group the adult dataset by "Sex" and "Above/Below 50k"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>gb <span class="op">=</span> adult.groupby(by<span class="op">=</span>[<span class="st">"Sex"</span> , <span class="st">"Above/Below 50k"</span>])</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out how many rows are in each created group</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gb.size())</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the mean of each group for all columns</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gb.mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Sex      Above/Below 50k
+ Female   &lt;=50K              9592
+          &gt;50K               1179
+ Male     &lt;=50K             15128
+          &gt;50K               6662
+dtype: int64
+                               Age         fnlgwt  ...  Capital Loss  Hours/Week
+Sex     Above/Below 50k                            ...                          
+ Female  &lt;=50K           36.210801  185999.381359  ...     47.364470   35.916701
+         &gt;50K            42.125530  183687.406277  ...    173.648855   40.426633
+ Male    &lt;=50K           37.147012  193093.609268  ...     56.806782   40.693879
+         &gt;50K            44.625788  188769.101321  ...    198.780396   46.366106
+
+[4 rows x 6 columns]</code></pre>
+</section>
+<section id="using-pandas-functions-effectively" class="level2">
+<h2 class="anchored" data-anchor-id="using-pandas-functions-effectively">Using pandas functions effectively</h2>
+<p>You are creating a Python application that will calculate summary statistics based on user-selected variables. The complete dataset is quite large. For now, you are setting up your code using part of the dataset, preloaded as adult. As you create a reusable process, make sure you are thinking through the most efficient way to setup the GroupBy object. ### Instructions - Create a list of the names for two user-selected variables: “Education” and “Above/Below 50k”. - Create a GroupBy object, gb, using the user_list as the grouping variables. - Calculate the mean of “Hours/Week” across each group using the most efficient approach covered in the video.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of user-selected variables</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>user_list <span class="op">=</span> [<span class="st">"Education"</span> , <span class="st">"Above/Below 50k"</span>]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a GroupBy object using this list</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>gb <span class="op">=</span> adult.groupby(by<span class="op">=</span>user_list)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the mean for the variable "Hours/Week" for each group - Be efficient!</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gb[<span class="st">"Hours/Week"</span>].mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Education      Above/Below 50k
+ 10th           &lt;=50K             36.574053
+                &gt;50K              43.774194
+ 11th           &lt;=50K             33.322870
+                &gt;50K              45.133333
+ 12th           &lt;=50K             35.035000
+                &gt;50K              44.818182
+ 1st-4th        &lt;=50K             37.864198
+                &gt;50K              48.833333
+ 5th-6th        &lt;=50K             38.539432
+                &gt;50K              46.000000
+ 7th-8th        &lt;=50K             38.830033
+                &gt;50K              47.500000
+ 9th            &lt;=50K             37.667351
+                &gt;50K              44.851852
+ Assoc-acdm     &lt;=50K             39.264339
+                &gt;50K              44.256604
+ Assoc-voc      &lt;=50K             40.817826
+                &gt;50K              43.853186
+ Bachelors      &lt;=50K             40.586152
+                &gt;50K              45.475462
+ Doctorate      &lt;=50K             45.429907
+                &gt;50K              47.513072
+ HS-grad        &lt;=50K             39.727510
+                &gt;50K              45.042985
+ Masters        &lt;=50K             41.223822
+                &gt;50K              45.917623
+ Preschool      &lt;=50K             36.647059
+ Prof-school    &lt;=50K             42.816993
+                &gt;50K              49.092199
+ Some-college   &lt;=50K             37.450203
+                &gt;50K              44.820476
+Name: Hours/Week, dtype: float64</code></pre>
+</section>
+</section>
+<section id="chapter-2-categorical-pandas-series" class="level1">
+<h1>Chapter 2: Categorical pandas Series</h1>
+<p>Now it’s time to learn how to set, add, and remove categories from a Series. You’ll also explore how to update, rename, collapse, and reorder categories, before applying your new skills to clean and access other data within your DataFrame.</p>
+<section id="adding-categories" class="level2">
+<h2 class="anchored" data-anchor-id="adding-categories">Adding categories</h2>
+<p>The owner of a local dog adoption agency has listings for almost 3,000 dogs. One of the most common questions they have been receiving lately is: “What type of area was the dog previously kept in?”. You are setting up a pipeline to do some analysis and want to look into what information is available regarding the “keep_in” variable. Both pandas, as pd, and the dogs dataset have been preloaded. ### Instructions - Print the frequency of the responses in the “keep_in” variable and make sure the count of NaN values are shown. - Convert the “keep_in” variable to a categorical Series. - Add the list of new categories provided by the adoption agency, new_categories, to the “keep_in” column. - Print the frequency counts of the keep_in column and do not drop NaN values.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check frequency counts while also printing the NaN count</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs[<span class="st">"keep_in"</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Switch to a categorical variable</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"keep_in"</span>] <span class="op">=</span> dogs[<span class="st">"keep_in"</span>].astype(<span class="st">"category"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add new categories</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>new_categories <span class="op">=</span> [<span class="st">"Unknown History"</span>, <span class="st">"Open Yard (Countryside)"</span>]</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"keep_in"</span>] <span class="op">=</span> dogs[<span class="st">"keep_in"</span>].cat.add_categories(new_categories)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Check frequency counts one more time</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs[<span class="st">"keep_in"</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>both flat and garden    1224
+NaN                     1021
+garden                   510
+flat                     182
+Name: keep_in, dtype: int64
+both flat and garden       1224
+NaN                        1021
+garden                      510
+flat                        182
+Unknown History               0
+Open Yard (Countryside)       0
+Name: keep_in, dtype: int64</code></pre>
+</section>
+<section id="removing-categories" class="level2">
+<h2 class="anchored" data-anchor-id="removing-categories">Removing categories</h2>
+<p>Before adopting dogs, parents might want to know whether or not a new dog likes children. When looking at the adoptable dogs dataset, dogs, you notice that the frequency of responses for the categorical Series “likes_children” looks like this:</p>
+<p>maybe 1718 yes 1172 no 47</p>
+<p>The owner of the data wants to convert all “maybe” responses to “no”, as it would be unsafe to let a family adapt a dog if it doesn’t like children. The code to convert all “maybe” to “no” is provided in Step 1. However, the option for “maybe” still remains as a category. Instructions - Print out the categories of the categorical Series dogs[“likes_children”]. - Print out the frequency table for “likes_children” to see if any “maybe” responses remain. - Remove the “maybe” category from the Series. - Print out the categories of “likes_children” one more time.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Index(['ID', 'name', 'age', 'sex', 'breed', 'date_found', 'adoptable_from',
+       'posted', 'color', 'coat', 'size', 'neutered', 'housebroken',
+       'likes_people', 'likes_children', 'get_along_males',
+       'get_along_females', 'get_along_cats', 'keep_in'],
+      dtype='object')</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"likes_children"</span>] <span class="op">=</span> dogs[<span class="st">"likes_children"</span>].astype(<span class="st">"category"</span>) </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Set "maybe" to be "no"</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>dogs.loc[dogs[<span class="st">"likes_children"</span>] <span class="op">==</span> <span class="st">"maybe"</span>, <span class="st">"likes_children"</span>] <span class="op">=</span> <span class="st">"no"</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out categories</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs[<span class="st">"likes_children"</span>].cat.categories)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the frequency table</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs[<span class="st">"likes_children"</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Index(['no', 'yes'], dtype='object')
+yes    1172
+no       47
+Name: likes_children, dtype: int64</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>dogs<span class="op">=</span>pd.read_csv(<span class="st">"datasets/ShelterDogs.csv"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs.likes_children.unique())</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"likes_children"</span>] <span class="op">=</span> dogs[<span class="st">"likes_children"</span>].astype(<span class="st">"category"</span>) </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out categories</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs[<span class="st">"likes_children"</span>].cat.categories)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the `"maybe" category</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"likes_children"</span>] <span class="op">=</span> dogs[<span class="st">"likes_children"</span>].cat.remove_categories([<span class="st">'no'</span>])</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs[<span class="st">"likes_children"</span>].value_counts())</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the categories one more time</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs[<span class="st">"likes_children"</span>].cat.categories)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>[nan 'yes' 'no']
+Index(['no', 'yes'], dtype='object')
+yes    1172
+Name: likes_children, dtype: int64
+Index(['yes'], dtype='object')</code></pre>
+</section>
+<section id="renaming-categories" class="level2">
+<h2 class="anchored" data-anchor-id="renaming-categories">Renaming categories</h2>
+<p>The likes_children column of the adoptable dogs dataset needs an update. Here are the current frequency counts:</p>
+<p><code>Maybe?        1718</code></p>
+<p><code>yes           1172</code></p>
+<p><code>no             47</code></p>
+<p>Two things that stick out are the differences in capitalization and the ? found in the Maybe? category. The data should be cleaner than this and you are being asked to make a few changes. ### Instructions - Create a dictionary called my_changes that will update the Maybe? category to Maybe. - Rename the categories in likes_children using the my_changes dictionary. - Update the categories one more time so that all categories are uppercase using the .upper() method. - Print out the categories of the updated likes_children Series.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the my_changes dictionary</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>my_changes<span class="op">=</span>{<span class="st">"Maybe?"</span>:<span class="st">"Maybe"</span>}</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the categories listed in the my_changes dictionary</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"likes_children"</span>] <span class="op">=</span> dogs[<span class="st">"likes_children"</span>].cat.rename_categories(new_categories<span class="op">=</span>my_changes)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use a lambda function to convert all categories to uppercase using upper()</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"likes_children"</span>] <span class="op">=</span>  dogs[<span class="st">"likes_children"</span>].cat.rename_categories(<span class="kw">lambda</span> c: c.upper())</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the list of categories</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs[<span class="st">"likes_children"</span>].cat.categories)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Index(['YES'], dtype='object')</code></pre>
+</section>
+<section id="collapsing-categories" class="level2">
+<h2 class="anchored" data-anchor-id="collapsing-categories">Collapsing categories</h2>
+<p>One problem that users of a local dog adoption website have voiced is that there are too many options. As they look through the different types of dogs, they are getting lost in the overwhelming amount of choice. To simplify some of the data, you are going through each column and collapsing data if appropriate. To preserve the original data, you are going to make new updated columns in the dogs dataset. You will start with the coat column. The frequency table is listed here:</p>
+<p><code>short          1969</code></p>
+<p><code>medium          565</code></p>
+<p><code>wirehaired      220</code></p>
+<p><code>long            180</code></p>
+<p><code>medium-long       3</code></p>
+<section id="instructions" class="level3">
+<h3 class="anchored" data-anchor-id="instructions">Instructions</h3>
+<ul>
+<li>Create a dictionary named update_coats to map both wirehaired and medium-long to medium.</li>
+<li>Collapse the categories listed in this new dictionary and save this as a new column, coat_collapsed.</li>
+<li>Convert this new column into a categorical Series.</li>
+<li>Print the frequency table of this new Series.</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the update_coats dictionary</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>update_coats <span class="op">=</span> {<span class="st">"wirehaired"</span>:<span class="st">"medium"</span>, <span class="st">"medium-long"</span> : <span class="st">"medium"</span>}</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column, coat_collapsed</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"coat_collapsed"</span>] <span class="op">=</span> dogs[<span class="st">"coat"</span>].replace(update_coats)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the column to categorical</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"coat_collapsed"</span>]<span class="op">=</span>dogs[<span class="st">"coat_collapsed"</span>].astype(<span class="st">"category"</span>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the frequency table</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs[<span class="st">"coat_collapsed"</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>short     1972
+medium     785
+long       180
+Name: coat_collapsed, dtype: int64</code></pre>
+</section>
+</section>
+<section id="reordering-categories-in-a-series" class="level2">
+<h2 class="anchored" data-anchor-id="reordering-categories-in-a-series">Reordering categories in a Series</h2>
+<p>The owner of a local dog adoption agency has asked you take a look at her data on adoptable dogs. She is specifically interested in the size of the dogs in her dataset and wants to know if there are differences in other variables, given a dog’s size. The adoptable dogs dataset has been loaded as dogs and the “size” variable has already been saved as a categorical column. ### Instructions - Print out the current categories of the “size” pandas Series. - Reorder categories in the “size” column using the categories “small”, “medium”, “large”, do not set the ordered parameter. - Update the reorder_categories() method so that pandas knows the variable has a natural order. - Add a argument to the method so that the “size” column is updated without needing to save it to itself.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"size"</span>] <span class="op">=</span> dogs[<span class="st">"size"</span>].astype(<span class="st">"category"</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the current categories of the size variable</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs[<span class="st">"size"</span>].cat.categories)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder the categories, specifying the Series is ordinal, and overwriting the original series</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"size"</span>].cat.reorder_categories(</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  new_categories<span class="op">=</span>[<span class="st">"small"</span>, <span class="st">"medium"</span>, <span class="st">"large"</span>],</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  ordered<span class="op">=</span><span class="va">True</span>,<span class="co">#False</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  inplace<span class="op">=</span><span class="va">True</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Index(['large', 'medium', 'small'], dtype='object')</code></pre>
+</section>
+<section id="using-.groupby-after-reordering" class="level2">
+<h2 class="anchored" data-anchor-id="using-.groupby-after-reordering">Using .groupby() after reordering</h2>
+<p>It is now time to run some analyses on the adoptable dogs dataset that is focused on the “size” of the dog. You have already developed some code to reorder the categories. In this exercise, you will develop two similar .groupby() statements to help better understand the effect of “size” on other variables. dogs has been preloaded for you. ### Instructions - Print out the frequency table of “sex” for each category of the “size” column. - Print out the frequency table of “keep_in” for each category of the “size” column.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Previous code</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"size"</span>].cat.reorder_categories(</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  new_categories<span class="op">=</span>[<span class="st">"small"</span>, <span class="st">"medium"</span>, <span class="st">"large"</span>],</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  ordered<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  inplace<span class="op">=</span><span class="va">True</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># How many Male/Female dogs are available of each size?</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs.groupby(<span class="st">'size'</span>)[<span class="st">'sex'</span>].value_counts())</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Do larger dogs need more room to roam?</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs.groupby(<span class="st">"size"</span>)[<span class="st">"keep_in"</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>size    sex   
+small   male       260
+        female     214
+medium  male      1090
+        female     854
+large   male       331
+        female     188
+Name: sex, dtype: int64
+size    keep_in             
+small   both flat and garden    238
+        flat                     80
+        garden                   21
+medium  both flat and garden    795
+        garden                  317
+        flat                     97
+large   both flat and garden    191
+        garden                  172
+        flat                      5
+Name: keep_in, dtype: int64</code></pre>
+</section>
+<section id="cleaning-variables" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-variables">Cleaning variables</h2>
+<p>Users of an online entry system used to have the ability to freely type in responses to questions. This is causing issues when trying to analyze the adoptable dogs dataset, dogs. Here is the current frequency table of the “sex” column:</p>
+<p>`male 1672</p>
+<p>female 1249</p>
+<p>MALE 10</p>
+<p>FEMALE 5</p>
+<p>Malez 1`</p>
+<p>Now that the system only takes responses of “female” and “male”, you want this variable to match the updated system. ### Instructions - Update the misspelled response “Malez” to be “male” by creating the replacement map, replace_map. - Replace all occurrences of “Malez” with “male” by using replace_map. - Remove the leading spaces of the ” MALE” and ” FEMALE” responses. - Convert all responses to be strictly lowercase. - Convert the “sex” column to a categorical pandas Series.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix the misspelled word</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>replace_map <span class="op">=</span> {<span class="st">"Malez"</span>: <span class="st">"male"</span>}</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the sex column using the created map</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"sex"</span>] <span class="op">=</span> dogs[<span class="st">"sex"</span>].replace(replace_map)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Strip away leading whitespace</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"sex"</span>] <span class="op">=</span> dogs[<span class="st">"sex"</span>].<span class="bu">str</span>.strip()</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Make all responses lowercase</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"sex"</span>] <span class="op">=</span> dogs[<span class="st">"sex"</span>].<span class="bu">str</span>.lower()</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a categorical Series</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>dogs[<span class="st">"sex"</span>] <span class="op">=</span> dogs.sex.astype(<span class="st">"category"</span>)</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs[<span class="st">"sex"</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>male      1681
+female    1256
+Name: sex, dtype: int64</code></pre>
+</section>
+<section id="accessing-and-filtering-data" class="level2">
+<h2 class="anchored" data-anchor-id="accessing-and-filtering-data">Accessing and filtering data</h2>
+<p>You are working on a Python application to display information about the dogs available for adoption at your local animal shelter. Some of the variables of interest, such as “breed”, “size”, and “coat”, are saved as categorical variables. In order for this application to work properly, you need to be able to access and filter data using these columns.</p>
+<p>The ID variable has been set as the index of the pandas DataFrame dogs. ### Instructions - Print the “coat” value for the dog with an ID of 23807. - For dogs with a long “coat”, print the number of each “sex”. - Print the average age of dogs with a “breed” of “English Cocker Spaniel”. - Filter to the dogs with “English” in their “breed” name using the .contains() method.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>dogs.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table class="table">
+<thead>
+<tr class="header">
+<th>
+<p>
+</p>
+</th>
+<th>
+<p>
+ID
+</p>
+</th>
+<th>
+<p>
+name
+</p>
+</th>
+<th>
+<p>
+age
+</p>
+</th>
+<th>
+<p>
+sex
+</p>
+</th>
+<th>
+<p>
+breed
+</p>
+</th>
+<th>
+<p>
+date_found
+</p>
+</th>
+<th>
+<p>
+adoptable_from
+</p>
+</th>
+<th>
+<p>
+posted
+</p>
+</th>
+<th>
+<p>
+color
+</p>
+</th>
+<th>
+<p>
+coat
+</p>
+</th>
+<th>
+<p>
+size
+</p>
+</th>
+<th>
+<p>
+neutered
+</p>
+</th>
+<th>
+<p>
+housebroken
+</p>
+</th>
+<th>
+<p>
+likes_people
+</p>
+</th>
+<th>
+<p>
+likes_children
+</p>
+</th>
+<th>
+<p>
+get_along_males
+</p>
+</th>
+<th>
+<p>
+get_along_females
+</p>
+</th>
+<th>
+<p>
+get_along_cats
+</p>
+</th>
+<th>
+<p>
+keep_in
+</p>
+</th>
+<th>
+<p>
+coat_collapsed
+</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+<p>
+0
+</p>
+</td>
+<td>
+<p>
+23807
+</p>
+</td>
+<td>
+<p>
+Gida
+</p>
+</td>
+<td>
+<p>
+0.25
+</p>
+</td>
+<td>
+<p>
+female
+</p>
+</td>
+<td>
+<p>
+Unknown Mix
+</p>
+</td>
+<td>
+<p>
+12/10/19
+</p>
+</td>
+<td>
+<p>
+12/11/19
+</p>
+</td>
+<td>
+<p>
+12/11/19
+</p>
+</td>
+<td>
+<p>
+red
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+<td>
+<p>
+small
+</p>
+</td>
+<td>
+<p>
+no
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+1
+</p>
+</td>
+<td>
+<p>
+533
+</p>
+</td>
+<td>
+<p>
+Frida És Ricsi
+</p>
+</td>
+<td>
+<p>
+0.17
+</p>
+</td>
+<td>
+<p>
+female
+</p>
+</td>
+<td>
+<p>
+Unknown Mix
+</p>
+</td>
+<td>
+<p>
+12/1/19
+</p>
+</td>
+<td>
+<p>
+12/1/19
+</p>
+</td>
+<td>
+<p>
+12/9/19
+</p>
+</td>
+<td>
+<p>
+black and white
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+<td>
+<p>
+small
+</p>
+</td>
+<td>
+<p>
+no
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+yes
+</p>
+</td>
+<td>
+<p>
+YES
+</p>
+</td>
+<td>
+<p>
+yes
+</p>
+</td>
+<td>
+<p>
+yes
+</p>
+</td>
+<td>
+<p>
+yes
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+<p>
+2
+</p>
+</td>
+<td>
+<p>
+23793
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+4.00
+</p>
+</td>
+<td>
+<p>
+male
+</p>
+</td>
+<td>
+<p>
+Unknown Mix
+</p>
+</td>
+<td>
+<p>
+12/8/19
+</p>
+</td>
+<td>
+<p>
+12/23/19
+</p>
+</td>
+<td>
+<p>
+12/8/19
+</p>
+</td>
+<td>
+<p>
+saddle back
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+<td>
+<p>
+medium
+</p>
+</td>
+<td>
+<p>
+no
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+3
+</p>
+</td>
+<td>
+<p>
+23795
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+1.00
+</p>
+</td>
+<td>
+<p>
+male
+</p>
+</td>
+<td>
+<p>
+Unknown Mix
+</p>
+</td>
+<td>
+<p>
+12/8/19
+</p>
+</td>
+<td>
+<p>
+12/23/19
+</p>
+</td>
+<td>
+<p>
+12/8/19
+</p>
+</td>
+<td>
+<p>
+yellow-brown
+</p>
+</td>
+<td>
+<p>
+medium
+</p>
+</td>
+<td>
+<p>
+medium
+</p>
+</td>
+<td>
+<p>
+no
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+medium
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+<p>
+4
+</p>
+</td>
+<td>
+<p>
+23806
+</p>
+</td>
+<td>
+<p>
+Amy
+</p>
+</td>
+<td>
+<p>
+2.00
+</p>
+</td>
+<td>
+<p>
+female
+</p>
+</td>
+<td>
+<p>
+French Bulldog Mix
+</p>
+</td>
+<td>
+<p>
+12/10/19
+</p>
+</td>
+<td>
+<p>
+12/11/19
+</p>
+</td>
+<td>
+<p>
+12/11/19
+</p>
+</td>
+<td>
+<p>
+black
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+<td>
+<p>
+small
+</p>
+</td>
+<td>
+<p>
+no
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+5
+</p>
+</td>
+<td>
+<p>
+23801
+</p>
+</td>
+<td>
+<p>
+Alex
+</p>
+</td>
+<td>
+<p>
+4.25
+</p>
+</td>
+<td>
+<p>
+male
+</p>
+</td>
+<td>
+<p>
+Unknown Mix
+</p>
+</td>
+<td>
+<p>
+12/9/19
+</p>
+</td>
+<td>
+<p>
+12/24/19
+</p>
+</td>
+<td>
+<p>
+12/9/19
+</p>
+</td>
+<td>
+<p>
+yellow-brown
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+<td>
+<p>
+small
+</p>
+</td>
+<td>
+<p>
+yes
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+<p>
+6
+</p>
+</td>
+<td>
+<p>
+534
+</p>
+</td>
+<td>
+<p>
+Ricsi És Frida
+</p>
+</td>
+<td>
+<p>
+0.17
+</p>
+</td>
+<td>
+<p>
+male
+</p>
+</td>
+<td>
+<p>
+Unknown Mix
+</p>
+</td>
+<td>
+<p>
+12/1/19
+</p>
+</td>
+<td>
+<p>
+12/1/19
+</p>
+</td>
+<td>
+<p>
+12/9/19
+</p>
+</td>
+<td>
+<p>
+brown
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+<td>
+<p>
+small
+</p>
+</td>
+<td>
+<p>
+no
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+yes
+</p>
+</td>
+<td>
+<p>
+YES
+</p>
+</td>
+<td>
+<p>
+yes
+</p>
+</td>
+<td>
+<p>
+yes
+</p>
+</td>
+<td>
+<p>
+yes
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+7
+</p>
+</td>
+<td>
+<p>
+23805
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+0.17
+</p>
+</td>
+<td>
+<p>
+female
+</p>
+</td>
+<td>
+<p>
+Unknown Mix
+</p>
+</td>
+<td>
+<p>
+12/10/19
+</p>
+</td>
+<td>
+<p>
+12/25/19
+</p>
+</td>
+<td>
+<p>
+12/11/19
+</p>
+</td>
+<td>
+<p>
+gray and white
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+<td>
+<p>
+medium
+</p>
+</td>
+<td>
+<p>
+no
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+<p>
+8
+</p>
+</td>
+<td>
+<p>
+23809
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+0.17
+</p>
+</td>
+<td>
+<p>
+female
+</p>
+</td>
+<td>
+<p>
+Unknown Mix
+</p>
+</td>
+<td>
+<p>
+12/11/19
+</p>
+</td>
+<td>
+<p>
+12/26/19
+</p>
+</td>
+<td>
+<p>
+12/12/19
+</p>
+</td>
+<td>
+<p>
+black
+</p>
+</td>
+<td>
+<p>
+medium
+</p>
+</td>
+<td>
+<p>
+medium
+</p>
+</td>
+<td>
+<p>
+no
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+medium
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+9
+</p>
+</td>
+<td>
+<p>
+1801
+</p>
+</td>
+<td>
+<p>
+Újhartyáni Mazsi
+</p>
+</td>
+<td>
+<p>
+0.17
+</p>
+</td>
+<td>
+<p>
+female
+</p>
+</td>
+<td>
+<p>
+Unknown Mix
+</p>
+</td>
+<td>
+<p>
+12/10/19
+</p>
+</td>
+<td>
+<p>
+12/10/19
+</p>
+</td>
+<td>
+<p>
+12/11/19
+</p>
+</td>
+<td>
+<p>
+brown and white
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+<td>
+<p>
+small
+</p>
+</td>
+<td>
+<p>
+no
+</p>
+</td>
+<td>
+<p>
+NaN
+</p>
+</td>
+<td>
+<p>
+yes
+</p>
+</td>
+<td>
+<p>
+YES
+</p>
+</td>
+<td>
+<p>
+yes
+</p>
+</td>
+<td>
+<p>
+yes
+</p>
+</td>
+<td>
+<p>
+yes
+</p>
+</td>
+<td>
+<p>
+flat
+</p>
+</td>
+<td>
+<p>
+short
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>dogs<span class="op">=</span>pd.read_csv(<span class="st">"datasets/ShelterDogs.csv"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>dogs.set_index([<span class="st">"ID"</span>],inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>dogs.head(<span class="dv">2</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the category of the coat for ID 23807</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs.loc[<span class="dv">23807</span>, <span class="st">"coat"</span>])</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the count of male and female dogs who have a "long" coat</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs.loc[dogs.coat<span class="op">==</span><span class="st">"long"</span>, <span class="st">'sex'</span>].value_counts())</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the mean age of dogs with a breed of "English Cocker Spaniel"</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs.loc[dogs.breed<span class="op">==</span><span class="st">"English Cocker Spaniel"</span>, <span class="st">"age"</span>].mean())</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of dogs that have "English" in their breed name</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dogs[dogs[<span class="st">"breed"</span>].<span class="bu">str</span>.contains(<span class="st">"English"</span>, regex<span class="op">=</span><span class="va">False</span>)].shape[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>short
+male      124
+female     56
+Name: sex, dtype: int64
+8.186153846153847
+35</code></pre>
+</section>
+</section>
+<section id="chapter-3-visualizing-categorical-data" class="level1">
+<h1>Chapter 3: Visualizing Categorical Data</h1>
+<p>In this chapter, you’ll use the seaborn Python library to create informative visualizations using categorical data—including categorical plots (cat-plot), box plots, bar plots, point plots, and count plots. You’ll then learn how to visualize categorical columns and split data across categorical columns to visualize summary statistics of numerical columns.</p>
+<section id="creating-a-box-plot" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-box-plot">Creating a box plot</h2>
+<p>When people leave reviews for products, services, or destinations, people reading those reviews can sometimes mark the original review as helpful. If enough people mark the review as helpful, future readers of these reviews might be more likely to trust the content of the original review.</p>
+<p>Using the reviews dataset, explore the continuous variable “Helpful votes” across the different categories found in the “Traveler type” variable.</p>
+<p>Note that for the remainder of this chapter, seaborn as sns and matplotlib.pyplot as plt will be preloaded for you. ### Instructions - Set the font size of your graphic to be 1.25. - Set the background of the graphic to be “darkgrid”. - Create a boxplot using catplot() with “Helpful votes” as the continuous variable split across each “Traveler type”. Make sure that you are using the reviews dataset.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>reviews<span class="op">=</span>pd.read_csv(<span class="st">"datasets/lasvegas_tripadvisor.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the font size to 1.25</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.25</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the background to "darkgrid"</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">'darkgrid'</span>)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a boxplot</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span> <span class="st">"Traveler type"</span>,y<span class="op">=</span><span class="st">"Helpful votes"</span>,data<span class="op">=</span>reviews,kind<span class="op">=</span><span class="st">'box'</span>)</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_44_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="creating-a-bar-plot" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-bar-plot">Creating a bar plot</h2>
+<p>Las Vegas hotels are seeing large variations in how helpful reviews appear to other people. The owners of these hotels are curious if there are times of the year when reviews have been more helpful to their potential guests. Help the owners understand their reviews better by creating a bar plot of the average number of helpful votes per review across the categorical variable “Period of stay”. The dataset reviews has been preloaded for you. ### Instructions - Print out the frequency counts of the variable “Period of stay” to make sure each category has data. - Create a bar plot using catplot(). - Split the reviews dataset on “Period of stay” across the x-axis. - Specify the numerical variable to aggregate on as “Helpful votes”.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the frequency counts of "Period of stay"</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reviews[<span class="st">"Period of stay"</span>].value_counts())</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.4</span>)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"whitegrid"</span>)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar plot of "Helpful votes" by "Period of stay"</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>sns.catplot(data<span class="op">=</span>reviews,x<span class="op">=</span><span class="st">"Period of stay"</span>,y<span class="op">=</span><span class="st">"Helpful votes"</span>,kind<span class="op">=</span><span class="st">'bar'</span>)</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Mar-May    128
+Jun-Aug    126
+Sep-Nov    126
+Dec-Feb    124
+Name: Period of stay, dtype: int64</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_46_1.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="ordering-categories" class="level2">
+<h2 class="anchored" data-anchor-id="ordering-categories">Ordering categories</h2>
+<p>Not all categories are created equal. In the hotel review dataset, reviews, hotel owners know that most of their customers are from North America. When visualizing data broken out by “User continent” they might want North America to appear first. An ordered list of user continents has been provided as continent_categories. In this exercise, you will work through preparing a visualization that is ordered by the frequency counts of a Series. ### Instructions - Create a bar chart with “User continent” along the x-axis and “Score” along the y-axis. - Print out the frequency counts of “User continent”. - Convert the “User continent” Series to a categorical and create a bar plot with “User continent” along the x-axis. - Reorder the “User continent” Series using the ordered list, continent_categories, and rerun the graphic.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar chart</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">.9</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"whitegrid"</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"User continent"</span>, y<span class="op">=</span><span class="st">"Score"</span>, data<span class="op">=</span>reviews, kind<span class="op">=</span><span class="st">'bar'</span>)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_48_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar chart</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">.9</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"whitegrid"</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"User continent"</span>, y<span class="op">=</span><span class="st">"Score"</span>, data<span class="op">=</span>reviews, kind<span class="op">=</span><span class="st">"bar"</span>)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the frequency counts for "User continent"</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reviews[<span class="st">"User continent"</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>North America    295
+Europe           118
+Oceania           41
+Asia              36
+Africa             7
+South America      7
+Name: User continent, dtype: int64</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_49_1.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set style</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">.9</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"whitegrid"</span>)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the frequency counts for "User continent"</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reviews[<span class="st">"User continent"</span>].value_counts())</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert "User continent" to a categorical variable</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>reviews[<span class="st">"User continent"</span>] <span class="op">=</span> reviews[<span class="st">"User continent"</span>].astype(<span class="st">'category'</span>)</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"User continent"</span>, y<span class="op">=</span><span class="st">"Score"</span>, data<span class="op">=</span>reviews, kind<span class="op">=</span><span class="st">"bar"</span>)</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>North America    295
+Europe           118
+Oceania           41
+Asia              36
+Africa             7
+South America      7
+Name: User continent, dtype: int64</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_50_1.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set style</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">.9</span>)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"whitegrid"</span>)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the frequency counts for "User continent"</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reviews[<span class="st">"User continent"</span>].value_counts())</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert "User continent" to a categorical variable</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>reviews[<span class="st">"User continent"</span>] <span class="op">=</span> reviews[<span class="st">"User continent"</span>].astype(<span class="st">"category"</span>)</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder "User continent" using continent_categories and rerun the graphic</span></span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>continent_categories <span class="op">=</span> <span class="bu">list</span>(reviews[<span class="st">"User continent"</span>].value_counts().index)</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>reviews[<span class="st">"User continent"</span>] <span class="op">=</span> reviews[<span class="st">"User continent"</span>].cat.reorder_categories(new_categories<span class="op">=</span>continent_categories)</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"User continent"</span>, y<span class="op">=</span><span class="st">"Score"</span>, data<span class="op">=</span>reviews, kind<span class="op">=</span><span class="st">"bar"</span>)</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>North America    295
+Europe           118
+Oceania           41
+Asia              36
+Africa             7
+South America      7
+Name: User continent, dtype: int64</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_51_1.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="bar-plot-using-hue" class="level2">
+<h2 class="anchored" data-anchor-id="bar-plot-using-hue">Bar plot using hue</h2>
+<p>Aggregating information across multiple categories is often necessary to help stakeholders better understand their data. In preparation for building a dashboard that will allow users to select up to two variables when creating visualizations, you want to test visualizations that use different combinations of categorical variables using a bar plot. ### Instructions - 1 Update the plot so that “Casino” (along the x-axis) and “Free internet” (to color the bars) are used to split the data. - 2 Switch the categories so that “Free internet” is on the x-axis and “Casino” is in the legend. - 3 Update the x parameter to be “User continent”. - 4 The font was too large for the last visualization - change the font size to 1.0.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a second category to split the data on: "Free internet"</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"darkgrid"</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"Casino"</span>, y<span class="op">=</span><span class="st">"Score"</span>, data<span class="op">=</span>reviews, kind<span class="op">=</span><span class="st">"bar"</span>, hue<span class="op">=</span><span class="st">"Free internet"</span>)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_53_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Switch the x and hue categories</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"darkgrid"</span>)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">'Free internet'</span>, y<span class="op">=</span><span class="st">"Score"</span>, data<span class="op">=</span>reviews, kind<span class="op">=</span><span class="st">"bar"</span>, hue<span class="op">=</span><span class="st">'Casino'</span>)</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_54_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update x to be "User continent"</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"darkgrid"</span>)</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"User continent"</span>, y<span class="op">=</span><span class="st">"Score"</span>, data<span class="op">=</span>reviews, kind<span class="op">=</span><span class="st">"bar"</span>, hue<span class="op">=</span><span class="st">"Casino"</span>)</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_55_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lower the font size so that all text fits on the screen.</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"darkgrid"</span>)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"User continent"</span>, y<span class="op">=</span><span class="st">"Score"</span>, data<span class="op">=</span>reviews, kind<span class="op">=</span><span class="st">"bar"</span>, hue<span class="op">=</span><span class="st">"Casino"</span>)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_56_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="creating-a-point-plot" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-point-plot">Creating a point plot</h2>
+<p>Creating helpful visualizations sometimes requires a lot of testing. You have been asked to create a visualization that shows the number of reviews, “Nr. reviews”, which is the number of reviews a reviewer has previously written, across a hotel’s star rating, “Hotel stars”. Since the number of reviews is numerical, you have decided to use a point plot to show the mean of the data across the categories. ### Instructions - Using the catplot() function, create a point plot. - Split the data across the x-axis using “Hotel stars”. - Specify the numerical variable to visualize to “Nr. reviews”. - Update the arguments so that any lines that appear do not overlap.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a point plot with catplot using "Hotel stars" and "Nr. reviews"</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>sns.catplot(</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Split the data across Hotel stars and summarize Nr. reviews</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span><span class="st">"Hotel stars"</span>,</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  y<span class="op">=</span><span class="st">"Nr. reviews"</span>,</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  data<span class="op">=</span>reviews,</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Specify a point plot</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>  kind<span class="op">=</span><span class="st">'point'</span>,</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>  hue<span class="op">=</span><span class="st">"Pool"</span>,</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Make sure the lines and points don't overlap</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>  dodge<span class="op">=</span><span class="va">True</span></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_58_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="creating-a-count-plot" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-count-plot">Creating a count plot</h2>
+<p>When creating quick analysis of frequency counts, you have been using .value_counts(). This is a great way for you to see the counts and get an idea of which categories are present in the data. However, sending frequency tables to clients or coworkers may not always be a good idea. For this exercise, you will visualize the number of reviews by their “Score”. Although “Score” has been used as a numerical variable in the past, it can be used as a categorical variable given that it has five unique values that are ordered from worst to best. The reviews dataset has been preloaded. ### Instructions - Use the catplot() function to display count frequencies using the reviews dataset. - Count the frequencies for the “Score” variable across the x-axis. - When counting the frequencies, color the bars using the “Traveler type” column.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.4</span>)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"darkgrid"</span>)</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a catplot that will count the frequency of "Score" across "Traveler type"</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>sns.catplot(</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span><span class="st">"Score"</span>,kind<span class="op">=</span><span class="st">"count"</span>,hue<span class="op">=</span><span class="st">"Traveler type"</span>,data<span class="op">=</span>reviews</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_60_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="one-visualization-per-group" class="level2">
+<h2 class="anchored" data-anchor-id="one-visualization-per-group">One visualization per group</h2>
+<p>While working on a data exploration project, you have been asked to visualize the number of reviews of hotels by “Period of stay” and by the day of the week, “Review weekday”. The goal of this visualization is to see what day of the week has the most reviews for each of the four periods of stay. The reviews dataset has been preloaded for you, as well as both seaborn, as sns, and matplotlib.pyplot as plt. ### Instructions - Create a catplot() using “count” as the type of graphic. - Count the number of reviews by “Review weekday”. - Create individual plots for each “Period of stay”. - Wrap the plots after every 2nd graphic.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a catplot for each "Period of stay" broken down by "Review weekday"</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.catplot(</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Make sure Review weekday is along the x-axis</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span><span class="st">"Review weekday"</span>,</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Specify Period of stay as the column to create individual graphics for</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>  col<span class="op">=</span><span class="st">"Period of stay"</span>,</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Specify that a count plot should be created</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>  kind<span class="op">=</span><span class="st">'count'</span>,</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Wrap the plots after every 2nd graphic.</span></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>  col_wrap<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>  data<span class="op">=</span>reviews</span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_62_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="updating-categorical-plots" class="level2">
+<h2 class="anchored" data-anchor-id="updating-categorical-plots">Updating categorical plots</h2>
+<p>Hotels are constantly working to get better reviews from their customers. A hotel chain has asked you to create visualizations to help the company understand why people might provide various ratings after staying at their hotels. A manager has asked if hotels with “Free internet” receive higher reviews given the “Traveler type”.</p>
+<p>Creating visualizations is an iterative process. In this exercise, you will start with a basic graphic and iteratively add features until you have a finished product. The reviews dataset has been preloaded for you, as well as both seaborn, as sns, and matplotlib.pyplot as plt. ### Instructions - Adjust the color of the plot to be seaborn’s “Set2” palette. - Add the title “Hotel Score by Traveler Type and Free Internet Access”. - Update the axis labels to be “Free Internet” for the x-axis and “Average Review Rating” for the y-axis. - Adjust the starting height of the graphic to be 93% of the full visualization height.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust the color</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.catplot(</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span><span class="st">"Free internet"</span>, y<span class="op">=</span><span class="st">"Score"</span>,</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>  hue<span class="op">=</span><span class="st">"Traveler type"</span>, kind<span class="op">=</span><span class="st">"bar"</span>,</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  data<span class="op">=</span>reviews,</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  palette<span class="op">=</span>sns.color_palette(<span class="st">"Set2"</span>)</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a title</span></span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>ax.fig.suptitle(<span class="st">"Hotel Score by Traveler Type and Free Internet Access"</span>)</span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the axis labels</span></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>ax.set_axis_labels(<span class="st">"Free Internet"</span>, <span class="st">"Average Review Rating"</span>)</span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust the starting height of the graphic</span></span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(top<span class="op">=</span><span class="fl">0.93</span>)</span>
+<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="12_Working_with_Categorical_Data_in_Python_files/12_Working_with_Categorical_Data_in_Python_64_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="chapter-4-pitfalls-and-encoding" class="level1">
+<h1>Chapter 4: Pitfalls and Encoding</h1>
+<p>Lastly, you’ll learn how to overcome the common pitfalls of using categorical data. You’ll also grow your data encoding skills as you are introduced to label encoding and one-hot encoding—perfect for helping you prepare your data for use in machine learning algorithms.</p>
+<section id="overcoming-pitfalls-string-issues" class="level2">
+<h2 class="anchored" data-anchor-id="overcoming-pitfalls-string-issues">Overcoming pitfalls: string issues</h2>
+<p>Being able to effectively use categorical pandas Series is an important skill to have in your toolbelt. Unfortunately, there are several common problems that you may run into when using these Series.</p>
+<p>In this exercise, you will work through code from a previous exercise on updating a categorical Series. Follow the instructions to make sure everything goes smoothly. The used cars dataset, used_cars, is loaded for you. ### Instructions - Print the frequency table of the “body_type” column for used_cars and include NaN values. - Update the .loc statement so that all NaN values in “body_type” are set to “other”. - Convert the “body_type” column to title case. - Check the dtype of the “body_type” column.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the frequency table of body_type and include NaN values</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(used_cars[<span class="st">"body_type"</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Update NaN values</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>used_cars.loc[used_cars[<span class="st">"body_type"</span>].isna(), <span class="st">"body_type"</span>] <span class="op">=</span> <span class="st">"other"</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert body_type to title case</span></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>used_cars[<span class="st">"body_type"</span>] <span class="op">=</span> used_cars[<span class="st">"body_type"</span>].<span class="bu">str</span>.title()</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the dtype</span></span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(used_cars[<span class="st">"body_type"</span>].dtype )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>sedan        13011
+hatchback     7644
+universal     5507
+suv           5164
+minivan       3608
+minibus       1369
+van            808
+coupe          652
+liftback       552
+pickup         129
+cabriolet       75
+limousine       12
+Name: body_type, dtype: int64
+object</code></pre>
+</section>
+<section id="overcoming-pitfalls-using-numpy-arrays" class="level2">
+<h2 class="anchored" data-anchor-id="overcoming-pitfalls-using-numpy-arrays">Overcoming pitfalls: using NumPy arrays</h2>
+<p>A local used car company manually appraises each car that they add to their inventory. When a new car comes in, they select from a drop-down menu, giving the car a rating between 1 and 5. A 1 means that the car probably won’t sell as is, but a 5 indicates the car will definitely sell without a problem.</p>
+<p>With over 38,000 cars in their inventory, the company has asked you to give them an average “sellability” of their cars. For this exercise, use the used_cars dataset. The column of interest is called “Sale Rating” and it is currently a categorical column. ### Instructions - Print the frequency table of the “Sale Rating” column of the used_cars dataset. - Correct the second statement by converting the column to type int before calling .mean().</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>used_cars.dtypes</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>used_cars[<span class="st">"engine_fuel"</span>] <span class="op">=</span> used_cars[<span class="st">"engine_fuel"</span>].astype(<span class="st">"category"</span>)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>used_cars[<span class="st">"engine_fuel"</span>] <span class="op">=</span> used_cars[<span class="st">"engine_fuel"</span>].cat.codes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the frequency table of Sale Rating</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(used_cars[<span class="st">"engine_fuel"</span>].value_counts())</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the average score</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>average_score <span class="op">=</span> used_cars[<span class="st">"engine_fuel"</span>].astype(<span class="st">"int"</span>).mean()</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the average</span></span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(average_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>3    24065
+0    12872
+2     1347
+5      235
+1       10
+4        2
+Name: engine_fuel, dtype: int64
+1.9745659339233343</code></pre>
+</section>
+<section id="create-a-label-encoding-and-map" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-label-encoding-and-map">Create a label encoding and map</h2>
+<p>A used car company believes that they can predict a car’s sales price reasonably well using their used_cars dataset. One of the variables they want to use, “color”, needs to be converted to codes. The company believes that a car’s color will be important when predicting sales price. ### Instructions - 1 Convert the color column to a categorical Series. - 2 Create a new column, “color_code”, by creating a label encoding for the variable “color”. - 3 Before you forget which codes belong to which categories, create a color map using the codes and categories objects. - 4 Print the new color map to see which codes map to which categories.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to categorical and print the frequency table</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>used_cars[<span class="st">"color"</span>] <span class="op">=</span> used_cars[<span class="st">"color"</span>].astype(<span class="st">"category"</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(used_cars[<span class="st">"color"</span>].value_counts())</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a label encoding</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>used_cars[<span class="st">"color_code"</span>] <span class="op">=</span> used_cars[<span class="st">"color"</span>].cat.codes</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create codes and categories objects</span></span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>codes <span class="op">=</span> used_cars[<span class="st">"color"</span>].cat.codes</span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> used_cars[<span class="st">"color"</span>]</span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a>color_map <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(codes, categories))</span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the map</span></span>
+<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(color_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>black     7705
+silver    6852
+blue      5802
+white     4212
+grey      3751
+red       2925
+green     2760
+other     2688
+brown      886
+violet     463
+yellow     303
+orange     184
+Name: color, dtype: int64
+{8: 'silver', 1: 'blue', 7: 'red', 0: 'black', 4: 'grey', 6: 'other', 2: 'brown', 10: 'white', 3: 'green', 9: 'violet', 5: 'orange', 11: 'yellow'}</code></pre>
+</section>
+<section id="using-saved-mappings" class="level2">
+<h2 class="anchored" data-anchor-id="using-saved-mappings">Using saved mappings</h2>
+<p>You are using a subset of a dataset and have been asked to create visualizations summarizing the output. As the dataset currently stands, all you see are numbers! Luckily, you had created and saved dictionaries (color_map, fuel_map, and transmission_map) that will map these columns back to their original categorical names. The dataset used_cars_updated has been preloaded. A preview of the dataset is shown. Check out the console to view the column data types.</p>
+<pre><code>   engine_fuel  color  transmission  price_usd</code></pre>
+<p>0 3 8 0 10900.00 1 3 1 0 5000.00 2 3 7 0 2800.00</p>
+<section id="instructions-1" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-1">Instructions</h3>
+<ul>
+<li>Update the “color” column back to its original values using the color_map dictionary.</li>
+<li>Update the “engine_fuel” column back to its original values using the fuel_map dictionary.</li>
+<li>Update the “transmission” column back to its original values using the transmission_map dictionary.</li>
+<li>Use .info() on the dataset to see if the dtypes have changed.</li>
+</ul>
+<div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the color column using the color_map</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>used_cars_updated[<span class="st">"color"</span>] <span class="op">=</span> used_cars_updated[<span class="st">"color"</span>].<span class="bu">map</span>(color_map)</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the engine fuel column using the fuel_map</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>used_cars_updated[<span class="st">"engine_fuel"</span>] <span class="op">=</span> used_cars_updated[<span class="st">"engine_fuel"</span>].<span class="bu">map</span>(fuel_map)</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the transmission column using the transmission_map</span></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>used_cars_updated[<span class="st">"transmission"</span>] <span class="op">=</span> used_cars_updated[<span class="st">"transmission"</span>].<span class="bu">map</span>(transmission_map)</span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the info statement</span></span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(used_cars_updated.info())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="creating-a-boolean-encoding" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-boolean-encoding">Creating a Boolean encoding</h2>
+<p>In preparation for running machine learning models to estimate the sale price of used cars, you are starting to analyze the available columns of the used_cars dataset and want to create columns that can be used in training. One of the managers of a used car dealership has said that the manufacturer of the car is the most important aspect he considers when setting prices. You will begin by exploring the manufacturer_name column. ### Instructions - Print the frequency table of the “manufacturer_name” column. - Create a column, “is_volkswagen”, that is True when “manufacturer_name” contains “Volkswagen” and False otherwise. - Update the code so that a 1 is used instead of True and a 0 is used instead of False so Python can use this column in algorithms. - Print out a frequency table for the newly created column.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the manufacturer name frequency table</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(used_cars[<span class="st">"manufacturer_name"</span>].value_counts())</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Boolean column based on if the manufacturer name that contain Volkswagen</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>used_cars[<span class="st">"is_volkswagen"</span>] <span class="op">=</span> np.where(</span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>  used_cars[<span class="st">"manufacturer_name"</span>].<span class="bu">str</span>.contains(<span class="st">"Volkswagen"</span>, regex<span class="op">=</span><span class="va">False</span>), <span class="va">True</span>, <span class="va">False</span></span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the "manufacturer_name" frequency table.</span></span>
+<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(used_cars[<span class="st">"manufacturer_name"</span>].value_counts())</span>
+<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Boolean column for the most common manufacturer name</span></span>
+<span id="cb71-13"><a href="#cb71-13" aria-hidden="true" tabindex="-1"></a>used_cars[<span class="st">"is_volkswagen"</span>] <span class="op">=</span> np.where(</span>
+<span id="cb71-14"><a href="#cb71-14" aria-hidden="true" tabindex="-1"></a>  used_cars[<span class="st">"manufacturer_name"</span>].<span class="bu">str</span>.contains(<span class="st">"Volkswagen"</span>, regex<span class="op">=</span><span class="va">False</span>), <span class="dv">1</span>, <span class="dv">0</span></span>
+<span id="cb71-15"><a href="#cb71-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb71-16"><a href="#cb71-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-17"><a href="#cb71-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the final frequency table</span></span>
+<span id="cb71-18"><a href="#cb71-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(used_cars[<span class="st">"is_volkswagen"</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Volkswagen       4243
+Opel             2759
+BMW              2610
+Ford             2566
+Renault          2493
+Audi             2468
+Mercedes-Benz    2237
+Peugeot          1909
+Citroen          1562
+Nissan           1361
+Mazda            1328
+Toyota           1246
+Hyundai          1116
+Skoda            1089
+Kia               912
+Mitsubishi        887
+Fiat              824
+Honda             797
+Volvo             721
+ВАЗ               481
+Chevrolet         436
+Chrysler          410
+Seat              303
+Dodge             297
+Subaru            291
+Rover             235
+Suzuki            234
+Daewoo            221
+Lexus             213
+Alfa Romeo        207
+ГАЗ               200
+Land Rover        184
+Infiniti          162
+LADA              146
+Iveco             139
+Saab              108
+Jeep              107
+Lancia             92
+SsangYong          79
+УАЗ                74
+Geely              71
+Mini               68
+Acura              66
+Porsche            61
+Dacia              59
+Chery              58
+Москвич            55
+Jaguar             53
+Buick              47
+Lifan              47
+Cadillac           43
+Pontiac            42
+ЗАЗ                42
+Lincoln            36
+Great Wall         36
+Name: manufacturer_name, dtype: int64
+Volkswagen       4243
+Opel             2759
+BMW              2610
+Ford             2566
+Renault          2493
+Audi             2468
+Mercedes-Benz    2237
+Peugeot          1909
+Citroen          1562
+Nissan           1361
+Mazda            1328
+Toyota           1246
+Hyundai          1116
+Skoda            1089
+Kia               912
+Mitsubishi        887
+Fiat              824
+Honda             797
+Volvo             721
+ВАЗ               481
+Chevrolet         436
+Chrysler          410
+Seat              303
+Dodge             297
+Subaru            291
+Rover             235
+Suzuki            234
+Daewoo            221
+Lexus             213
+Alfa Romeo        207
+ГАЗ               200
+Land Rover        184
+Infiniti          162
+LADA              146
+Iveco             139
+Saab              108
+Jeep              107
+Lancia             92
+SsangYong          79
+УАЗ                74
+Geely              71
+Mini               68
+Acura              66
+Porsche            61
+Dacia              59
+Chery              58
+Москвич            55
+Jaguar             53
+Buick              47
+Lifan              47
+Cadillac           43
+Pontiac            42
+ЗАЗ                42
+Lincoln            36
+Great Wall         36
+Name: manufacturer_name, dtype: int64
+0    34288
+1     4243
+Name: is_volkswagen, dtype: int64</code></pre>
+</section>
+<section id="one-hot-encoding-specific-columns" class="level2">
+<h2 class="anchored" data-anchor-id="one-hot-encoding-specific-columns">One-hot encoding specific columns</h2>
+<p>A local used car dealership wants your help in predicting the sale price of their vehicles. If you use one-hot encoding on the entire used_cars dataset, the new dataset has over 1,200 columns. You are worried that this might lead to problems when training your machine learning models to predict price. You have decided to try a simpler approach and only use one-hot encoding on a few columns. ### Instructions - Create a new dataset, used_cars_simple, with one-hot encoding for these columns: “manufacturer_name” and “transmission” (in this order). - Set the prefix of all new columns to “dummy”, so that you can easily filter to newly created columns.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create one-hot encoding for just two columns</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>used_cars_simple <span class="op">=</span> pd.get_dummies(</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  used_cars,</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Specify the columns from the instructions</span></span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>  columns<span class="op">=</span>[<span class="st">"manufacturer_name"</span> , <span class="st">"transmission"</span>],</span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set the prefix</span></span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>  prefix<span class="op">=</span><span class="st">"dummy"</span></span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the shape of the new dataset</span></span>
+<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(used_cars_simple.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>(38531, 87)</code></pre>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./10_Intermediate_Data_Visualization_with_Seaborn.html" class="pagination-link" aria-label="Intermediate Data Visualization with Seaborn">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Intermediate Data Visualization with Seaborn</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="pagination-link" aria-label="Project: A Visual History of Nobel Prize Winners">
+        <span class="nav-page-text">Project: A Visual History of Nobel Prize Winners</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

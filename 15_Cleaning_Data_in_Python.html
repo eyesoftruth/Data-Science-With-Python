@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science With Python - Cleaning Data in Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" rel="next">
+<link href="./14_Introduction_to_Importing_Data_in_Python.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./15_Cleaning_Data_in_Python.html">Cleaning Data in Python</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Science With Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_Introduction_to_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_Intermediate_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intermediate Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_Data_Manipulation_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_Joining_Data_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joining Data with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_Introduction_to_statistics_in_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_Introduction_to_Data_Visualization_with_Matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualization with Matplotlib</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7_Introduction_to_Data_Visualization_with_Seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualization with Seaborn</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_Python_Data_Science_Toolbox_Part1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Data Science Toolbox (Part 1)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9_Python_Data_Science_Toolbox_Part2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Data Science Toolbox (Part 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Intermediate_Data_Visualization_with_Seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intermediate Data Visualization with Seaborn</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_Working_with_Categorical_Data_in_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Working with Categorical Data in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14_Introduction_to_Importing_Data_in_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Importing Data in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15_Cleaning_Data_in_Python.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Cleaning Data in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: A Visual History of Nobel Prize Winners</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Netflix_movies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Investigating Netflix Movies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Exploring NYC Public School Test Result Scores</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Hypothesis_Testing_in_Healthcare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Hypothesis Testing in Healthcare- Drug Safety</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Predictive_Modeling_for_Agriculture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Sowing Success - How Machine Learning Helps Farmers Select the Best Crops</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Analyzing_Crime_in_Los_Angeles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Analyzing Crime in Los Angeles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Customer_Analytics_Preparing_Data_for_Modeling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Customer Analytics- Preparing Data for Modeling</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#explore-datasets" id="toc-explore-datasets" class="nav-link active" data-scroll-target="#explore-datasets">Explore Datasets</a></li>
+  <li><a href="#chapter-1-common-data-problems" id="toc-chapter-1-common-data-problems" class="nav-link" data-scroll-target="#chapter-1-common-data-problems">Chapter 1: Common data problems</a>
+  <ul class="collapse">
+  <li><a href="#numeric-data-or" id="toc-numeric-data-or" class="nav-link" data-scroll-target="#numeric-data-or">Numeric data or … ?</a></li>
+  <li><a href="#tire-size-constraints" id="toc-tire-size-constraints" class="nav-link" data-scroll-target="#tire-size-constraints">Tire size constraints</a></li>
+  <li><a href="#finding-duplicates" id="toc-finding-duplicates" class="nav-link" data-scroll-target="#finding-duplicates">Finding duplicates</a></li>
+  <li><a href="#treating-duplicates" id="toc-treating-duplicates" class="nav-link" data-scroll-target="#treating-duplicates">Treating duplicates</a></li>
+  </ul></li>
+  <li><a href="#chapter-2-text-and-categorical-data-problems" id="toc-chapter-2-text-and-categorical-data-problems" class="nav-link" data-scroll-target="#chapter-2-text-and-categorical-data-problems">Chapter 2: Text and categorical data problems</a>
+  <ul class="collapse">
+  <li><a href="#finding-consistency" id="toc-finding-consistency" class="nav-link" data-scroll-target="#finding-consistency">Finding consistency</a></li>
+  <li><a href="#inconsistent-categories" id="toc-inconsistent-categories" class="nav-link" data-scroll-target="#inconsistent-categories">Inconsistent categories</a></li>
+  <li><a href="#remapping-categories" id="toc-remapping-categories" class="nav-link" data-scroll-target="#remapping-categories">Remapping categories</a></li>
+  <li><a href="#removing-titles-and-taking-names" id="toc-removing-titles-and-taking-names" class="nav-link" data-scroll-target="#removing-titles-and-taking-names">Removing titles and taking names</a></li>
+  <li><a href="#keeping-it-descriptive" id="toc-keeping-it-descriptive" class="nav-link" data-scroll-target="#keeping-it-descriptive">Keeping it descriptive</a></li>
+  </ul></li>
+  <li><a href="#chapter-3-advanced-data-problems" id="toc-chapter-3-advanced-data-problems" class="nav-link" data-scroll-target="#chapter-3-advanced-data-problems">Chapter 3: Advanced data problems</a>
+  <ul class="collapse">
+  <li><a href="#uniform-currencies" id="toc-uniform-currencies" class="nav-link" data-scroll-target="#uniform-currencies">Uniform currencies</a></li>
+  <li><a href="#uniform-dates" id="toc-uniform-dates" class="nav-link" data-scroll-target="#uniform-dates">Uniform dates</a></li>
+  <li><a href="#hows-our-data-integrity" id="toc-hows-our-data-integrity" class="nav-link" data-scroll-target="#hows-our-data-integrity">How’s our data integrity?</a></li>
+  <li><a href="#missing-investors" id="toc-missing-investors" class="nav-link" data-scroll-target="#missing-investors">Missing investors</a></li>
+  <li><a href="#follow-the-money" id="toc-follow-the-money" class="nav-link" data-scroll-target="#follow-the-money">Follow the money</a></li>
+  </ul></li>
+  <li><a href="#chapter-4-record-linkage" id="toc-chapter-4-record-linkage" class="nav-link" data-scroll-target="#chapter-4-record-linkage">Chapter 4: Record linkage</a>
+  <ul class="collapse">
+  <li><a href="#remapping-categories-ii" id="toc-remapping-categories-ii" class="nav-link" data-scroll-target="#remapping-categories-ii">Remapping categories II</a></li>
+  <li><a href="#pairs-of-restaurants" id="toc-pairs-of-restaurants" class="nav-link" data-scroll-target="#pairs-of-restaurants">Pairs of restaurants</a></li>
+  <li><a href="#similar-restaurants" id="toc-similar-restaurants" class="nav-link" data-scroll-target="#similar-restaurants">Similar restaurants</a></li>
+  <li><a href="#linking-them-together" id="toc-linking-them-together" class="nav-link" data-scroll-target="#linking-them-together">Linking them together!</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cleaning Data in Python</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the course packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime <span class="im">as</span> dt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> missingno <span class="im">as</span> msno</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fuzzywuzzy</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> recordlinkage </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the course datasets</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ride_sharing <span class="op">=</span> pd.read_csv(<span class="st">'datasets/ride_sharing_new.csv'</span>, index_col <span class="op">=</span> <span class="st">'Unnamed: 0'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>airlines <span class="op">=</span> pd.read_csv(<span class="st">'datasets/airlines_final.csv'</span>,  index_col <span class="op">=</span> <span class="st">'Unnamed: 0'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>banking <span class="op">=</span> pd.read_csv(<span class="st">'datasets/banking_dirty.csv'</span>, index_col <span class="op">=</span> <span class="st">'Unnamed: 0'</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>restaurants <span class="op">=</span> pd.read_csv(<span class="st">'datasets/restaurants_L2.csv'</span>, index_col <span class="op">=</span> <span class="st">'Unnamed: 0'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>restaurants_new <span class="op">=</span> pd.read_csv(<span class="st">'datasets/restaurants_L2_dirty.csv'</span>, index_col <span class="op">=</span> <span class="st">'Unnamed: 0'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="explore-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="explore-datasets">Explore Datasets</h2>
+<p>Use the DataFrames imported in the first cell to explore the data and practice your skills! - For each DataFrame, inspect the data types of each column and, where needed, clean and convert columns into the correct data type. You should also rename any columns to have more descriptive titles. - Identify and remove all the duplicate rows in <code>ride_sharing</code>. - Inspect the unique values of all the columns in <code>airlines</code> and clean any inconsistencies. - For the <code>airlines</code> DataFrame, create a new column called <code>International</code> from <code>dest_region</code>, where values representing US regions map to <code>False</code> and all other regions map to <code>True</code>. - The <code>banking</code> DataFrame contains out of date ages. Update the <code>Age</code> column using today’s date and the <code>birth_date</code> column. - Clean the <code>restaurants_new</code> DataFrame so that it better matches the categories in the <code>city</code> and <code>type</code> column of the <code>restaurants</code> DataFrame. Afterward, given typos in restaurant names, use record linkage to generate possible pairs of rows between <code>restaurants</code> and <code>restaurants_new</code> using criteria you think is best.</p>
+</section>
+<section id="chapter-1-common-data-problems" class="level1">
+<h1>Chapter 1: Common data problems</h1>
+<p>In this chapter, you’ll learn how to overcome some of the most common dirty data problems. You’ll convert data types, apply range constraints to remove future data points, and remove duplicated data points to avoid double-counting.</p>
+<section id="numeric-data-or" class="level2">
+<h2 class="anchored" data-anchor-id="numeric-data-or">Numeric data or … ?</h2>
+<p>In this exercise, and throughout this chapter, you’ll be working with bicycle ride sharing data in San Francisco called ride_sharing. It contains information on the start and end stations, the trip duration, and some user information for a bike sharing service.</p>
+<p>The user_type column contains information on whether a user is taking a free ride and takes on the following values:</p>
+<pre><code>1 for free riders.
+2 for pay per ride.
+3 for monthly subscribers.</code></pre>
+<p>In this instance, you will print the information of ride_sharing using .info() and see a firsthand example of how an incorrect data type can flaw your analysis of the dataset. The pandas package is imported as pd. ### Instructions - Print the information of ride_sharing. - Use .describe() to print the summary statistics of the user_type column from ride_sharing. -</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the information of ride_sharing</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ride_sharing.info())</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print summary statistics of user_type column</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ride_sharing[<span class="st">'user_type'</span>].describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 25760 entries, 0 to 25759
+Data columns (total 9 columns):
+ #   Column           Non-Null Count  Dtype 
+---  ------           --------------  ----- 
+ 0   duration         25760 non-null  object
+ 1   station_A_id     25760 non-null  int64 
+ 2   station_A_name   25760 non-null  object
+ 3   station_B_id     25760 non-null  int64 
+ 4   station_B_name   25760 non-null  object
+ 5   bike_id          25760 non-null  int64 
+ 6   user_type        25760 non-null  int64 
+ 7   user_birth_year  25760 non-null  int64 
+ 8   user_gender      25760 non-null  object
+dtypes: int64(5), object(4)
+memory usage: 2.0+ MB
+None
+count    25760.000000
+mean         2.008385
+std          0.704541
+min          1.000000
+25%          2.000000
+50%          2.000000
+75%          3.000000
+max          3.000000
+Name: user_type, dtype: float64</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the information of ride_sharing</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ride_sharing.info())</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print summary statistics of user_type column</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ride_sharing[<span class="st">'user_type'</span>].describe())</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert user_type from integer to category</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ride_sharing[<span class="st">'user_type_cat'</span>] <span class="op">=</span> ride_sharing[<span class="st">'user_type'</span>].astype(<span class="st">'category'</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Write an assert statement confirming the change</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> ride_sharing[<span class="st">'user_type_cat'</span>].dtype <span class="op">==</span> <span class="st">'category'</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print new summary statistics </span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ride_sharing[<span class="st">'user_type_cat'</span>].describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 25760 entries, 0 to 25759
+Data columns (total 9 columns):
+ #   Column           Non-Null Count  Dtype 
+---  ------           --------------  ----- 
+ 0   duration         25760 non-null  object
+ 1   station_A_id     25760 non-null  int64 
+ 2   station_A_name   25760 non-null  object
+ 3   station_B_id     25760 non-null  int64 
+ 4   station_B_name   25760 non-null  object
+ 5   bike_id          25760 non-null  int64 
+ 6   user_type        25760 non-null  int64 
+ 7   user_birth_year  25760 non-null  int64 
+ 8   user_gender      25760 non-null  object
+dtypes: int64(5), object(4)
+memory usage: 2.0+ MB
+None
+count    25760.000000
+mean         2.008385
+std          0.704541
+min          1.000000
+25%          2.000000
+50%          2.000000
+75%          3.000000
+max          3.000000
+Name: user_type, dtype: float64
+count     25760
+unique        3
+top           2
+freq      12972
+Name: user_type_cat, dtype: int64</code></pre>
+<p>Summing strings and concatenating numbers</p>
+<p>In the previous exercise, you were able to identify that category is the correct data type for user_type and convert it in order to extract relevant statistical summaries that shed light on the distribution of user_type.</p>
+<p>Another common data type problem is importing what should be numerical values as strings, as mathematical operations such as summing and multiplication lead to string concatenation, not numerical outputs.</p>
+<p>In this exercise, you’ll be converting the string column duration to the type int. Before that however, you will need to make sure to strip “minutes” from the column in order to make sure pandas reads it as numerical. The pandas package has been imported as pd. ### Instructions - Use the .strip() method to strip duration of “minutes” and store it in the duration_trim column. - Convert duration_trim to int and store it in the duration_time column. - Write an assert statement that checks if duration_time’s data type is now an int. - Print the average ride duration.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Strip duration of minutes</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ride_sharing[<span class="st">'duration_trim'</span>] <span class="op">=</span> ride_sharing[<span class="st">'duration'</span>].<span class="bu">str</span>.strip(<span class="st">"minutes"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert duration to integer</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>ride_sharing[<span class="st">'duration_time'</span>] <span class="op">=</span> ride_sharing[<span class="st">'duration_trim'</span>].astype(<span class="st">"int"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Write an assert statement making sure of conversion</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> ride_sharing[<span class="st">'duration_time'</span>].dtype <span class="op">==</span> <span class="st">'int'</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print formed columns and calculate average ride duration </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ride_sharing[[<span class="st">'duration'</span>,<span class="st">'duration_trim'</span>,<span class="st">'duration_time'</span>]])</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ride_sharing[<span class="st">'duration_time'</span>].mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>         duration duration_trim  duration_time
+0      12 minutes           12              12
+1      24 minutes           24              24
+2       8 minutes            8               8
+3       4 minutes            4               4
+4      11 minutes           11              11
+...           ...           ...            ...
+25755  11 minutes           11              11
+25756  10 minutes           10              10
+25757  14 minutes           14              14
+25758  14 minutes           14              14
+25759  29 minutes           29              29
+
+[25760 rows x 3 columns]
+11.389052795031056</code></pre>
+</section>
+<section id="tire-size-constraints" class="level2">
+<h2 class="anchored" data-anchor-id="tire-size-constraints">Tire size constraints</h2>
+<p>In this lesson, you’re going to build on top of the work you’ve been doing with the ride_sharing DataFrame. You’ll be working with the tire_sizes column which contains data on each bike’s tire size.</p>
+<p>Bicycle tire sizes could be either 26″, 27″ or 29″ and are here correctly stored as a categorical value. In an effort to cut maintenance costs, the ride sharing provider decided to set the maximum tire size to be 27″.</p>
+<p>In this exercise, you will make sure the tire_sizes column has the correct range by first converting it to an integer, then setting and testing the new upper limit of 27″ for tire sizes. ### Instructions - Convert the tire_sizes column from category to ‘int’. - Use .loc[] to set all values of tire_sizes above 27 to 27. - Reconvert back tire_sizes to ‘category’ from int. - Print the description of the tire_sizes.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ride_sharing.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Index(['duration', 'station_A_id', 'station_A_name', 'station_B_id',
+       'station_B_name', 'bike_id', 'user_type', 'user_birth_year',
+       'user_gender', 'user_type_cat', 'duration_trim', 'duration_time'],
+      dtype='object')</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert tire_sizes to integer</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ride_sharing[<span class="st">'tire_sizes'</span>] <span class="op">=</span> ride_sharing[<span class="st">'tire_sizes'</span>].astype(<span class="st">'int'</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set all values above 27 to 27</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>ride_sharing.loc[ride_sharing[<span class="st">'tire_sizes'</span>] <span class="op">&gt;</span> <span class="dv">27</span>, <span class="st">'tire_sizes'</span>] <span class="op">=</span> <span class="dv">27</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Reconvert tire_sizes back to categorical</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>ride_sharing[<span class="st">'tire_sizes'</span>] <span class="op">=</span> ride_sharing[<span class="st">'tire_sizes'</span>].astype(<span class="st">'category'</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print tire size description</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ride_sharing[<span class="st">'tire_sizes'</span>].describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Back to the future</p>
+<p>A new update to the data pipeline feeding into the ride_sharing DataFrame has been updated to register each ride’s date. This information is stored in the ride_date column of the type object, which represents strings in pandas.</p>
+<p>A bug was discovered which was relaying rides taken today as taken next year. To fix this, you will find all instances of the ride_date column that occur anytime in the future, and set the maximum possible value of this column to today’s date. Before doing so, you would need to convert ride_date to a datetime object.</p>
+<p>The datetime package has been imported as dt, alongside all the packages you’ve been using till now. ### Instructions - Convert ride_date to a datetime object using to_datetime(), then convert the datetime object into a date and store it in ride_dt column. - Create the variable today, which stores today’s date by using the dt.date.today() function. - For all instances of ride_dt in the future, set them to today’s date. - Print the maximum date in the ride_dt column.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert ride_date to date</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ride_sharing[<span class="st">'ride_dt'</span>] <span class="op">=</span> pd.to_datetime(ride_sharing[<span class="st">'ride_date'</span>]).dt.date</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Save today's date</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> dt.date.today()</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set all in the future to today's date</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>ride_sharing.loc[ride_sharing[<span class="st">'ride_dt'</span>] <span class="op">&gt;</span> today, <span class="st">'ride_dt'</span>] <span class="op">=</span> today</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print maximum of ride_dt column</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ride_sharing[<span class="st">'ride_dt'</span>].<span class="bu">max</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="finding-duplicates" class="level2">
+<h2 class="anchored" data-anchor-id="finding-duplicates">Finding duplicates</h2>
+<p>A new update to the data pipeline feeding into ride_sharing has added the ride_id column, which represents a unique identifier for each ride.</p>
+<p>The update however coincided with radically shorter average ride duration times and irregular user birth dates set in the future. Most importantly, the number of rides taken has increased by 20% overnight, leading you to think there might be both complete and incomplete duplicates in the ride_sharing DataFrame.</p>
+<p>In this exercise, you will confirm this suspicion by finding those duplicates. A sample of ride_sharing is in your environment, as well as all the packages you’ve been working with thus far. ### Instructions - Find duplicated rows of ride_id in the ride_sharing DataFrame while setting keep to False. - Subset ride_sharing on duplicates and sort by ride_id and assign the results to duplicated_rides. - Print the ride_id, duration and user_birth_year columns of duplicated_rides in that order.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find duplicates</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>duplicates <span class="op">=</span> ride_sharing.duplicated(subset<span class="op">=</span>[<span class="st">'ride_id'</span>], keep<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort your duplicated rides</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>duplicated_rides <span class="op">=</span> ride_sharing[duplicates].sort_values(by<span class="op">=</span><span class="st">'ride_id'</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print relevant columns of duplicated_rides</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(duplicated_rides[[<span class="st">'ride_id'</span>, <span class="st">'duration'</span> , <span class="st">'user_birth_year'</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="treating-duplicates" class="level2">
+<h2 class="anchored" data-anchor-id="treating-duplicates">Treating duplicates</h2>
+<p>In the last exercise, you were able to verify that the new update feeding into ride_sharing contains a bug generating both complete and incomplete duplicated rows for some values of the ride_id column, with occasional discrepant values for the user_birth_year and duration columns.</p>
+<p>In this exercise, you will be treating those duplicated rows by first dropping complete duplicates, and then merging the incomplete duplicate rows into one while keeping the average duration, and the minimum user_birth_year for each set of incomplete duplicate rows. ### Instructions - Drop complete duplicates in ride_sharing and store the results in ride_dup. - Create the statistics dictionary which holds minimum aggregation for user_birth_year and mean aggregation for duration. - Drop incomplete duplicates by grouping by ride_id and applying the aggregation in statistics. - Find duplicates again and run the assert statement to verify de-duplication.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop complete duplicates from ride_sharing</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ride_dup <span class="op">=</span> ride_sharing.drop_duplicates()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create statistics dictionary for aggregation function</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>statistics <span class="op">=</span> {<span class="st">'user_birth_year'</span>: <span class="st">'min'</span>, <span class="st">'duration'</span>: <span class="st">'mean'</span>}</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Group by ride_id and compute new statistics</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>ride_unique <span class="op">=</span> ride_dup.groupby(<span class="st">'ride_id'</span>).agg(statistics).reset_index()</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Find duplicated values again</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>duplicates <span class="op">=</span> ride_unique.duplicated(subset <span class="op">=</span> <span class="st">'ride_id'</span>, keep <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>duplicated_rides <span class="op">=</span> ride_unique[duplicates <span class="op">==</span> <span class="va">True</span>]</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Assert duplicates are processed</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> duplicated_rides.shape[<span class="dv">0</span>] <span class="op">==</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="chapter-2-text-and-categorical-data-problems" class="level1">
+<h1>Chapter 2: Text and categorical data problems</h1>
+<p>Categorical and text data can often be some of the messiest parts of a dataset due to their unstructured nature. In this chapter, you’ll learn how to fix whitespace and capitalization inconsistencies in category labels, collapse multiple categories into one, and reformat strings for consistency.</p>
+<section id="finding-consistency" class="level2">
+<h2 class="anchored" data-anchor-id="finding-consistency">Finding consistency</h2>
+<p>In this exercise and throughout this chapter, you’ll be working with the airlines DataFrame which contains survey responses on the San Francisco Airport from airline customers.</p>
+<p>The DataFrame contains flight metadata such as the airline, the destination, waiting times as well as answers to key questions regarding cleanliness, safety, and satisfaction. Another DataFrame named categories was created, containing all correct possible values for the survey columns.</p>
+<p>In this exercise, you will use both of these DataFrames to find survey answers with inconsistent values, and drop them, effectively performing an outer and inner join on both these DataFrames as seen in the video exercise. The pandas package has been imported as pd, and the airlines and categories DataFrames are in your environment. ### Instructions - Print the categories DataFrame and take a close look at all possible correct categories of the survey columns. - Print the unique values of the survey columns in airlines using the .unique() method. - Create a set out of the cleanliness column in airlines using set() and find the inconsistent category by finding the difference in the cleanliness column of categories. - Find rows of airlines with a cleanliness value not in categories and print the output.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> pd.DataFrame({<span class="st">'cleanliness'</span>:[<span class="st">"Clean"</span>,<span class="st">"Average"</span>,<span class="st">"Somewhat clean"</span>,<span class="st">"Somewhat dirty"</span>,<span class="st">"Dirty"</span>],</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'safety'</span>:[<span class="st">"Neutral"</span>,<span class="st">"Very safe"</span>,<span class="st">"Somewhat safe"</span>,<span class="st">"Very unsafe"</span>,<span class="st">"Somewhat unsafe"</span>],</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'satisfaction'</span>:[<span class="st">"Very satisfied"</span>,<span class="st">"Neutral"</span>,<span class="st">"Somewhat satisfied"</span>,<span class="st">"Somewhat unsatisfied"</span>,<span class="st">"Very unsatisfied"</span>]})</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(categories)                   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>      cleanliness           safety          satisfaction
+0           Clean          Neutral        Very satisfied
+1         Average        Very safe               Neutral
+2  Somewhat clean    Somewhat safe    Somewhat satisfied
+3  Somewhat dirty      Very unsafe  Somewhat unsatisfied
+4           Dirty  Somewhat unsafe      Very unsatisfied</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print categories DataFrame</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(categories)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print unique values of survey columns in airlines</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Cleanliness: '</span>, airlines[<span class="st">'cleanliness'</span>].unique(), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Safety: '</span>, airlines[<span class="st">'safety'</span>].unique(), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Satisfaction: '</span>, airlines[<span class="st">'satisfaction'</span>].unique(), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>      cleanliness           safety          satisfaction
+0           Clean          Neutral        Very satisfied
+1         Average        Very safe               Neutral
+2  Somewhat clean    Somewhat safe    Somewhat satisfied
+3  Somewhat dirty      Very unsafe  Somewhat unsatisfied
+4           Dirty  Somewhat unsafe      Very unsatisfied
+Cleanliness:  ['Clean' 'Average' 'Somewhat clean' 'Somewhat dirty' 'Dirty'] 
+
+Safety:  ['Neutral' 'Very safe' 'Somewhat safe' 'Very unsafe' 'Somewhat unsafe'] 
+
+Satisfaction:  ['Very satisfied' 'Neutral' 'Somewhat satsified' 'Somewhat unsatisfied'
+ 'Very unsatisfied'] </code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the cleanliness category in airlines not in categories</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>cat_clean <span class="op">=</span> <span class="bu">set</span>(airlines[<span class="st">'cleanliness'</span>]).difference(categories[<span class="st">'cleanliness'</span>])</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with that category</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>cat_clean_rows <span class="op">=</span> airlines[<span class="st">'cleanliness'</span>].isin(cat_clean)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print rows with inconsistent category</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(airlines[cat_clean_rows])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Empty DataFrame
+Columns: [id, day, airline, destination, dest_region, dest_size, boarding_area, dept_time, wait_min, cleanliness, safety, satisfaction]
+Index: []</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the cleanliness category in airlines not in categories</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>cat_clean <span class="op">=</span> <span class="bu">set</span>(airlines[<span class="st">'cleanliness'</span>]).difference(categories[<span class="st">'cleanliness'</span>])</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with that category</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>cat_clean_rows <span class="op">=</span> airlines[<span class="st">'cleanliness'</span>].isin(cat_clean)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print rows with inconsistent category</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(airlines[cat_clean_rows])</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print rows with consistent categories only</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(airlines[<span class="op">~</span>cat_clean_rows])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Empty DataFrame
+Columns: [id, day, airline, destination, dest_region, dest_size, boarding_area, dept_time, wait_min, cleanliness, safety, satisfaction]
+Index: []
+        id        day  ...         safety        satisfaction
+0     1351    Tuesday  ...        Neutral      Very satisfied
+1      373     Friday  ...      Very safe      Very satisfied
+2     2820   Thursday  ...  Somewhat safe             Neutral
+3     1157    Tuesday  ...      Very safe  Somewhat satsified
+4     2992  Wednesday  ...      Very safe  Somewhat satsified
+...    ...        ...  ...            ...                 ...
+2804  1475    Tuesday  ...        Neutral  Somewhat satsified
+2805  2222   Thursday  ...      Very safe      Very satisfied
+2806  2684     Friday  ...      Very safe      Very satisfied
+2807  2549    Tuesday  ...  Somewhat safe      Very satisfied
+2808  2162   Saturday  ...      Very safe  Somewhat satsified
+
+[2477 rows x 12 columns]</code></pre>
+</section>
+<section id="inconsistent-categories" class="level2">
+<h2 class="anchored" data-anchor-id="inconsistent-categories">Inconsistent categories</h2>
+<p>In this exercise, you’ll be revisiting the airlines DataFrame from the previous lesson.</p>
+<p>As a reminder, the DataFrame contains flight metadata such as the airline, the destination, waiting times as well as answers to key questions regarding cleanliness, safety, and satisfaction on the San Francisco Airport.</p>
+<p>In this exercise, you will examine two categorical columns from this DataFrame, dest_region and dest_size respectively, assess how to address them and make sure that they are cleaned and ready for analysis. The pandas package has been imported as pd, and the airlines DataFrame is in your environment. ### Instructions - Print the unique values in dest_region and dest_size respectively. - Change the capitalization of all values of dest_region to lowercase. - Replace the ‘eur’ with ‘europe’ in dest_region using the .replace() method. - Strip white spaces from the dest_size column using the .strip() method. - Verify that the changes have been into effect by printing the unique values of the columns using .unique() .</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print unique values of both columns</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(airlines[<span class="st">'dest_region'</span>].unique())</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(airlines[<span class="st">'dest_size'</span>].unique())</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Lower dest_region column and then replace "eur" with "europe"</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>airlines[<span class="st">'dest_region'</span>] <span class="op">=</span> airlines[<span class="st">'dest_region'</span>].<span class="bu">str</span>.lower()</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>airlines[<span class="st">'dest_region'</span>] <span class="op">=</span> airlines[<span class="st">'dest_region'</span>].replace({<span class="st">'eur'</span>:<span class="st">'europe'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>['Asia' 'Canada/Mexico' 'West US' 'East US' 'Midwest US' 'EAST US'
+ 'Middle East' 'Europe' 'eur' 'Central/South America'
+ 'Australia/New Zealand' 'middle east']
+['Hub' 'Small' '    Hub' 'Medium' 'Large' 'Hub     ' '    Small'
+ 'Medium     ' '    Medium' 'Small     ' '    Large' 'Large     ']</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print unique values of both columns</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(airlines[<span class="st">'dest_region'</span>].unique())</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(airlines[<span class="st">'dest_size'</span>].unique())</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Lower dest_region column and then replace "eur" with "europe"</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>airlines[<span class="st">'dest_region'</span>] <span class="op">=</span> airlines[<span class="st">'dest_region'</span>].<span class="bu">str</span>.lower() </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>airlines[<span class="st">'dest_region'</span>] <span class="op">=</span> airlines[<span class="st">'dest_region'</span>].replace({<span class="st">'eur'</span>:<span class="st">'europe'</span>})</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove white spaces from `dest_size`</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>airlines[<span class="st">'dest_size'</span>] <span class="op">=</span> airlines[<span class="st">'dest_size'</span>].<span class="bu">str</span>.strip()</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify changes have been effected</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(airlines[<span class="st">'dest_region'</span>].unique())</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(airlines[<span class="st">'dest_size'</span>].unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>['asia' 'canada/mexico' 'west us' 'east us' 'midwest us' 'middle east'
+ 'europe' 'central/south america' 'australia/new zealand']
+['Hub' 'Small' '    Hub' 'Medium' 'Large' 'Hub     ' '    Small'
+ 'Medium     ' '    Medium' 'Small     ' '    Large' 'Large     ']
+['asia' 'canada/mexico' 'west us' 'east us' 'midwest us' 'middle east'
+ 'europe' 'central/south america' 'australia/new zealand']
+['Hub' 'Small' 'Medium' 'Large']</code></pre>
+</section>
+<section id="remapping-categories" class="level2">
+<h2 class="anchored" data-anchor-id="remapping-categories">Remapping categories</h2>
+<p>To better understand survey respondents from airlines, you want to find out if there is a relationship between certain responses and the day of the week and wait time at the gate.</p>
+<p>The airlines DataFrame contains the day and wait_min columns, which are categorical and numerical respectively. The day column contains the exact day a flight took place, and wait_min contains the amount of minutes it took travelers to wait at the gate. To make your analysis easier, you want to create two new categorical variables:</p>
+<pre><code>wait_type: 'short' for 0-60 min, 'medium' for 60-180 and long for 180+
+day_week: 'weekday' if day is in the weekday, 'weekend' if day is in the weekend.</code></pre>
+<p>The pandas and numpy packages have been imported as pd and np. Let’s create some new categorical data! ### Instructions - Create the ranges and labels for the wait_type column mentioned in the description. - Create the wait_type column by from wait_min by using pd.cut(), while inputting label_ranges and label_names in the correct arguments. - Create the mapping dictionary mapping weekdays to ‘weekday’ and weekend days to ‘weekend’. - Create the day_week column by using .replace().</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create ranges for categories</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>label_ranges <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">60</span>, <span class="dv">180</span>, np.inf]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>label_names <span class="op">=</span> [<span class="st">'short'</span>, <span class="st">'medium'</span>, <span class="st">'long'</span>]</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create wait_type column</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>airlines[<span class="st">'wait_type'</span>] <span class="op">=</span> pd.cut(airlines[<span class="st">'wait_min'</span>], bins <span class="op">=</span> label_ranges, </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>                                labels <span class="op">=</span> label_names)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create mappings and replace</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>mappings <span class="op">=</span> {<span class="st">'Monday'</span>:<span class="st">'weekday'</span>, <span class="st">'Tuesday'</span>:<span class="st">'weekday'</span>, <span class="st">'Wednesday'</span>: <span class="st">'weekday'</span>, </span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Thursday'</span>: <span class="st">'weekday'</span>, <span class="st">'Friday'</span>: <span class="st">'weekday'</span>, </span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Saturday'</span>: <span class="st">'weekend'</span>, <span class="st">'Sunday'</span>: <span class="st">'weekend'</span>}</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>airlines[<span class="st">'day_week'</span>] <span class="op">=</span> airlines[<span class="st">'day'</span>].replace(mappings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="removing-titles-and-taking-names" class="level2">
+<h2 class="anchored" data-anchor-id="removing-titles-and-taking-names">Removing titles and taking names</h2>
+<p>While collecting survey respondent metadata in the airlines DataFrame, the full name of respondents was saved in the full_name column. However upon closer inspection, you found that a lot of the different names are prefixed by honorifics such as “Dr.”, “Mr.”, “Ms.” and “Miss”.</p>
+<p>Your ultimate objective is to create two new columns named first_name and last_name, containing the first and last names of respondents respectively. Before doing so however, you need to remove honorifics.</p>
+<p>The airlines DataFrame is in your environment, alongside pandas as pd. ### Instructions - Remove “Dr.”, “Mr.”, “Miss” and “Ms.” from full_name by replacing them with an empty string “” in that order. - Run the assert statement using .str.contains() that tests whether full_name still contains any of the honorifics.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace "Dr." with empty string ""</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>airlines[<span class="st">'full_name'</span>] <span class="op">=</span> airlines[<span class="st">'full_name'</span>].<span class="bu">str</span>.replace(<span class="st">"Dr."</span>,<span class="st">""</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace "Mr." with empty string ""</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>airlines[<span class="st">'full_name'</span>] <span class="op">=</span> airlines[<span class="st">'full_name'</span>].<span class="bu">str</span>.replace(<span class="st">"Mr."</span>,<span class="st">""</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace "Miss" with empty string ""</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>airlines[<span class="st">'full_name'</span>]<span class="op">=</span>airlines[<span class="st">'full_name'</span>].<span class="bu">str</span>.replace(<span class="st">"Miss"</span>,<span class="st">""</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace "Ms." with empty string ""</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>airlines[<span class="st">'full_name'</span>]<span class="op">=</span>airlines[<span class="st">'full_name'</span>].<span class="bu">str</span>.replace(<span class="st">"Ms."</span>,<span class="st">""</span>)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Assert that full_name has no honorifics</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> airlines[<span class="st">'full_name'</span>].<span class="bu">str</span>.contains(<span class="st">'Ms.|Mr.|Miss|Dr.'</span>).<span class="bu">any</span>() <span class="op">==</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="keeping-it-descriptive" class="level2">
+<h2 class="anchored" data-anchor-id="keeping-it-descriptive">Keeping it descriptive</h2>
+<p>To further understand travelers’ experiences in the San Francisco Airport, the quality assurance department sent out a qualitative questionnaire to all travelers who gave the airport the worst score on all possible categories. The objective behind this questionnaire is to identify common patterns in what travelers are saying about the airport.</p>
+<p>Their response is stored in the survey_response column. Upon a closer look, you realized a few of the answers gave the shortest possible character amount without much substance. In this exercise, you will isolate the responses with a character count higher than 40 , and make sure your new DataFrame contains responses with 40 characters or more using an assert statement.</p>
+<p>The airlines DataFrame is in your environment, and pandas is imported as pd. ### Instructions - Using the airlines DataFrame, store the length of each instance in the survey_response column in resp_length by using .str.len(). - Isolate the rows of airlines with resp_length higher than 40. - Assert that the smallest survey_response length in airlines_survey is now bigger than 40.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store length of each row in survey_response column</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>resp_length <span class="op">=</span> airlines[<span class="st">'survey_response'</span>].<span class="bu">str</span>.<span class="bu">len</span>()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows in airlines where resp_length &gt; 40</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>airlines_survey <span class="op">=</span> airlines[resp_length <span class="op">&gt;</span> <span class="dv">40</span>]</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Assert minimum survey_response length is &gt; 40</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> airlines_survey[<span class="st">'survey_response'</span>].<span class="bu">str</span>.<span class="bu">len</span>().<span class="bu">min</span>() <span class="op">&gt;</span> <span class="dv">40</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print new survey_response column</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(airlines_survey[<span class="st">'survey_response'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="chapter-3-advanced-data-problems" class="level1">
+<h1>Chapter 3: Advanced data problems</h1>
+<p>In this chapter, you’ll dive into more advanced data cleaning problems, such as ensuring that weights are all written in kilograms instead of pounds. You’ll also gain invaluable skills that will help you verify that values have been added correctly and that missing values don’t negatively impact your analyses.</p>
+<section id="uniform-currencies" class="level2">
+<h2 class="anchored" data-anchor-id="uniform-currencies">Uniform currencies</h2>
+<p>In this exercise and throughout this chapter, you will be working with a retail banking dataset stored in the banking DataFrame. The dataset contains data on the amount of money stored in accounts (acct_amount), their currency (acct_cur), amount invested (inv_amount), account opening date (account_opened), and last transaction date (last_transaction) that were consolidated from American and European branches.</p>
+<p>You are tasked with understanding the average account size and how investments vary by the size of account, however in order to produce this analysis accurately, you first need to unify the currency amount into dollars. The pandas package has been imported as pd, and the banking DataFrame is in your environment. ### Instructions - Find the rows of acct_cur in banking that are equal to ‘euro’ and store them in the variable acct_eu. - Find all the rows of acct_amount in banking that fit the acct_eu condition, and convert them to USD by multiplying them with 1.1. - Find all the rows of acct_cur in banking that fit the acct_eu condition, set them to ‘dollar’.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>banking.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table class="table">
+<thead>
+<tr class="header">
+<th>
+<p>
+</p>
+</th>
+<th>
+<p>
+cust_id
+</p>
+</th>
+<th>
+<p>
+birth_date
+</p>
+</th>
+<th>
+<p>
+Age
+</p>
+</th>
+<th>
+<p>
+acct_amount
+</p>
+</th>
+<th>
+<p>
+inv_amount
+</p>
+</th>
+<th>
+<p>
+fund_A
+</p>
+</th>
+<th>
+<p>
+fund_B
+</p>
+</th>
+<th>
+<p>
+fund_C
+</p>
+</th>
+<th>
+<p>
+fund_D
+</p>
+</th>
+<th>
+<p>
+account_opened
+</p>
+</th>
+<th>
+<p>
+last_transaction
+</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+<p>
+0
+</p>
+</td>
+<td>
+<p>
+870A9281
+</p>
+</td>
+<td>
+<p>
+1962-06-09
+</p>
+</td>
+<td>
+<p>
+58
+</p>
+</td>
+<td>
+<p>
+63523.31
+</p>
+</td>
+<td>
+<p>
+51295
+</p>
+</td>
+<td>
+<p>
+30105.0
+</p>
+</td>
+<td>
+<p>
+4138.0
+</p>
+</td>
+<td>
+<p>
+1420.0
+</p>
+</td>
+<td>
+<p>
+15632.0
+</p>
+</td>
+<td>
+<p>
+02-09-18
+</p>
+</td>
+<td>
+<p>
+22-02-19
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+1
+</p>
+</td>
+<td>
+<p>
+166B05B0
+</p>
+</td>
+<td>
+<p>
+1962-12-16
+</p>
+</td>
+<td>
+<p>
+58
+</p>
+</td>
+<td>
+<p>
+38175.46
+</p>
+</td>
+<td>
+<p>
+15050
+</p>
+</td>
+<td>
+<p>
+4995.0
+</p>
+</td>
+<td>
+<p>
+938.0
+</p>
+</td>
+<td>
+<p>
+6696.0
+</p>
+</td>
+<td>
+<p>
+2421.0
+</p>
+</td>
+<td>
+<p>
+28-02-19
+</p>
+</td>
+<td>
+<p>
+31-10-18
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find values of acct_cur that are equal to 'euro'</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>acct_eu <span class="op">=</span> banking[<span class="st">'acct_cur'</span>] <span class="op">==</span> <span class="st">'euro'</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert acct_amount where it is in euro to dollars</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>banking.loc[acct_eu, <span class="st">'acct_amount'</span>] <span class="op">=</span> banking.loc[acct_eu, <span class="st">'acct_amount'</span>] <span class="op">*</span> <span class="fl">1.1</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Unify acct_cur column by changing 'euro' values to 'dollar'</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>banking.loc[acct_eu, <span class="st">'acct_cur'</span>] <span class="op">=</span> <span class="st">'dollar'</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Assert that only dollar currency remains</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> banking[<span class="st">'acct_cur'</span>].unique() <span class="op">==</span> <span class="st">'dollar'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="uniform-dates" class="level2">
+<h2 class="anchored" data-anchor-id="uniform-dates">Uniform dates</h2>
+<p>After having unified the currencies of your different account amounts, you want to add a temporal dimension to your analysis and see how customers have been investing their money given the size of their account over each year. The account_opened column represents when customers opened their accounts and is a good proxy for segmenting customer activity and investment over time.</p>
+<p>However, since this data was consolidated from multiple sources, you need to make sure that all dates are of the same format. You will do so by converting this column into a datetime object, while making sure that the format is inferred and potentially incorrect formats are set to missing. The banking DataFrame is in your environment and pandas was imported as pd. ### Instructions - Print the header of account_opened from the banking DataFrame and take a look at the different results. - Convert the account_opened column to datetime, while making sure the date format is inferred and that erroneous formats that raise error return a missing value. -</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the header of account_opend</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(banking[<span class="st">'account_opened'</span>].head())</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert account_opened to datetime</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>banking[<span class="st">'account_opened'</span>] <span class="op">=</span> pd.to_datetime(banking[<span class="st">'account_opened'</span>],</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>                                           <span class="co"># Infer datetime format</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>                                           infer_datetime_format <span class="op">=</span> <span class="va">True</span>,</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>                                           <span class="co"># Return missing value for error</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>                                           errors <span class="op">=</span> <span class="st">'coerce'</span>) </span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Get year of account opened</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>banking[<span class="st">'acct_year'</span>] <span class="op">=</span> banking[<span class="st">'account_opened'</span>].dt.strftime(<span class="st">'%Y'</span>)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Print acct_year</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(banking[<span class="st">'acct_year'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hows-our-data-integrity" class="level2">
+<h2 class="anchored" data-anchor-id="hows-our-data-integrity">How’s our data integrity?</h2>
+<p>New data has been merged into the banking DataFrame that contains details on how investments in the inv_amount column are allocated across four different funds A, B, C and D.</p>
+<p>Furthermore, the age and birthdays of customers are now stored in the age and birth_date columns respectively.</p>
+<p>You want to understand how customers of different age groups invest. However, you want to first make sure the data you’re analyzing is correct. You will do so by cross field checking values of inv_amount and age against the amount invested in different funds and customers’ birthdays. Both pandas and datetime have been imported as pd and dt respectively. ### Instructions - Find the rows where the sum of all rows of the fund_columns in banking are equal to the inv_amount column. - Store the values of banking with consistent inv_amount in consistent_inv, and those with inconsistent ones in inconsistent_inv. - Store today’s date into today, and manually calculate customers’ ages and store them in ages_manual. - Find all rows of banking where the age column is equal to ages_manual and then filter banking into consistent_ages and inconsistent_ages.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store fund columns to sum against</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>fund_columns <span class="op">=</span> [<span class="st">'fund_A'</span>, <span class="st">'fund_B'</span>, <span class="st">'fund_C'</span>, <span class="st">'fund_D'</span>]</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows where fund_columns row sum == inv_amount</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>inv_equ <span class="op">=</span> banking[fund_columns].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">==</span> banking[<span class="st">'inv_amount'</span>]</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Store consistent and inconsistent data</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>consistent_inv <span class="op">=</span> banking[inv_equ]</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>inconsistent_inv <span class="op">=</span> banking[<span class="op">~</span>inv_equ]</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Store consistent and inconsistent data</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of inconsistent investments: "</span>, inconsistent_inv.shape[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store today's date and find ages</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> dt.date.today()</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>ages_manual <span class="op">=</span> today.year <span class="op">-</span> banking[<span class="st">'birth_date'</span>].dt.year</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows where age column == ages_manual</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>age_equ <span class="op">=</span> ages_manual <span class="op">==</span> banking[<span class="st">'age'</span>]</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Store consistent and inconsistent data</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>consistent_ages <span class="op">=</span> banking[age_equ]</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>inconsistent_ages <span class="op">=</span> banking[<span class="op">~</span>age_equ]</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Store consistent and inconsistent data</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of inconsistent ages: "</span>, inconsistent_ages.shape[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="missing-investors" class="level2">
+<h2 class="anchored" data-anchor-id="missing-investors">Missing investors</h2>
+<p>Dealing with missing data is one of the most common tasks in data science. There are a variety of types of missingness, as well as a variety of types of solutions to missing data.</p>
+<p>You just received a new version of the banking DataFrame containing data on the amount held and invested for new and existing customers. However, there are rows with missing inv_amount values.</p>
+<p>You know for a fact that most customers below 25 do not have investment accounts yet, and suspect it could be driving the missingness. The pandas, missingno and matplotlib.pyplot packages have been imported as pd, msno and plt respectively. The banking DataFrame is in your environment. ### Instructions - Print the number of missing values by column in the banking DataFrame. - Plot and show the missingness matrix of banking with the msno.matrix() function. - Isolate the values of banking missing values of inv_amount into missing_investors and with non-missing inv_amount values into investors. - Sort the banking DataFrame by the age column and plot the missingness matrix of banking_sorted.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> missingno <span class="im">as</span> msno</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Print number of missing values in banking</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(banking.isna().<span class="bu">sum</span>())</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize missingness matrix</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>msno.matrix(banking)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Isolate missing and non missing values of inv_amount</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>missing_investors <span class="op">=</span> banking[banking[<span class="st">'inv_amount'</span>].isna()]</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>investors <span class="op">=</span> banking[<span class="op">~</span>banking[<span class="st">'inv_amount'</span>].isna()]</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort banking by age and visualize</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>banking_sorted <span class="op">=</span> banking.sort_values(by<span class="op">=</span><span class="st">'age'</span>)</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>msno.matrix(banking_sorted)</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="follow-the-money" class="level2">
+<h2 class="anchored" data-anchor-id="follow-the-money">Follow the money</h2>
+<p>In this exercise, you’re working with another version of the banking DataFrame that contains missing values for both the cust_id column and the acct_amount column.</p>
+<p>You want to produce analysis on how many unique customers the bank has, the average amount held by customers and more. You know that rows with missing cust_id don’t really help you, and that on average acct_amount is usually 5 times the amount of inv_amount.</p>
+<p>In this exercise, you will drop rows of banking with missing cust_ids, and impute missing values of acct_amount with some domain knowledge. ### Instructions - Use .dropna() to drop missing values of the cust_id column in banking and store the results in banking_fullid. - Use inv_amount to compute the estimated account amounts for banking_fullid by setting the amounts equal to inv_amount * 5, and assign the results to acct_imp. - Impute the missing values of acct_amount in banking_fullid with the newly created acct_imp using .fillna().</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop missing values of cust_id</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>banking_fullid <span class="op">=</span> banking.dropna(subset <span class="op">=</span> [<span class="st">'cust_id'</span>])</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute estimated acct_amount</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>acct_imp <span class="op">=</span> banking_fullid[<span class="st">'inv_amount'</span>]<span class="op">*</span><span class="dv">5</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Impute missing acct_amount with corresponding acct_imp</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>banking_imputed <span class="op">=</span> banking_fullid.fillna({<span class="st">'acct_amount'</span>:acct_imp})</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print number of missing values</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(banking_imputed.isna().<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="chapter-4-record-linkage" class="level1">
+<h1>Chapter 4: Record linkage</h1>
+<p>Record linkage is a powerful technique used to merge multiple datasets together, used when values have typos or different spellings. In this chapter, you’ll learn how to link records by calculating the similarity between strings—you’ll then use your new skills to join two restaurant review datasets into one clean master dataset. ## The cutoff point</p>
+<p>In this exercise, and throughout this chapter, you’ll be working with the restaurants DataFrame which has data on various restaurants. Your ultimate goal is to create a restaurant recommendation engine, but you need to first clean your data.</p>
+<p>This version of restaurants has been collected from many sources, where the cuisine_type column is riddled with typos, and should contain only italian, american and asian cuisine types. There are so many unique categories that remapping them manually isn’t scalable, and it’s best to use string similarity instead.</p>
+<p>Before doing so, you want to establish the cutoff point for the similarity score using the thefuzz’s process.extract() function by finding the similarity score of the most distant typo of each category. ### Instructions - Import process from thefuzz. - Store the unique cuisine_types into unique_types. - Calculate the similarity of ‘asian’, ‘american’, and ‘italian’ to all possible cuisine_types using process.extract(), while returning all possible matches.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import process from thefuzz</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> thefuzz <span class="im">import</span> process</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the unique values of cuisine_type in unique_types</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>unique_types <span class="op">=</span> restaurants[<span class="st">'cuisine_type'</span>].unique()</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate similarity of 'asian' to all values of unique_types</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(process.extract(<span class="st">'asian'</span>, unique_types, limit <span class="op">=</span> <span class="bu">len</span>(unique_types)))</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate similarity of 'american' to all values of unique_types</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(process.extract(<span class="st">'american'</span>, unique_types, limit<span class="op">=</span><span class="bu">len</span>(unique_types)))</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate similarity of 'italian' to all values of unique_types</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(process.extract(<span class="st">"italian"</span>,unique_types,limit<span class="op">=</span><span class="bu">len</span>(unique_types)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="remapping-categories-ii" class="level2">
+<h2 class="anchored" data-anchor-id="remapping-categories-ii">Remapping categories II</h2>
+<p>In the last exercise, you determined that the distance cutoff point for remapping typos of ‘american’, ‘asian’, and ‘italian’ cuisine types stored in the cuisine_type column should be 80.</p>
+<p>In this exercise, you’re going to put it all together by finding matches with similarity scores equal to or higher than 80 by using fuzywuzzy.process’s extract() function, for each correct cuisine type, and replacing these matches with it. Remember, when comparing a string with an array of strings using process.extract(), the output is a list of tuples where each is formatted like:</p>
+<p>(closest match, similarity score, index of match)</p>
+<p>The restaurants DataFrame is in your environment, and you have access to a categories list containing the correct cuisine types (‘italian’, ‘asian’, and ‘american’). ### Instructions - Return all of the unique values in the cuisine_type column of restaurants.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the unique values of the cuisine_type column</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(restaurants.cuisine_type.unique())</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of matches, comparing 'italian' with the cuisine_type column</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> process.extract(<span class="st">'italian'</span>,restaurants.cuisine_type,limit <span class="op">=</span> <span class="bu">len</span>(restaurants.cuisine_type) )</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the first 5 matches</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matches[<span class="dv">0</span>:<span class="dv">5</span>])</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of matches, comparing 'italian' with the cuisine_type column</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> process.extract(<span class="st">'italian'</span>, restaurants[<span class="st">'cuisine_type'</span>], limit<span class="op">=</span><span class="bu">len</span>(restaurants.cuisine_type))</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate through the list of matches to italian</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> match <span class="kw">in</span> matches:</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check whether the similarity score is greater than or equal to 80</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> match[<span class="dv">1</span>]<span class="op">&gt;=</span><span class="dv">80</span>:</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Select all rows where the cuisine_type is spelled this way, and set them to the correct cuisine</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>    restaurants.loc[restaurants[<span class="st">'cuisine_type'</span>]<span class="op">==</span>match[<span class="dv">0</span>],<span class="st">'cuisine_type'</span>]<span class="op">=</span><span class="st">'italian'</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate through categories</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cuisine <span class="kw">in</span> categories:  </span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a list of matches, comparing cuisine with the cuisine_type column</span></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>  matches <span class="op">=</span> process.extract(cuisine, restaurants[<span class="st">'cuisine_type'</span>], limit<span class="op">=</span><span class="bu">len</span>(restaurants.cuisine_type))</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Iterate through the list of matches</span></span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> match <span class="kw">in</span> matches:</span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>     <span class="co"># Check whether the similarity score is greater than or equal to 80</span></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> match[<span class="dv">1</span>] <span class="op">&gt;=</span> <span class="dv">80</span>:</span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>      <span class="co"># If it is, select all rows where the cuisine_type is spelled this way, and set them to the correct cuisine</span></span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>      restaurants.loc[restaurants[<span class="st">'cuisine_type'</span>] <span class="op">==</span> match[<span class="dv">0</span>]] <span class="op">=</span> cuisine</span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the final result</span></span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(restaurants[<span class="st">'cuisine_type'</span>].unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pairs-of-restaurants" class="level2">
+<h2 class="anchored" data-anchor-id="pairs-of-restaurants">Pairs of restaurants</h2>
+<p>In the last lesson, you cleaned the restaurants dataset to make it ready for building a restaurants recommendation engine. You have a new DataFrame named restaurants_new with new restaurants to train your model on, that’s been scraped from a new data source.</p>
+<p>You’ve already cleaned the cuisine_type and city columns using the techniques learned throughout the course. However you saw duplicates with typos in restaurants names that require record linkage instead of joins with restaurants.</p>
+<p>In this exercise, you will perform the first step in record linkage and generate possible pairs of rows between restaurants and restaurants_new. Both DataFrames, pandas and recordlinkage are in your environment. ### Instructions - Instantiate an indexing object by using the Index() function from recordlinkage. - Block your pairing on cuisine_type by using indexer’s’ .block() method. - Generate pairs by indexing restaurants and restaurants_new in that order.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an indexer and object and find possible pairs</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>indexer <span class="op">=</span> recordlinkage.Index()</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Block pairing on cuisine_type</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>indexer.block(<span class="st">'cuisine_type'</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate pairs</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>pairs <span class="op">=</span> indexer.index(restaurants, restaurants_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="similar-restaurants" class="level2">
+<h2 class="anchored" data-anchor-id="similar-restaurants">Similar restaurants</h2>
+<p>In the last exercise, you generated pairs between restaurants and restaurants_new in an effort to cleanly merge both DataFrames using record linkage.</p>
+<p>When performing record linkage, there are different types of matching you can perform between different columns of your DataFrames, including exact matches, string similarities, and more.</p>
+<p>Now that your pairs have been generated and stored in pairs, you will find exact matches in the city and cuisine_type columns between each pair, and similar strings for each pair in the rest_name column. Both DataFrames, pandas and recordlinkage are in your environment. ### Instructions - Instantiate a comparison object using the recordlinkage.Compare() function. - Use the appropriate comp_cl method to find exact matches between the city and cuisine_type columns of both DataFrames. - Use the appropriate comp_cl method to find similar strings with a 0.8 similarity threshold in the rest_name column of both DataFrames. - Compute the comparison of the pairs by using the .compute() method of comp_cl.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a comparison object</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>comp_cl <span class="op">=</span> recordlinkage.Compare()</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find exact matches on city, cuisine_types - </span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>comp_cl.exact(<span class="st">'city'</span>, <span class="st">'city'</span>, label<span class="op">=</span><span class="st">'city'</span>)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>comp_cl.exact(<span class="st">'cuisine_type'</span>, <span class="st">'cuisine_type'</span>, label<span class="op">=</span><span class="st">'cuisine_type'</span>)</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Find similar matches of rest_name</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>comp_cl.string(<span class="st">'rest_name'</span>, <span class="st">'rest_name'</span>, label<span class="op">=</span><span class="st">'name'</span>, threshold <span class="op">=</span> <span class="fl">0.8</span>) </span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Get potential matches and print</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>potential_matches <span class="op">=</span> comp_cl.compute(pairs, restaurants, restaurants_new)</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(potential_matches)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="linking-them-together" class="level2">
+<h2 class="anchored" data-anchor-id="linking-them-together">Linking them together!</h2>
+<p>In the last lesson, you’ve finished the bulk of the work on your effort to link restaurants and restaurants_new. You’ve generated the different pairs of potentially matching rows, searched for exact matches between the cuisine_type and city columns, but compared for similar strings in the rest_name column. You stored the DataFrame containing the scores in potential_matches.</p>
+<p>Now it’s finally time to link both DataFrames. You will do so by first extracting all row indices of restaurants_new that are matching across the columns mentioned above from potential_matches. Then you will subset restaurants_new on these indices, then append the non-duplicate values to restaurants. All DataFrames are in your environment, alongside pandas imported as pd. ### Instructions - Isolate instances of potential_matches where the row sum is above or equal to 3 by using the .sum() method. - Extract the second column index from matches, which represents row indices of matching record from restaurants_new by using the .get_level_values() method. - Subset restaurants_new for rows that are not in matching_indices. - Append non_dup to restaurants.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Isolate potential matches with row sum &gt;=3</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> potential_matches[potential_matches.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">&gt;=</span> <span class="dv">3</span>]</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get values of second column index of matches</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>matching_indices <span class="op">=</span> matches.index.get_level_values(<span class="dv">1</span>)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset restaurants_new based on non-duplicate values</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>non_dup <span class="op">=</span> restaurants_new[<span class="op">~</span>restaurants_new.index.isin(matching_indices)]</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Append non_dup to restaurants</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>full_restaurants <span class="op">=</span> restaurants.append(non_dup)</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(full_restaurants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./14_Introduction_to_Importing_Data_in_Python.html" class="pagination-link" aria-label="Introduction to Importing Data in Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction to Importing Data in Python</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="pagination-link" aria-label="Project: A Visual History of Nobel Prize Winners">
+        <span class="nav-page-text">Project: A Visual History of Nobel Prize Winners</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

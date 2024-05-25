@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science With Python - Introduction to Regression with statsmodels in Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" rel="next">
+<link href="./17_Writing_Functions_in_Python.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18_Introduction_to_Regression_with_statsmodels_in_Python.html">Introduction to Regression with statsmodels in Python</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Science With Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_Introduction_to_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_Intermediate_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intermediate Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_Data_Manipulation_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_Joining_Data_with_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joining Data with pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_Introduction_to_statistics_in_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_Introduction_to_Data_Visualization_with_Matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualization with Matplotlib</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7_Introduction_to_Data_Visualization_with_Seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualization with Seaborn</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_Python_Data_Science_Toolbox_Part1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Data Science Toolbox (Part 1)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9_Python_Data_Science_Toolbox_Part2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Data Science Toolbox (Part 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_Intermediate_Data_Visualization_with_Seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intermediate Data Visualization with Seaborn</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_Working_with_Categorical_Data_in_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Working with Categorical Data in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14_Introduction_to_Importing_Data_in_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Importing Data in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15_Cleaning_Data_in_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning Data in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17_Writing_Functions_in_Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing Functions in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18_Introduction_to_Regression_with_statsmodels_in_Python.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introduction to Regression with statsmodels in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: A Visual History of Nobel Prize Winners</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Netflix_movies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Investigating Netflix Movies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Exploring_NYC_Public_School_Test_Result_Scores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Exploring NYC Public School Test Result Scores</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Hypothesis_Testing_in_Healthcare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Hypothesis Testing in Healthcare- Drug Safety</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Predictive_Modeling_for_Agriculture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Sowing Success - How Machine Learning Helps Farmers Select the Best Crops</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Analyzing_Crime_in_Los_Angeles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Analyzing Crime in Los Angeles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Project-Customer_Analytics_Preparing_Data_for_Modeling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project: Customer Analytics- Preparing Data for Modeling</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-1-simple-linear-regression-modeling" id="toc-chapter-1-simple-linear-regression-modeling" class="nav-link active" data-scroll-target="#chapter-1-simple-linear-regression-modeling">Chapter 1: Simple Linear Regression Modeling</a>
+  <ul class="collapse">
+  <li><a href="#visualizing-two-numeric-variables" id="toc-visualizing-two-numeric-variables" class="nav-link" data-scroll-target="#visualizing-two-numeric-variables">Visualizing two numeric variables</a></li>
+  <li><a href="#linear-regression-with-ols" id="toc-linear-regression-with-ols" class="nav-link" data-scroll-target="#linear-regression-with-ols">Linear regression with ols()</a></li>
+  <li><a href="#question" id="toc-question" class="nav-link" data-scroll-target="#question">Question</a></li>
+  <li><a href="#answer" id="toc-answer" class="nav-link" data-scroll-target="#answer">Answer</a></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question</a></li>
+  <li><a href="#answer-1" id="toc-answer-1" class="nav-link" data-scroll-target="#answer-1">Answer</a></li>
+  <li><a href="#visualizing-numeric-vs.-categorical" id="toc-visualizing-numeric-vs.-categorical" class="nav-link" data-scroll-target="#visualizing-numeric-vs.-categorical">Visualizing numeric vs.&nbsp;categorical</a></li>
+  <li><a href="#calculating-means-by-category" id="toc-calculating-means-by-category" class="nav-link" data-scroll-target="#calculating-means-by-category">Calculating means by category</a></li>
+  <li><a href="#linear-regression-with-a-categorical-explanatory-variable" id="toc-linear-regression-with-a-categorical-explanatory-variable" class="nav-link" data-scroll-target="#linear-regression-with-a-categorical-explanatory-variable">Linear regression with a categorical explanatory variable</a></li>
+  </ul></li>
+  <li><a href="#chapter-2-predictions-and-model-objects" id="toc-chapter-2-predictions-and-model-objects" class="nav-link" data-scroll-target="#chapter-2-predictions-and-model-objects">Chapter 2: Predictions and model objects</a>
+  <ul class="collapse">
+  <li><a href="#predicting-house-prices" id="toc-predicting-house-prices" class="nav-link" data-scroll-target="#predicting-house-prices">Predicting house prices</a></li>
+  <li><a href="#visualizing-predictions" id="toc-visualizing-predictions" class="nav-link" data-scroll-target="#visualizing-predictions">Visualizing predictions</a></li>
+  <li><a href="#the-limits-of-prediction" id="toc-the-limits-of-prediction" class="nav-link" data-scroll-target="#the-limits-of-prediction">The limits of prediction</a></li>
+  <li><a href="#extracting-model-elements" id="toc-extracting-model-elements" class="nav-link" data-scroll-target="#extracting-model-elements">Extracting model elements</a></li>
+  <li><a href="#manually-predicting-house-prices" id="toc-manually-predicting-house-prices" class="nav-link" data-scroll-target="#manually-predicting-house-prices">Manually predicting house prices</a></li>
+  <li><a href="#plotting-consecutive-portfolio-returns" id="toc-plotting-consecutive-portfolio-returns" class="nav-link" data-scroll-target="#plotting-consecutive-portfolio-returns">Plotting consecutive portfolio returns</a></li>
+  <li><a href="#modeling-consecutive-returns" id="toc-modeling-consecutive-returns" class="nav-link" data-scroll-target="#modeling-consecutive-returns">Modeling consecutive returns</a></li>
+  <li><a href="#transforming-the-explanatory-variable" id="toc-transforming-the-explanatory-variable" class="nav-link" data-scroll-target="#transforming-the-explanatory-variable">Transforming the explanatory variable</a></li>
+  <li><a href="#transforming-the-response-variable-too" id="toc-transforming-the-response-variable-too" class="nav-link" data-scroll-target="#transforming-the-response-variable-too">Transforming the response variable too</a></li>
+  <li><a href="#back-transformation" id="toc-back-transformation" class="nav-link" data-scroll-target="#back-transformation">Back transformation</a></li>
+  </ul></li>
+  <li><a href="#chapter-3-assessing-model-fit" id="toc-chapter-3-assessing-model-fit" class="nav-link" data-scroll-target="#chapter-3-assessing-model-fit">Chapter 3 : Assessing model fit</a>
+  <ul class="collapse">
+  <li><a href="#coefficient-of-determination" id="toc-coefficient-of-determination" class="nav-link" data-scroll-target="#coefficient-of-determination">Coefficient of determination</a></li>
+  <li><a href="#residual-standard-error" id="toc-residual-standard-error" class="nav-link" data-scroll-target="#residual-standard-error">Residual standard error</a></li>
+  <li><a href="#drawing-diagnostic-plots" id="toc-drawing-diagnostic-plots" class="nav-link" data-scroll-target="#drawing-diagnostic-plots">Drawing diagnostic plots</a></li>
+  <li><a href="#leverage" id="toc-leverage" class="nav-link" data-scroll-target="#leverage">Leverage</a></li>
+  <li><a href="#influence" id="toc-influence" class="nav-link" data-scroll-target="#influence">Influence</a></li>
+  <li><a href="#extracting-leverage-and-influence" id="toc-extracting-leverage-and-influence" class="nav-link" data-scroll-target="#extracting-leverage-and-influence">Extracting leverage and influence</a></li>
+  </ul></li>
+  <li><a href="#chapter-4-simple-logistic-regression-modeling" id="toc-chapter-4-simple-logistic-regression-modeling" class="nav-link" data-scroll-target="#chapter-4-simple-logistic-regression-modeling">Chapter 4: Simple Logistic Regression Modeling</a>
+  <ul class="collapse">
+  <li><a href="#exploring-the-explanatory-variables" id="toc-exploring-the-explanatory-variables" class="nav-link" data-scroll-target="#exploring-the-explanatory-variables">Exploring the explanatory variables</a></li>
+  <li><a href="#visualizing-linear-and-logistic-models" id="toc-visualizing-linear-and-logistic-models" class="nav-link" data-scroll-target="#visualizing-linear-and-logistic-models">Visualizing linear and logistic models</a></li>
+  <li><a href="#logistic-regression-with-logit" id="toc-logistic-regression-with-logit" class="nav-link" data-scroll-target="#logistic-regression-with-logit">Logistic regression with logit()</a></li>
+  <li><a href="#probabilities" id="toc-probabilities" class="nav-link" data-scroll-target="#probabilities">Probabilities</a>
+  <ul class="collapse">
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  </ul></li>
+  <li><a href="#most-likely-outcome" id="toc-most-likely-outcome" class="nav-link" data-scroll-target="#most-likely-outcome">Most likely outcome</a></li>
+  <li><a href="#odds-ratio" id="toc-odds-ratio" class="nav-link" data-scroll-target="#odds-ratio">Odds ratio</a></li>
+  <li><a href="#log-odds-ratio" id="toc-log-odds-ratio" class="nav-link" data-scroll-target="#log-odds-ratio">Log odds ratio</a></li>
+  <li><a href="#calculating-the-confusion-matrix" id="toc-calculating-the-confusion-matrix" class="nav-link" data-scroll-target="#calculating-the-confusion-matrix">Calculating the confusion matrix</a></li>
+  <li><a href="#drawing-a-mosaic-plot-of-the-confusion-matrix" id="toc-drawing-a-mosaic-plot-of-the-confusion-matrix" class="nav-link" data-scroll-target="#drawing-a-mosaic-plot-of-the-confusion-matrix">Drawing a mosaic plot of the confusion matrix</a></li>
+  <li><a href="#measuring-logistic-model-performance" id="toc-measuring-logistic-model-performance" class="nav-link" data-scroll-target="#measuring-logistic-model-performance">Measuring logistic model performance</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction to Regression with statsmodels in Python</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing pandas</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing the course arrays</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>conversion <span class="op">=</span> pd.read_csv(<span class="st">"datasets/ad_conversion.csv"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>churn <span class="op">=</span> pd.read_csv(<span class="st">"datasets/churn.csv"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>fish <span class="op">=</span> pd.read_csv(<span class="st">"datasets/fish.csv"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>sp500 <span class="op">=</span> pd.read_csv(<span class="st">"datasets/sp500_yearly_returns.csv"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>taiwan <span class="op">=</span> pd.read_csv(<span class="st">"datasets/taiwan_real_estate2.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="chapter-1-simple-linear-regression-modeling" class="level1">
+<h1>Chapter 1: Simple Linear Regression Modeling</h1>
+<p>You’ll learn the basics of this popular statistical model, what regression is, and how linear and logistic regressions differ. You’ll then learn how to fit simple linear regression models with numeric and categorical explanatory variables, and how to describe the relationship between the response and explanatory variables using model coefficients.</p>
+<section id="visualizing-two-numeric-variables" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-two-numeric-variables">Visualizing two numeric variables</h2>
+<p>Before you can run any statistical models, it’s usually a good idea to visualize your dataset. Here, you’ll look at the relationship between house price per area and the number of nearby convenience stores using the Taiwan real estate dataset.</p>
+<p>One challenge in this dataset is that the number of convenience stores contains integer data, causing points to overlap. To solve this, you will make the points transparent.</p>
+<p>taiwan_real_estate is available as a pandas DataFrame. ### Instructions - Import the seaborn package, aliased as sns. - Using taiwan_real_estate, draw a scatter plot of “price_twd_msq” (y-axis) versus “n_convenience” (x-axis). - Draw a trend line calculated using linear regression. Omit the confidence interval ribbon. Note: The scatter_kws argument, pre-filled in the exercise, makes the data points 50% transparent.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>taiwan_real_estate<span class="op">=</span>taiwan</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Import seaborn with alias sns</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Import matplotlib.pyplot with alias plt</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the scatter plot</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"n_convenience"</span>,y<span class="op">=</span><span class="st">"price_twd_msq"</span>, data<span class="op">=</span>taiwan_real_estate)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Import seaborn with alias sns</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Import matplotlib.pyplot with alias plt</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the scatter plot</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"n_convenience"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                y<span class="op">=</span><span class="st">"price_twd_msq"</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                data<span class="op">=</span>taiwan_real_estate)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a trend line on the scatter plot of price_twd_msq vs. n_convenience</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">'n_convenience'</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>         y<span class="op">=</span><span class="st">'price_twd_msq'</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>         data<span class="op">=</span>taiwan_real_estate,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>         ci<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>         scatter_kws<span class="op">=</span>{<span class="st">'alpha'</span>: <span class="fl">0.5</span>})</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_4_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_4_1.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="linear-regression-with-ols" class="level2">
+<h2 class="anchored" data-anchor-id="linear-regression-with-ols">Linear regression with ols()</h2>
+<p>While sns.regplot() can display a linear regression trend line, it doesn’t give you access to the intercept and slope as variables, or allow you to work with the model results as variables. That means that sometimes you’ll need to run a linear regression yourself.</p>
+<p>Time to run your first model!</p>
+<p>taiwan_real_estate is available. TWD is an abbreviation for Taiwan dollars.</p>
+<p>In addition, for this exercise and the remainder of the course, the following packages will be imported and aliased if necessary: matplotlib.pyplot as plt, seaborn as sns, and pandas as pd. ### Instructions - Import the ols() function from the statsmodels.formula.api package. - Run a linear regression with price_twd_msq as the response variable, n_convenience as the explanatory variable, and taiwan_real_estate as the dataset. Name it mdl_price_vs_conv. - Fit the model. - Print the parameters of the fitted model.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the ols function</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.formula.api <span class="im">import</span> ols</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model object</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>mdl_price_vs_conv <span class="op">=</span> ols(<span class="st">"price_twd_msq~n_convenience"</span>, data<span class="op">=</span>taiwan_real_estate)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>mdl_price_vs_conv <span class="op">=</span> mdl_price_vs_conv.fit()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the parameters of the fitted model</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_price_vs_conv.params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Intercept        8.224237
+n_convenience    0.798080
+dtype: float64</code></pre>
+</section>
+<section id="question" class="level2">
+<h2 class="anchored" data-anchor-id="question">Question</h2>
+<pre><code>The model had an Intercept coefficient of 8.2242. What does this mean?</code></pre>
+</section>
+<section id="answer" class="level2">
+<h2 class="anchored" data-anchor-id="answer">Answer</h2>
+<pre><code>On average, a house with zero convenience stores nearby had a price of 8.2242 TWD per square meter</code></pre>
+</section>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question</h2>
+<pre><code>The model had an n_convenience coefficient of 0.7981. What does this mean?</code></pre>
+</section>
+<section id="answer-1" class="level2">
+<h2 class="anchored" data-anchor-id="answer-1">Answer</h2>
+<pre><code>If you increase the number of nearby convenience stores by one, then the expected increase in house price is 0.7981 TWD per square meter</code></pre>
+</section>
+<section id="visualizing-numeric-vs.-categorical" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-numeric-vs.-categorical">Visualizing numeric vs.&nbsp;categorical</h2>
+<p>If the explanatory variable is categorical, the scatter plot that you used before to visualize the data doesn’t make sense. Instead, a good option is to draw a histogram for each category.</p>
+<p>The Taiwan real estate dataset has a categorical variable in the form of the age of each house. The ages have been split into 3 groups: 0 to 15 years, 15 to 30 years, and 30 to 45 years.</p>
+<p>taiwan_real_estate is available. ### Instructions - Using taiwan_real_estate, plot a histogram of price_twd_msq with 10 bins. Split the plot by house_age_years to give 3 panels.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograms of price_twd_msq with 10 bins, split by the age of each house</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sns.displot(data<span class="op">=</span>taiwan_real_estate,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>         x<span class="op">=</span><span class="st">'price_twd_msq'</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>         col<span class="op">=</span><span class="st">'house_age_years'</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>         col_wrap<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>         bins<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_9_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="calculating-means-by-category" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-means-by-category">Calculating means by category</h2>
+<p>A good way to explore categorical variables further is to calculate summary statistics for each category. For example, you can calculate the mean and median of your response variable, grouped by a categorical variable. As such, you can compare each category in more detail.</p>
+<p>Here, you’ll look at grouped means for the house prices in the Taiwan real estate dataset. This will help you understand the output of a linear regression with a categorical variable.</p>
+<p>taiwan_real_estate is available as a pandas DataFrame. ### Instructions - Group taiwan_real_estate by house_age_years and calculate the mean price (price_twd_msq) for each age group. Assign the result to mean_price_by_age. - Print the result and inspect the output.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean of price_twd_msq, grouped by house age</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mean_price_by_age <span class="op">=</span> taiwan_real_estate.groupby(<span class="st">'house_age_years'</span>)[<span class="st">'price_twd_msq'</span>].mean()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean_price_by_age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>house_age_years
+0 to 15     12.637471
+15 to 30     9.876743
+30 to 45    11.393264
+Name: price_twd_msq, dtype: float64</code></pre>
+</section>
+<section id="linear-regression-with-a-categorical-explanatory-variable" class="level2">
+<h2 class="anchored" data-anchor-id="linear-regression-with-a-categorical-explanatory-variable">Linear regression with a categorical explanatory variable</h2>
+<p>Great job calculating those grouped means! As mentioned in the last video, the means of each category will also be the coefficients of a linear regression model with one categorical variable. You’ll prove that in this exercise.</p>
+<p>To run a linear regression model with categorical explanatory variables, you can use the same code as with numeric explanatory variables. The coefficients returned by the model are different, however. Here you’ll run a linear regression on the Taiwan real estate dataset.</p>
+<p>taiwan_real_estate is available and the ols() function is also loaded. ### Instructions - Run and fit a linear regression with price_twd_msq as the response variable, house_age_years as the explanatory variable, and taiwan_real_estate as the dataset. Assign to mdl_price_vs_age. - Print its parameters. - Update the model formula so that no intercept is included in the model. Assign to mdl_price_vs_age0. - Print its parameters.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model, fit it</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mdl_price_vs_age <span class="op">=</span> ols(<span class="st">"price_twd_msq~house_age_years"</span>, data<span class="op">=</span>taiwan_real_estate).fit()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the parameters of the fitted model</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_price_vs_age.params)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the model formula to remove the intercept</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>mdl_price_vs_age0 <span class="op">=</span> ols(<span class="st">"price_twd_msq ~ house_age_years+0"</span>, data<span class="op">=</span>taiwan_real_estate).fit()</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the parameters of the fitted model</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_price_vs_age0.params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Intercept                      12.637471
+house_age_years[T.15 to 30]    -2.760728
+house_age_years[T.30 to 45]    -1.244207
+dtype: float64
+house_age_years[0 to 15]     12.637471
+house_age_years[15 to 30]     9.876743
+house_age_years[30 to 45]    11.393264
+dtype: float64</code></pre>
+</section>
+</section>
+<section id="chapter-2-predictions-and-model-objects" class="level1">
+<h1>Chapter 2: Predictions and model objects</h1>
+<p>In this chapter, you’ll discover how to use linear regression models to make predictions on Taiwanese house prices and Facebook advert clicks. You’ll also grow your regression skills as you get hands-on with model objects, understand the concept of “regression to the mean”, and learn how to transform variables in a dataset.</p>
+<section id="predicting-house-prices" class="level2">
+<h2 class="anchored" data-anchor-id="predicting-house-prices">Predicting house prices</h2>
+<p>Perhaps the most useful feature of statistical models like linear regression is that you can make predictions. That is, you specify values for each of the explanatory variables, feed them to the model, and get a prediction for the corresponding response variable. The code flow is as follows.</p>
+<p>explanatory_data = pd.DataFrame({“explanatory_var”: list_of_values}) predictions = model.predict(explanatory_data) prediction_data = explanatory_data.assign(response_var=predictions)</p>
+<p>Here, you’ll make predictions for the house prices in the Taiwan real estate dataset.</p>
+<p>taiwan_real_estate is available. The fitted linear regression model of house price versus number of convenience stores is available as mdl_price_vs_conv. For future exercises, when a model is available, it will also be fitted. ### Instructions - Import the numpy package using the alias np. - Create a DataFrame of explanatory data, where the number of convenience stores, n_convenience, takes the integer values from zero to ten. - Print explanatory_data. - Use the model mdl_price_vs_conv to make predictions from explanatory_data and store it as price_twd_msq. - Print the predictions. - Create a DataFrame of predictions named prediction_data. Start with explanatory_data, then add an extra column, price_twd_msq, containing the predictions you created in the previous step.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import numpy with alias np</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create explanatory_data </span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>explanatory_data <span class="op">=</span> pd.DataFrame({<span class="st">'n_convenience'</span>: np.arange(<span class="dv">0</span>, <span class="dv">11</span>)})</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use mdl_price_vs_conv to predict with explanatory_data, call it price_twd_msq</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>price_twd_msq <span class="op">=</span> mdl_price_vs_conv.predict(explanatory_data)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create prediction_data</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>prediction_data <span class="op">=</span> explanatory_data.assign(</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    price_twd_msq <span class="op">=</span> mdl_price_vs_conv.predict(explanatory_data))</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prediction_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>    n_convenience  price_twd_msq
+0               0       8.224237
+1               1       9.022317
+2               2       9.820397
+3               3      10.618477
+4               4      11.416556
+5               5      12.214636
+6               6      13.012716
+7               7      13.810795
+8               8      14.608875
+9               9      15.406955
+10             10      16.205035</code></pre>
+</section>
+<section id="visualizing-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-predictions">Visualizing predictions</h2>
+<p>The prediction DataFrame you created contains a column of explanatory variable values and a column of response variable values. That means you can plot it on the same scatter plot of response versus explanatory data values.</p>
+<p>prediction_data is available. The code for the plot you created using sns.regplot() in Chapter 1 is shown. ### Instructions - Create a new figure to plot multiple layers. - Extend the plotting code to add points for the predictions in prediction_data. Color the points red. - Display the layered plot.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new figure, fig</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"n_convenience"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">"price_twd_msq"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>taiwan_real_estate,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>            ci<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a scatter plot layer to the regplot</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"n_convenience"</span>,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">"price_twd_msq"</span>,</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>prediction_data,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>            color <span class="op">=</span> <span class="st">'red'</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the layered plot</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_18_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-limits-of-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="the-limits-of-prediction">The limits of prediction</h2>
+<p>In the last exercise, you made predictions on some sensible, could-happen-in-real-life, situations. That is, the cases when the number of nearby convenience stores were between zero and ten. To test the limits of the model’s ability to predict, try some impossible situations.</p>
+<p>Use the console to try predicting house prices from mdl_price_vs_conv when there are -1 convenience stores. Do the same for 2.5 convenience stores. What happens in each case?</p>
+<p>mdl_price_vs_conv is available. ### Instructions - Create some impossible explanatory data. Define a DataFrame impossible with one column, n_convenience, set to -1 in the first row, and 2.5 in the second row.</p>
+</section>
+<section id="extracting-model-elements" class="level2">
+<h2 class="anchored" data-anchor-id="extracting-model-elements">Extracting model elements</h2>
+<p>The model object created by ols() contains many elements. In order to perform further analysis on the model results, you need to extract its useful bits. The model coefficients, the fitted values, and the residuals are perhaps the most important pieces of the linear model object.</p>
+<p>mdl_price_vs_conv is available. ### Instructions - Print the parameters of mdl_price_vs_conv. - Print the fitted values of mdl_price_vs_conv. - Print the residuals of mdl_price_vs_conv. - Print a summary of mdl_price_vs_conv.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the model parameters of mdl_price_vs_conv</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_price_vs_conv.params)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the fitted values of mdl_price_vs_conv</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_price_vs_conv.fittedvalues)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the residuals of mdl_price_vs_conv</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_price_vs_conv.resid)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a summary of mdl_price_vs_conv</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_price_vs_conv.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Intercept        8.224237
+n_convenience    0.798080
+dtype: float64
+0      16.205035
+1      15.406955
+2      12.214636
+3      12.214636
+4      12.214636
+         ...    
+409     8.224237
+410    15.406955
+411    13.810795
+412    12.214636
+413    15.406955
+Length: 414, dtype: float64
+0     -4.737561
+1     -2.638422
+2      2.097013
+3      4.366302
+4      0.826211
+         ...   
+409   -3.564631
+410   -0.278362
+411   -1.526378
+412    3.670387
+413    3.927387
+Length: 414, dtype: float64
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:          price_twd_msq   R-squared:                       0.326
+Model:                            OLS   Adj. R-squared:                  0.324
+Method:                 Least Squares   F-statistic:                     199.3
+Date:                Sat, 30 Dec 2023   Prob (F-statistic):           3.41e-37
+Time:                        08:49:14   Log-Likelihood:                -1091.1
+No. Observations:                 414   AIC:                             2186.
+Df Residuals:                     412   BIC:                             2194.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          t      P&gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------
+Intercept         8.2242      0.285     28.857      0.000       7.664       8.784
+n_convenience     0.7981      0.057     14.118      0.000       0.687       0.909
+==============================================================================
+Omnibus:                      171.927   Durbin-Watson:                   1.993
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1417.242
+Skew:                           1.553   Prob(JB):                    1.78e-308
+Kurtosis:                      11.516   Cond. No.                         8.87
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</section>
+<section id="manually-predicting-house-prices" class="level2">
+<h2 class="anchored" data-anchor-id="manually-predicting-house-prices">Manually predicting house prices</h2>
+<p>You can manually calculate the predictions from the model coefficients. When making predictions in real life, it is better to use .predict(), but doing this manually is helpful to reassure yourself that predictions aren’t magic - they are simply arithmetic.</p>
+<p>In fact, for a simple linear regression, the predicted value is just the intercept plus the slope times the explanatory variable.</p>
+<p>mdl_price_vs_conv and explanatory_data are available. ### Instructions - Get the coefficients/parameters of mdl_price_vs_conv, assigning to coeffs. - Get the intercept, which is the first element of coeffs, assigning to intercept. - Get the slope, which is the second element of coeffs, assigning to slope. - Manually predict price_twd_msq using the formula, specifying the intercept, slope, and explanatory_data. - Run the code to compare your manually calculated predictions to the results from .predict().</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the coefficients of mdl_price_vs_conv</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>coeffs <span class="op">=</span> mdl_price_vs_conv.params</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the intercept</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>intercept <span class="op">=</span> coeffs[<span class="dv">0</span>]</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the slope</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>slope <span class="op">=</span> coeffs[<span class="dv">1</span>]</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Manually calculate the predictions</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>price_twd_msq <span class="op">=</span> intercept<span class="op">+</span>explanatory_data<span class="op">*</span>slope</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(price_twd_msq)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to the results from .predict()</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(price_twd_msq.assign(predictions_auto<span class="op">=</span>mdl_price_vs_conv.predict(explanatory_data)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>    n_convenience
+0        8.224237
+1        9.022317
+2        9.820397
+3       10.618477
+4       11.416556
+5       12.214636
+6       13.012716
+7       13.810795
+8       14.608875
+9       15.406955
+10      16.205035
+    n_convenience  predictions_auto
+0        8.224237          8.224237
+1        9.022317          9.022317
+2        9.820397          9.820397
+3       10.618477         10.618477
+4       11.416556         11.416556
+5       12.214636         12.214636
+6       13.012716         13.012716
+7       13.810795         13.810795
+8       14.608875         14.608875
+9       15.406955         15.406955
+10      16.205035         16.205035</code></pre>
+</section>
+<section id="plotting-consecutive-portfolio-returns" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-consecutive-portfolio-returns">Plotting consecutive portfolio returns</h2>
+<p>Regression to the mean is also an important concept in investing. Here you’ll look at the annual returns from investing in companies in the Standard and Poor 500 index (S&amp;P 500), in 2018 and 2019.</p>
+<p>The sp500_yearly_returns dataset contains three columns:</p>
+<p><strong>symbol</strong> Stock ticker symbol uniquely identifying the company.</p>
+<p><strong>return_2018</strong> A measure of investment performance in 2018.</p>
+<p><strong>return_2019</strong> A measure of investment performance in 2019.</p>
+<p>A positive number for the return means the investment increased in value; negative means it lost value.</p>
+<p>Just as with baseball home runs, a naive prediction might be that the investment performance stays the same from year to year, lying on the y equals x line.</p>
+<p>sp500_yearly_returns is available as a pandas DataFrame. ### Instructions - Create a new figure, fig, to enable plot layering. - Generate a line at y equals x. This has been done for you. - Using sp500_yearly_returns, draw a scatter plot of return_2019 vs.&nbsp;return_2018 with a linear regression trend line, without a standard error ribbon. - Set the axes so that the distances along the x and y axes look the same.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sp500_yearly_returns <span class="op">=</span> sp500</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new figure, fig</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the first layer: y = x</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>plt.axline(xy1<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>), slope<span class="op">=</span><span class="dv">1</span>, linewidth<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">"green"</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add scatter plot with linear regression trend line</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>sns.regplot(y<span class="op">=</span><span class="st">'return_2019'</span>,x<span class="op">=</span><span class="st">'return_2018'</span>,data<span class="op">=</span>sp500_yearly_returns)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the axes so that the distances along the x and y axes look the same</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"equal"</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_25_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="modeling-consecutive-returns" class="level2">
+<h2 class="anchored" data-anchor-id="modeling-consecutive-returns">Modeling consecutive returns</h2>
+<p>Let’s quantify the relationship between returns in 2019 and 2018 by running a linear regression and making predictions. By looking at companies with extremely high or extremely low returns in 2018, we can see if their performance was similar in 2019.</p>
+<p>sp500_yearly_returns is available and ols() is loaded. ### Instructions - Run a linear regression on return_2019 versus return_2018 using sp500_yearly_returns and fit the model. Assign to mdl_returns. - Print the parameters of the model.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a linear regression on return_2019 vs. return_2018 using sp500_yearly_returns</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>mdl_returns <span class="op">=</span> ols(<span class="st">"return_2019 ~ return_2018"</span>, data<span class="op">=</span>sp500_yearly_returns).fit()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the parameters</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_returns.params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Intercept      0.321321
+return_2018    0.020069
+dtype: float64</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mdl_returns <span class="op">=</span> ols(<span class="st">"return_2019 ~ return_2018"</span>, data<span class="op">=</span>sp500_yearly_returns).fit()</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame with return_2018 at -1, 0, and 1 </span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>explanatory_data <span class="op">=</span> pd.DataFrame({<span class="st">"return_2018"</span>:[<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>]})</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Use mdl_returns to predict with explanatory_data</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_returns.predict(explanatory_data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>0    0.301251
+1    0.321321
+2    0.341390
+dtype: float64</code></pre>
+</section>
+<section id="transforming-the-explanatory-variable" class="level2">
+<h2 class="anchored" data-anchor-id="transforming-the-explanatory-variable">Transforming the explanatory variable</h2>
+<p>If there is no straight-line relationship between the response variable and the explanatory variable, it is sometimes possible to create one by transforming one or both of the variables. Here, you’ll look at transforming the explanatory variable.</p>
+<p>You’ll take another look at the Taiwan real estate dataset, this time using the distance to the nearest MRT (metro) station as the explanatory variable. You’ll use code to make every commuter’s dream come true: shortening the distance to the metro station by taking the square root. Take that, geography!</p>
+<p>taiwan_real_estate is available. ### Instructions - Look at the plot. - Add a new column to taiwan_real_estate called sqrt_dist_to_mrt_m that contains the square root of dist_to_mrt_m. - Create the same scatter plot as the first one, but use the new transformed variable on the x-axis instead. - Look at the new plot. Notice how the numbers on the x-axis have changed. This is a different line to what was shown before. Do the points track the line more closely?</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create sqrt_dist_to_mrt_m</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>taiwan_real_estate[<span class="st">"sqrt_dist_to_mrt_m"</span>] <span class="op">=</span> np.sqrt(taiwan_real_estate[<span class="st">"dist_to_mrt_m"</span>])</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot using the transformed variable</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"sqrt_dist_to_mrt_m"</span>, y <span class="op">=</span> <span class="st">'price_twd_msq'</span>, data <span class="op">=</span> taiwan_real_estate)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_30_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create sqrt_dist_to_mrt_m</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>taiwan_real_estate[<span class="st">"sqrt_dist_to_mrt_m"</span>] <span class="op">=</span> np.sqrt(taiwan_real_estate[<span class="st">"dist_to_mrt_m"</span>])</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a linear regression of price_twd_msq vs. square root of dist_to_mrt_m using taiwan_real_estate</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>mdl_price_vs_dist <span class="op">=</span> ols(<span class="st">"price_twd_msq~sqrt_dist_to_mrt_m"</span>, data<span class="op">=</span>taiwan_real_estate).fit()</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the parameters</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>mdl_price_vs_dist.params</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Intercept             16.709799
+sqrt_dist_to_mrt_m    -0.182843
+dtype: float64</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create sqrt_dist_to_mrt_m</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>taiwan_real_estate[<span class="st">"sqrt_dist_to_mrt_m"</span>] <span class="op">=</span> np.sqrt(taiwan_real_estate[<span class="st">"dist_to_mrt_m"</span>])</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a linear regression of price_twd_msq vs. sqrt_dist_to_mrt_m</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>mdl_price_vs_dist <span class="op">=</span> ols(<span class="st">"price_twd_msq ~ sqrt_dist_to_mrt_m"</span>, data<span class="op">=</span>taiwan_real_estate).fit()</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>explanatory_data <span class="op">=</span> pd.DataFrame({<span class="st">"sqrt_dist_to_mrt_m"</span>: np.sqrt(np.arange(<span class="dv">0</span>, <span class="dv">81</span>, <span class="dv">10</span>) <span class="op">**</span> <span class="dv">2</span>),</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"dist_to_mrt_m"</span>: np.arange(<span class="dv">0</span>, <span class="dv">81</span>, <span class="dv">10</span>) <span class="op">**</span> <span class="dv">2</span>})</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create prediction_data by adding a column of predictions to explantory_data</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>prediction_data <span class="op">=</span> explanatory_data.assign(</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    price_twd_msq <span class="op">=</span> mdl_price_vs_dist.predict(explanatory_data)</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prediction_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>   sqrt_dist_to_mrt_m  dist_to_mrt_m  price_twd_msq
+0                 0.0              0      16.709799
+1                10.0            100      14.881370
+2                20.0            400      13.052942
+3                30.0            900      11.224513
+4                40.0           1600       9.396085
+5                50.0           2500       7.567656
+6                60.0           3600       5.739227
+7                70.0           4900       3.910799
+8                80.0           6400       2.082370</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create sqrt_dist_to_mrt_m</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>taiwan_real_estate[<span class="st">"sqrt_dist_to_mrt_m"</span>] <span class="op">=</span> np.sqrt(taiwan_real_estate[<span class="st">"dist_to_mrt_m"</span>])</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a linear regression of price_twd_msq vs. sqrt_dist_to_mrt_m</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>mdl_price_vs_dist <span class="op">=</span> ols(<span class="st">"price_twd_msq ~ sqrt_dist_to_mrt_m"</span>, data<span class="op">=</span>taiwan_real_estate).fit()</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use this explanatory data</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>explanatory_data <span class="op">=</span> pd.DataFrame({<span class="st">"sqrt_dist_to_mrt_m"</span>: np.sqrt(np.arange(<span class="dv">0</span>, <span class="dv">81</span>, <span class="dv">10</span>) <span class="op">**</span> <span class="dv">2</span>),</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"dist_to_mrt_m"</span>: np.arange(<span class="dv">0</span>, <span class="dv">81</span>, <span class="dv">10</span>) <span class="op">**</span> <span class="dv">2</span>})</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Use mdl_price_vs_dist to predict explanatory_data</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>prediction_data <span class="op">=</span> explanatory_data.assign(</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    price_twd_msq <span class="op">=</span> mdl_price_vs_dist.predict(explanatory_data)</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"sqrt_dist_to_mrt_m"</span>, y<span class="op">=</span><span class="st">"price_twd_msq"</span>, data<span class="op">=</span>taiwan_real_estate, ci<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a layer of your prediction points</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>prediction_data, x<span class="op">=</span><span class="st">"sqrt_dist_to_mrt_m"</span>, y<span class="op">=</span><span class="st">"price_twd_msq"</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_33_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="transforming-the-response-variable-too" class="level2">
+<h2 class="anchored" data-anchor-id="transforming-the-response-variable-too">Transforming the response variable too</h2>
+<p>The response variable can be transformed too, but this means you need an extra step at the end to undo that transformation. That is, you “back transform” the predictions.</p>
+<p>In the video, you saw the first step of the digital advertising workflow: spending money to buy ads, and counting how many people see them (the “impressions”). The next step is determining how many people click on the advert after seeing it.</p>
+<p>ad_conversion is available as a pandas DataFrame. ### Instructions - Look at the plot. - Create a qdrt_n_impressions column using n_impressions raised to the power of 0.25. - Create a qdrt_n_clicks column using n_clicks raised to the power of 0.25. - Create a regression plot using the transformed variables. Do the points track the line more closely?</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ad_conversion<span class="op">=</span>conversion</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create qdrt_n_impressions and qdrt_n_clicks</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>ad_conversion[<span class="st">"qdrt_n_impressions"</span>] <span class="op">=</span> ad_conversion[<span class="st">"n_impressions"</span>]<span class="op">**</span><span class="fl">0.25</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>ad_conversion[<span class="st">"qdrt_n_clicks"</span>] <span class="op">=</span> ad_conversion[<span class="st">"n_clicks"</span>]<span class="op">**</span><span class="fl">0.25</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot using the transformed variables</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>sns.regplot(data<span class="op">=</span>ad_conversion,x<span class="op">=</span><span class="st">"qdrt_n_impressions"</span>,y<span class="op">=</span><span class="st">"qdrt_n_clicks"</span>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_35_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ad_conversion[<span class="st">"qdrt_n_impressions"</span>] <span class="op">=</span> ad_conversion[<span class="st">"n_impressions"</span>] <span class="op">**</span> <span class="fl">0.25</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>ad_conversion[<span class="st">"qdrt_n_clicks"</span>] <span class="op">=</span> ad_conversion[<span class="st">"n_clicks"</span>] <span class="op">**</span> <span class="fl">0.25</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a linear regression of your transformed variables</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>mdl_click_vs_impression <span class="op">=</span> ols(<span class="st">"qdrt_n_clicks ~ qdrt_n_impressions"</span>, data<span class="op">=</span>ad_conversion).fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ad_conversion[<span class="st">"qdrt_n_impressions"</span>] <span class="op">=</span> ad_conversion[<span class="st">"n_impressions"</span>] <span class="op">**</span> <span class="fl">0.25</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>ad_conversion[<span class="st">"qdrt_n_clicks"</span>] <span class="op">=</span> ad_conversion[<span class="st">"n_clicks"</span>] <span class="op">**</span> <span class="fl">0.25</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>mdl_click_vs_impression <span class="op">=</span> ols(<span class="st">"qdrt_n_clicks ~ qdrt_n_impressions"</span>, data<span class="op">=</span>ad_conversion, ci<span class="op">=</span><span class="va">None</span>).fit()</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>explanatory_data <span class="op">=</span> pd.DataFrame({<span class="st">"qdrt_n_impressions"</span>: np.arange(<span class="dv">0</span>, <span class="fl">3e6</span><span class="op">+</span><span class="dv">1</span>, <span class="fl">5e5</span>) <span class="op">**</span> <span class="fl">.25</span>,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"n_impressions"</span>: np.arange(<span class="dv">0</span>, <span class="fl">3e6</span><span class="op">+</span><span class="dv">1</span>, <span class="fl">5e5</span>)})</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete prediction_data</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>prediction_data <span class="op">=</span> explanatory_data.assign(</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    qdrt_n_clicks <span class="op">=</span> mdl_click_vs_impression.predict(explanatory_data)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prediction_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>   qdrt_n_impressions  n_impressions  qdrt_n_clicks
+0            0.000000            0.0       0.071748
+1           26.591479       500000.0       3.037576
+2           31.622777      1000000.0       3.598732
+3           34.996355      1500000.0       3.974998
+4           37.606031      2000000.0       4.266063
+5           39.763536      2500000.0       4.506696
+6           41.617915      3000000.0       4.713520
+
+
+/usr/local/lib/python3.8/dist-packages/statsmodels/base/model.py:130: ValueWarning:
+
+unknown kwargs ['ci']</code></pre>
+</section>
+<section id="back-transformation" class="level2">
+<h2 class="anchored" data-anchor-id="back-transformation">Back transformation</h2>
+<p>In the previous exercise, you transformed the response variable, ran a regression, and made predictions. But you’re not done yet! In order to correctly interpret and visualize your predictions, you’ll need to do a back-transformation.</p>
+<p>prediction_data, which you created in the previous exercise, is available. ### Instructions - Back transform the response variable in prediction_data by raising qdrt_n_clicks to the power 4 to get n_clicks. - Edit the plot to add a layer of points from prediction_data, colored “red”.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Back transform qdrt_n_clicks</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>prediction_data[<span class="st">"n_clicks"</span>] <span class="op">=</span> prediction_data[<span class="st">"qdrt_n_clicks"</span>]<span class="op">**</span><span class="dv">4</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prediction_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>   qdrt_n_impressions  n_impressions  qdrt_n_clicks    n_clicks
+0            0.000000            0.0       0.071748    0.000026
+1           26.591479       500000.0       3.037576   85.135121
+2           31.622777      1000000.0       3.598732  167.725102
+3           34.996355      1500000.0       3.974998  249.659131
+4           37.606031      2000000.0       4.266063  331.214159
+5           39.763536      2500000.0       4.506696  412.508546
+6           41.617915      3000000.0       4.713520  493.607180</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Back transform qdrt_n_clicks</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>prediction_data[<span class="st">"n_clicks"</span>] <span class="op">=</span> prediction_data[<span class="st">"qdrt_n_clicks"</span>] <span class="op">**</span> <span class="dv">4</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the transformed variables</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"qdrt_n_impressions"</span>, y<span class="op">=</span><span class="st">"qdrt_n_clicks"</span>, data<span class="op">=</span>ad_conversion, ci<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a layer of your prediction points</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data <span class="op">=</span> prediction_data, y<span class="op">=</span><span class="st">"qdrt_n_clicks"</span>, x<span class="op">=</span><span class="st">"qdrt_n_impressions"</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_40_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="chapter-3-assessing-model-fit" class="level1">
+<h1>Chapter 3 : Assessing model fit</h1>
+<p>In this chapter, you’ll learn how to ask questions of your model to assess fit. You’ll learn how to quantify how well a linear regression model fits, diagnose model problems using visualizations, and understand each observation’s leverage and influence to create the model.</p>
+<section id="coefficient-of-determination" class="level2">
+<h2 class="anchored" data-anchor-id="coefficient-of-determination">Coefficient of determination</h2>
+<p>The coefficient of determination is a measure of how well the linear regression line fits the observed values. For simple linear regression, it is equal to the square of the correlation between the explanatory and response variables.</p>
+<p>Here, you’ll take another look at the second stage of the advertising pipeline: modeling the click response to impressions. Two models are available: mdl_click_vs_impression_orig models n_clicks versus n_impressions. mdl_click_vs_impression_trans is the transformed model you saw in Chapter 2. It models n_clicks to the power of 0.25 versus n_impressions to the power of 0.25. ### Instructions - Print the summary of mdl_click_vs_impression_orig. - Do the same for mdl_click_vs_impression_trans. - Print the coefficient of determination for mdl_click_vs_impression_orig. - Do the same for mdl_click_vs_impression_trans.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a summary of mdl_click_vs_impression_orig</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_click_vs_impression_orig.summary())</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a summary of mdl_click_vs_impression_trans</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_click_vs_impression_trans.summary())</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the coeff of determination for mdl_click_vs_impression_orig</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_click_vs_impression_orig.rsquared)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the coeff of determination for mdl_click_vs_impression_trans</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_click_vs_impression_trans.rsquared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="residual-standard-error" class="level2">
+<h2 class="anchored" data-anchor-id="residual-standard-error">Residual standard error</h2>
+<p>Residual standard error (RSE) is a measure of the typical size of the residuals. Equivalently, it’s a measure of how wrong you can expect predictions to be. Smaller numbers are better, with zero being a perfect fit to the data.</p>
+<p>Again, you’ll look at the models from the advertising pipeline, mdl_click_vs_impression_orig and mdl_click_vs_impression_trans. ### Instructions - Calculate the MSE of mdl_click_vs_impression_orig, assigning to mse_orig. - Using mse_orig, calculate and print the RSE of mdl_click_vs_impression_orig. - Do the same for mdl_click_vs_impression_trans.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mse_orig for mdl_click_vs_impression_orig</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>mse_orig <span class="op">=</span> mdl_click_vs_impression_orig.mse_resid</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate rse_orig for mdl_click_vs_impression_orig and print it</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>rse_orig <span class="op">=</span> np.sqrt(mse_orig)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RSE of original model: "</span>, rse_orig)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mse_trans for mdl_click_vs_impression_trans</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>mse_trans <span class="op">=</span> mdl_click_vs_impression_trans.mse_resid</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate rse_trans for mdl_click_vs_impression_trans and print it</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>rse_trans <span class="op">=</span> np.sqrt(mse_trans)</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RSE of transformed model: "</span>, rse_trans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="drawing-diagnostic-plots" class="level2">
+<h2 class="anchored" data-anchor-id="drawing-diagnostic-plots">Drawing diagnostic plots</h2>
+<p>It’s time for you to draw these diagnostic plots yourself using the Taiwan real estate dataset and the model of house prices versus number of convenience stores.</p>
+<p>taiwan_real_estate is available as a pandas DataFrame and mdl_price_vs_conv is available. ### Instructions - Create the residuals versus fitted values plot. Add a lowess argument to visualize the trend of the residuals. - Import qqplot() from statsmodels.api. - Create the Q-Q plot of the residuals. - Create the scale-location plot.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the residuals vs. fitted values</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>sns.residplot(x<span class="op">=</span><span class="st">'n_convenience'</span>, y<span class="op">=</span><span class="st">'price_twd_msq'</span>, data<span class="op">=</span>taiwan_real_estate, lowess<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Fitted values"</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Residuals"</span>)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_46_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import qqplot</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.api <span class="im">import</span> qqplot</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Q-Q plot of the residuals</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>qqplot(data<span class="op">=</span>mdl_price_vs_conv.resid, fit<span class="op">=</span><span class="va">True</span>, line<span class="op">=</span><span class="st">"45"</span>)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_47_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocessing steps</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>model_norm_residuals <span class="op">=</span> mdl_price_vs_conv.get_influence().resid_studentized_internal</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>model_norm_residuals_abs_sqrt <span class="op">=</span> np.sqrt(np.<span class="bu">abs</span>(model_norm_residuals))</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the scale-location plot</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span>mdl_price_vs_conv.fittedvalues, y<span class="op">=</span>model_norm_residuals_abs_sqrt, ci<span class="op">=</span><span class="va">None</span>, lowess<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Fitted values"</span>)</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Sqrt of abs val of stdized residuals"</span>)</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_48_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="leverage" class="level2">
+<h2 class="anchored" data-anchor-id="leverage">Leverage</h2>
+<p>Leverage measures how unusual or extreme the explanatory variables are for each observation. Very roughly, high leverage means that the explanatory variable has values that are different from other points in the dataset. In the case of simple linear regression, where there is only one explanatory value, this typically means values with a very high or very low explanatory value.</p>
+<p>Here, you’ll look at highly leveraged values in the model of house price versus the square root of distance from the nearest MRT station in the Taiwan real estate dataset.</p>
+<p>Guess which observations you think will have a high leverage, then move the slider to find out.</p>
+<p>Which statement is true? ### Instructions - Observations with a large distance to the nearest MRT station have the highest leverage, because these points are furthest away from the linear regression trend line. - Observations with a large distance to the nearest MRT station have the highest leverage, because leverage is proportional to the explanatory variable. - <strong>Observations with a large distance to the nearest MRT station have the highest leverage, because most of the observations have a short distance, so long distances are more extreme.</strong> - Observations with a high price have the highest leverage, because most of the observations have a low price, so high prices are most extreme.</p>
+</section>
+<section id="influence" class="level2">
+<h2 class="anchored" data-anchor-id="influence">Influence</h2>
+<p>Influence measures how much a model would change if each observation was left out of the model calculations, one at a time. That is, it measures how different the prediction line would look if you would run a linear regression on all data points except that point, compared to running a linear regression on the whole dataset.</p>
+<p>The standard metric for influence is Cook’s distance, which calculates influence based on the residual size and the leverage of the point.</p>
+<p>You can see the same model as last time: house price versus the square root of distance from the nearest MRT station in the Taiwan real estate dataset.</p>
+<p>Guess which observations you think will have a high influence, then move the slider to find out.</p>
+<p>Which statement is true? ### Instructions - <strong>Observations far away from the trend line have high influence, because they have large residuals and are far away from other observations.</strong> - Observations with high prices have high influence, because influence is proportional to the response variable. - Observations far away from the trend line have high influence, because the slope of the trend is negative. - Observations far away from the trend line have high influence, because that increases the leverage of those points.</p>
+</section>
+<section id="extracting-leverage-and-influence" class="level2">
+<h2 class="anchored" data-anchor-id="extracting-leverage-and-influence">Extracting leverage and influence</h2>
+<p>In the last few exercises, you explored which observations had the highest leverage and influence. Now you’ll extract those values from the model.</p>
+<p>mdl_price_vs_dist and taiwan_real_estate are available. ### Instructions - Get the summary frame from mdl_price_vs_dist and save as summary_info. - Add the hat_diag column of summary_info to taiwan_real_estate as the leverage column. - Sort taiwan_real_estate by leverage in descending order and print the head. - Add the cooks_d column from summary_info to taiwan_real_estate as the cooks_dist column. - Sort taiwan_real_estate by cooks_dist in descending order and print the head.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create summary_info</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>summary_info <span class="op">=</span> mdl_price_vs_dist.get_influence().summary_frame()</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the hat_diag column to taiwan_real_estate, name it leverage</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>taiwan_real_estate[<span class="st">"leverage"</span>] <span class="op">=</span> summary_info[<span class="st">'hat_diag'</span>]</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort taiwan_real_estate by leverage in descending order and print the head</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(taiwan_real_estate.sort_values(<span class="st">"leverage"</span>, ascending<span class="op">=</span><span class="va">False</span>).head())</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create summary_info</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>summary_info <span class="op">=</span> mdl_price_vs_dist.get_influence().summary_frame()</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the hat_diag column to taiwan_real_estate, name it leverage</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>taiwan_real_estate[<span class="st">"leverage"</span>] <span class="op">=</span> summary_info[<span class="st">"hat_diag"</span>]</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the cooks_d column to taiwan_real_estate, name it cooks_dist</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>taiwan_real_estate[<span class="st">"cooks_dist"</span>]<span class="op">=</span>summary_info[<span class="st">'cooks_d'</span>]</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort taiwan_real_estate by cooks_dist in descending order and print the head.</span></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(taiwan_real_estate.sort_values(<span class="st">"cooks_dist"</span>,ascending<span class="op">=</span><span class="va">False</span>).head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     dist_to_mrt_m  n_convenience  ... sqrt_dist_to_mrt_m  leverage
+347       6488.021              1  ...          80.548253  0.026665
+116       6396.283              1  ...          79.976765  0.026135
+249       6306.153              1  ...          79.411290  0.025617
+255       5512.038              1  ...          74.243101  0.021142
+8         5512.038              1  ...          74.243101  0.021142
+
+[5 rows x 6 columns]
+     dist_to_mrt_m  n_convenience  ...  leverage  cooks_dist
+270       252.5822              1  ...  0.003849    0.115549
+148      3780.5900              0  ...  0.012147    0.052440
+228      3171.3290              0  ...  0.009332    0.035384
+220       186.5101              9  ...  0.004401    0.025123
+113       393.2606              6  ...  0.003095    0.022813
+
+[5 rows x 7 columns]</code></pre>
+</section>
+</section>
+<section id="chapter-4-simple-logistic-regression-modeling" class="level1">
+<h1>Chapter 4: Simple Logistic Regression Modeling</h1>
+<p>Learn to fit logistic regression models. Using real-world data, you’ll predict the likelihood of a customer closing their bank account as probabilities of success and odds ratios, and quantify model performance using confusion matrices.</p>
+<section id="exploring-the-explanatory-variables" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-the-explanatory-variables">Exploring the explanatory variables</h2>
+<p>When the response variable is logical, all the points lie on the and</p>
+<p>lines, making it difficult to see what is happening. In the video, until you saw the trend line, it wasn’t clear how the explanatory variable was distributed on each line. This can be solved with a histogram of the explanatory variable, grouped by the response.</p>
+<p>You will use these histograms to get to know the financial services churn dataset seen in the video.</p>
+<p>churn is available as a pandas DataFrame. ### Instructions - In a sns.displot() call on the churn data, plot time_since_last_purchase as two histograms, split for each has_churned value. - Redraw the histograms using the time_since_first_purchase column, split for each has_churned value.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the histograms of time_since_last_purchase split by has_churned</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>sns.displot(data<span class="op">=</span>churn,x<span class="op">=</span><span class="st">'time_since_last_purchase'</span>, col<span class="op">=</span><span class="st">'has_churned'</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_55_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Redraw the plot with time_since_first_purchase</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>sns.displot(data<span class="op">=</span>churn,x<span class="op">=</span><span class="st">'time_since_first_purchase'</span>,col<span class="op">=</span><span class="st">'has_churned'</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_56_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="visualizing-linear-and-logistic-models" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-linear-and-logistic-models">Visualizing linear and logistic models</h2>
+<p>As with linear regressions, regplot() will draw model predictions for a logistic regression without you having to worry about the modeling code yourself. To see how the predictions differ for linear and logistic regressions, try drawing both trend lines side by side. Spoiler: you should see a linear (straight line) trend from the linear model, and a logistic (S-shaped) trend from the logistic model.</p>
+<p>churn is available. ### Instructions - Using churn, plot has_churned versus time_since_first_purchase as a scatter plot with a red linear regression trend line (without a standard error ribbon). - Using churn, plot has_churned versus time_since_first_purchase as a scatter plot with a blue logistic regression trend line (without a standard error ribbon).</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a linear regression trend line and a scatter plot of time_since_first_purchase vs. has_churned</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(data<span class="op">=</span>churn,x<span class="op">=</span><span class="st">'time_since_first_purchase'</span>, y<span class="op">=</span><span class="st">'has_churned'</span>,</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>            line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"red"</span>})</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_58_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a linear regression trend line and a scatter plot of time_since_first_purchase vs. has_churned</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"time_since_first_purchase"</span>,</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">"has_churned"</span>,</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>churn, </span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>            ci<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>            line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"red"</span>})</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a logistic regression trend line and a scatter plot of time_since_first_purchase vs. has_churned</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"time_since_first_purchase"</span>,</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">"has_churned"</span>,</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>churn, </span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>            ci<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>            line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"blue"</span>},</span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>            logistic<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="18_Introduction to Regression with statsmodels in Python_files/18_Introduction to Regression with statsmodels in Python_59_0.png" class="img-fluid figure-img"></p>
+<figcaption>png</figcaption>
+</figure>
+</div>
+</section>
+<section id="logistic-regression-with-logit" class="level2">
+<h2 class="anchored" data-anchor-id="logistic-regression-with-logit">Logistic regression with logit()</h2>
+<p>Logistic regression requires another function from statsmodels.formula.api: logit(). It takes the same arguments as ols(): a formula and data argument. You then use .fit() to fit the model to the data.</p>
+<p>Here, you’ll model how the length of relationship with a customer affects churn.</p>
+<p>churn is available. ### Instructions - Import the logit() function from statsmodels.formula.api. - Fit a logistic regression of has_churned versus time_since_first_purchase using the churn dataset. Assign to mdl_churn_vs_relationship. - Print the parameters of the fitted model.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import logit</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.formula.api <span class="im">import</span> logit</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a logistic regression of churn vs. length of relationship using the churn dataset</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>mdl_churn_vs_relationship <span class="op">=</span> logit(<span class="st">"has_churned ~ time_since_first_purchase"</span>, data<span class="op">=</span>churn).fit()</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the parameters of the fitted model</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mdl_churn_vs_relationship.params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Optimization terminated successfully.
+         Current function value: 0.679663
+         Iterations 4
+Intercept                   -0.015185
+time_since_first_purchase   -0.354795
+dtype: float64</code></pre>
+</section>
+<section id="probabilities" class="level2">
+<h2 class="anchored" data-anchor-id="probabilities">Probabilities</h2>
+<p>There are four main ways of expressing the prediction from a logistic regression model – we’ll look at each of them over the next four exercises. Firstly, since the response variable is either “yes” or “no”, you can make a prediction of the probability of a “yes”. Here, you’ll calculate and visualize these probabilities.</p>
+<p>Two variables are available:</p>
+<pre><code>mdl_churn_vs_relationship is the fitted logistic regression model of has_churned versus time_since_first_purchase.
+explanatory_data is a DataFrame of explanatory values.</code></pre>
+<section id="instructions" class="level3">
+<h3 class="anchored" data-anchor-id="instructions">Instructions</h3>
+<ul>
+<li>Create a DataFrame, prediction_data, by assigning a column has_churned to explanatory_data.</li>
+<li>In the has_churned column, store the predictions of the probability of churning: use the model, mdl_churn_vs_relationship, and the explanatory data, explanatory_data.</li>
+<li>Print the first five lines of the prediction DataFrame.</li>
+<li>Create a scatter plot with a logistic trend line of has_churned versus time_since_first_purchase.</li>
+<li>Overlay the plot with the points from prediction_data, colored red.</li>
+</ul>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create prediction_data</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>prediction_data <span class="op">=</span> explanatory_data.assign(</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  has_churned <span class="op">=</span> mdl_churn_vs_relationship.predict(explanatory_data)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the head</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prediction_data.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create prediction_data</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>prediction_data <span class="op">=</span> explanatory_data.assign(</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    has_churned <span class="op">=</span> mdl_churn_vs_relationship.predict(explanatory_data)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot with logistic trend line</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"time_since_first_purchase"</span>, y<span class="op">=</span><span class="st">"has_churned"</span>, data<span class="op">=</span>prediction_data, color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Overlay with prediction_data, colored red</span></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"time_since_first_purchase"</span>, y<span class="op">=</span><span class="st">"has_churned"</span>,data<span class="op">=</span>churn, ci<span class="op">=</span><span class="va">None</span>, logistic<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="most-likely-outcome" class="level2">
+<h2 class="anchored" data-anchor-id="most-likely-outcome">Most likely outcome</h2>
+<p>When explaining your results to a non-technical audience, you may wish to side-step talking about probabilities and simply explain the most likely outcome. That is, rather than saying there is a 60% chance of a customer churning, you say that the most likely outcome is that the customer will churn. The trade-off here is easier interpretation at the cost of nuance.</p>
+<p>mdl_churn_vs_relationship, explanatory_data, and prediction_data are available from the previous exercise. ### Instructions - Update prediction_data to add a column of the most likely churn outcome, most_likely_outcome. - Print the first five lines of prediction_data. - The code for creating a scatter plot with logistic trend line has been added from a previous exercise. - Overlay the plot with prediction_data with red data points, with most_likely_outcome on the y-axis.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update prediction data by adding most_likely_outcome</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>prediction_data[<span class="st">"most_likely_outcome"</span>] <span class="op">=</span> np.<span class="bu">round</span>(prediction_data[<span class="st">"has_churned"</span>])</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the head</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prediction_data.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update prediction data by adding most_likely_outcome</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>prediction_data[<span class="st">"most_likely_outcome"</span>] <span class="op">=</span> np.<span class="bu">round</span>(prediction_data[<span class="st">"has_churned"</span>])</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot with logistic trend line (from previous exercise)</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"time_since_first_purchase"</span>,</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">"has_churned"</span>,</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>churn,</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>            ci<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>            logistic<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Overlay with prediction_data, colored red</span></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"time_since_first_purchase"</span>, y<span class="op">=</span><span class="st">"most_likely_outcome"</span>, data<span class="op">=</span>prediction_data, color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="odds-ratio" class="level2">
+<h2 class="anchored" data-anchor-id="odds-ratio">Odds ratio</h2>
+<p>Odds ratios compare the probability of something happening with the probability of it not happening. This is sometimes easier to reason about than probabilities, particularly when you want to make decisions about choices. For example, if a customer has a 20% chance of churning, it may be more intuitive to say “the chance of them not churning is four times higher than the chance of them churning”.</p>
+<p>mdl_churn_vs_relationship, explanatory_data, and prediction_data are available from the previous exercise. ### Instructions - Update prediction_data to add a column, odds_ratio, of the odds ratios. - Print the first five lines of prediction_data. - Using prediction_data, draw a line plot of odds_ratio versus time_since_first_purchase. - Some code for preparing the final plot has already been added.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update prediction data with odds_ratio</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>prediction_data[<span class="st">"odds_ratio"</span>] <span class="op">=</span> prediction_data[<span class="st">"has_churned"</span>] <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> prediction_data[<span class="st">"has_churned"</span>])</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the head</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prediction_data.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update prediction data with odds_ratio</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>prediction_data[<span class="st">"odds_ratio"</span>] <span class="op">=</span> prediction_data[<span class="st">"has_churned"</span>] <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> prediction_data[<span class="st">"has_churned"</span>])</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a line plot of odds_ratio vs time_since_first_purchase</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>prediction_data,x<span class="op">=</span><span class="st">"time_since_first_purchase"</span>,y<span class="op">=</span><span class="st">'odds_ratio'</span>)</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a dotted horizontal line at odds_ratio = 1</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">1</span>, linestyle<span class="op">=</span><span class="st">"dotted"</span>)</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="log-odds-ratio" class="level2">
+<h2 class="anchored" data-anchor-id="log-odds-ratio">Log odds ratio</h2>
+<p>One downside to probabilities and odds ratios for logistic regression predictions is that the prediction lines for each are curved. This makes it harder to reason about what happens to the prediction when you make a change to the explanatory variable. The logarithm of the odds ratio (the “log odds ratio” or “logit”) does have a linear relationship between predicted response and explanatory variable. That means that as the explanatory variable changes, you don’t see dramatic changes in the response metric - only linear changes.</p>
+<p>Since the actual values of log odds ratio are less intuitive than (linear) odds ratio, for visualization purposes it’s usually better to plot the odds ratio and apply a log transformation to the y-axis scale.</p>
+<p>mdl_churn_vs_relationship, explanatory_data, and prediction_data are available from the previous exercise. ### Instructions - Update prediction_data to add a log_odds_ratio column derived from odds_ratio. - Print the first five lines of prediction_data. - Update the code for the line plot to plot log_odds_ratio versus time_since_first_purchase.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update prediction data with log_odds_ratio</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>prediction_data[<span class="st">"log_odds_ratio"</span>] <span class="op">=</span> np.log(prediction_data[<span class="st">"odds_ratio"</span>])</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the line plot: log_odds_ratio vs. time_since_first_purchase</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span><span class="st">"time_since_first_purchase"</span>,</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>             y<span class="op">=</span><span class="st">"log_odds_ratio"</span>,</span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>             data<span class="op">=</span>prediction_data)</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a dotted horizontal line at log_odds_ratio = 0</span></span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, linestyle<span class="op">=</span><span class="st">"dotted"</span>)</span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="calculating-the-confusion-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-the-confusion-matrix">Calculating the confusion matrix</h2>
+<p>A confusion matrix (occasionally called a confusion table) is the basis of all performance metrics for models with a categorical response (such as a logistic regression). It contains the counts of each actual response-predicted response pair. In this case, where there are two possible responses (churn or not churn), there are four overall outcomes.</p>
+<pre><code>True positive: The customer churned and the model predicted they would.
+False positive: The customer didn't churn, but the model predicted they would.
+True negative: The customer didn't churn and the model predicted they wouldn't.
+False negative: The customer churned, but the model predicted they wouldn't.</code></pre>
+<p>churn and mdl_churn_vs_relationship are available. ### Instructions - Get the actual responses by subsetting the has_churned column of the dataset. Assign to actual_response. - Get the “most likely” predicted responses from the model. Assign to predicted_response. - Create a DataFrame from actual_response and predicted_response. Assign to outcomes. - Print outcomes as a table of counts, representing the confusion matrix. This has been done for you.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the actual responses</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>actual_response <span class="op">=</span> churn[<span class="st">'has_churned'</span>]</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the predicted responses</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>predicted_response <span class="op">=</span> np.<span class="bu">round</span>(mdl_churn_vs_relationship.predict())</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create outcomes as a DataFrame of both Series</span></span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>outcomes <span class="op">=</span> pd.DataFrame({<span class="st">'actual_response'</span>:actual_response,</span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>                         <span class="st">'predicted_response'</span>:predicted_response})</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the outcomes</span></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(outcomes.value_counts(sort <span class="op">=</span> <span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="drawing-a-mosaic-plot-of-the-confusion-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="drawing-a-mosaic-plot-of-the-confusion-matrix">Drawing a mosaic plot of the confusion matrix</h2>
+<p>While calculating the performance matrix might be fun, it would become tedious if you needed multiple confusion matrices of different models. Luckily, the .pred_table() method can calculate the confusion matrix for you.</p>
+<p>Additionally, you can use the output from the .pred_table() method to visualize the confusion matrix, using the mosaic() function.</p>
+<p>churn and mdl_churn_vs_relationship are available. ### Instructions - Import the mosaic() function from statsmodels.graphics.mosaicplot. - Create conf_matrix using the .pred_table() method and print it. - Draw a mosaic plot of the confusion matrix.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import mosaic from statsmodels.graphics.mosaicplot</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.graphics.mosaicplot <span class="im">import</span> mosaic</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confusion matrix conf_matrix</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>conf_matrix <span class="op">=</span> mdl_churn_vs_relationship.pred_table()</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print it</span></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(conf_matrix)</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a mosaic plot of conf_matrix</span></span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>mosaic(conf_matrix)</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="measuring-logistic-model-performance" class="level2">
+<h2 class="anchored" data-anchor-id="measuring-logistic-model-performance">Measuring logistic model performance</h2>
+<p>As you know by now, several metrics exist for measuring the performance of a logistic regression model. In this last exercise, you’ll manually calculate accuracy, sensitivity, and specificity. Recall the following definitions:</p>
+<p>Accuracy is the proportion of predictions that are correct. Sensitivity is the proportion of true observations that are correctly predicted by the model as being true. Specificity is the proportion of false observations that are correctly predicted by the model as being false.</p>
+<p>churn, mdl_churn_vs_relationship, and conf_matrix are available. Instructions 100 XP</p>
+<pre><code>Extract the number of true positives (TP), true negatives (TN), false positives (FP), and false negatives (FN) from conf_matrix.
+Calculate the accuracy of the model.
+Calculate the sensitivity of the model.
+Calculate the specificity of the model.</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract TN, TP, FN and FP from conf_matrix</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>TN <span class="op">=</span> conf_matrix[<span class="dv">0</span>,<span class="dv">0</span>]</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>TP <span class="op">=</span> conf_matrix[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>FN <span class="op">=</span> conf_matrix[<span class="dv">1</span>,<span class="dv">0</span>]</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>FP <span class="op">=</span> conf_matrix[<span class="dv">0</span>,<span class="dv">1</span>]</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate and print the accuracy</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> (TN<span class="op">+</span>TP)<span class="op">/</span>(TN<span class="op">+</span>FN<span class="op">+</span>FP<span class="op">+</span>TP)</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"accuracy: "</span>, accuracy)</span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate and print the sensitivity</span></span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="op">=</span> TP<span class="op">/</span>(TP<span class="op">+</span>FN)</span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sensitivity: "</span>, sensitivity)</span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate and print the specificity</span></span>
+<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a>specificity <span class="op">=</span> TN<span class="op">/</span>(TN<span class="op">+</span>FP)</span>
+<span id="cb64-17"><a href="#cb64-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"specificity: "</span>, specificity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./17_Writing_Functions_in_Python.html" class="pagination-link" aria-label="Writing Functions in Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Writing Functions in Python</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Project-A_Visual_History_of_Nobel_Prize_Winners.html" class="pagination-link" aria-label="Project: A Visual History of Nobel Prize Winners">
+        <span class="nav-page-text">Project: A Visual History of Nobel Prize Winners</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
